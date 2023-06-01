@@ -1,0 +1,10 @@
+.custom-footer {
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.custom-footer h5 {
+  font-size: 1.5rem;
+  color: white;
+}
