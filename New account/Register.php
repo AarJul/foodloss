@@ -20,7 +20,7 @@ $password = $_POST['password'];
 $address = $_POST['address'];
 
 //SQL文を作成
-$sql = "INSERT INTO USER (name, telephone, email, password, address) 
+$sql = "INSERT INTO USER (USER_NAME, USER_TEL, USER_EMAIL, USER_PASSWORD, USER_ADDRESS) 
         VALUES ('$name', '$telephone', '$email', '$password', '$address')";
 
 //トランザクション開始
