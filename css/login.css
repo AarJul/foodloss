@@ -1,0 +1,9 @@
+@import 'color.css';
+
+.login-banner {
+    .banner {
+        background-color: var(--quaternary-color);
+        padding: 20px;
+        text-align: center;
+      }
+}

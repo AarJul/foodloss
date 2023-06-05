@@ -1,10 +1,12 @@
+@import 'color.css';
+
 .custom-footer {
-  background-color: black;
-  color: white;
+  background-color: var(--black-color);
+  color: var(--text-color);
   font-size: 1.2rem;
 }
 
 .custom-footer h5 {
   font-size: 1.5rem;
-  color: white;
+  color: var(--text-colors);
 }

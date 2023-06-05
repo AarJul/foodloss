@@ -1,0 +1,20 @@
+:root {
+    /* color */
+    --primary-color: #333333;
+    --secondary-color: #666666;
+    --tertiary-color: #999999;
+    --quaternary-color: #CCCCCC;
+    --quinary-color: #EDEDED;
+    --black-color: black;
+    --text-color: white;
+    
+
+
+
+    /* text sizing */
+}
+
+.gradcolor {
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+}
