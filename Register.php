@@ -13,7 +13,6 @@ if ($conn->connect_error) {
 }
 
 $sql;
-
 //フォームから送信されたデータを取得
 $name = $_POST['name'];
 $telephone = $_POST['telephone'];
