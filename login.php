@@ -26,7 +26,7 @@ function user_login($Email, $password)
       // Successful login with store account
       // Save information to session or perform other actions
       // Redirect to the store page
-      header("Location: store.html");
+      header("Location: store.php");
       exit;
     } else {
       echo "Incorrect password!";
