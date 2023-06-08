@@ -33,15 +33,37 @@ if ($selectedOption == 'store') {
 }
 
 if ($stmt->execute()) {
-    echo "登録できた！";
+    $message = "登録できました";
 } else {
-    echo "エラー: " . $stmt->error;
+   $message = "登録失敗した" . $stmt->error;
 }
 
 $stmt->close();
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新規登録画面</title>
+    <link rel="stylesheet" type="text/css" href="" />
+</head>
+
+<body>
+<form id="registration-form" method="post" action="#">
+    <h1><?=$message?></h1>
+    
+    <br>
+        <a href="../login.html" class="btn btn-danger btn-lg" role="button">戻る</a>
+
+</body>
+
+</html>
 
 
 
