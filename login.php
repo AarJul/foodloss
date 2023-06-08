@@ -83,6 +83,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login Page</title>
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">OpenSeaS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Page 1 <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="Register.html"
+            ><span class="glyphicon glyphicon-user"></span> 新規登録</a
+          >
+        </li>
+        <li>
+          <a href="login.html"
+            ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+
     <div id="wrapper">
         <form action="" id="form-login">
             <h1 class="form-heading">Sign In</h1>
@@ -109,6 +143,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         
     </div>
+    <footer class="custom-footer ">
+      <div class="container-fixed-bottom">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>About Us</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="col-md-6">
+            <h5>Contact</h5>
+            <ul class="list-unstyled">
+              <li>Phone: 123-456-7890</li>
+              <li>Email: info@example.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="../js/app.js"></script>
