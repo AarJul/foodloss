@@ -35,7 +35,7 @@ if ($selectedOption == 'store') {
 if ($stmt->execute()) {
     echo "登録できた！";
 } else {
-    echo "Lỗi: " . $stmt->error;
+    echo "エラー: " . $stmt->error;
 }
 
 $stmt->close();
