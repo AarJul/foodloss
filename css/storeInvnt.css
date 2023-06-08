@@ -14,3 +14,7 @@
     background-color: var(--dark-color-1);
     color: var(--text-color-white);
 }
+#dash-btn {
+    background-color: var(--light-color-2);
+    width: 100%;
+}
