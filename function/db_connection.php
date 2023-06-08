@@ -4,7 +4,7 @@ function connection()
 {
   // table connect
   $server_name = "localhost";
-  $db_user = "user";
+  $db_user = "dbuser";
   $db_name = "food";
   $password = "ecc";
 
