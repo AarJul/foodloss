@@ -110,7 +110,6 @@
         <input type="hidden" id="selectedOption" />
 
         <div id="response"></div>
-        
 
         <!-- fixing -->
         <input type="submit" class="btn btn-success btn-lg" value="登録" />
@@ -136,7 +135,23 @@
         var storeCodeInput = document.getElementById("store-code");
         storeCodeInput.style.display = "none";
       };
+    </script>
+    <script>
+      function userCheck() {
+        let = document.getElementById("user");
+        if (user == loggedIn) {
+          element.innerHTML =
+            '<a href="#" onclick="logout();"><span class="glyphicon glyphicon-log-out"></span> ログアウト</a>';
+        }
+      }
+      function logout() {
+        // Perform logout operation
+        // You can make an AJAX request to a logout endpoint on the server-side
+        // Or clear any session/cookie/local storage data
 
+        // Redirect the user to the login page
+        window.location.href = "login.html";
+      }
     </script>
   </body>
 </html>
