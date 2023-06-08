@@ -1,9 +1,9 @@
  <?php
 // データベースの情報　
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$username = "dbuser";
+$password = "ecc";
+$dbname = "food";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -35,7 +35,7 @@ if ($selectedOption == 'store') {
 if ($stmt->execute()) {
     echo "登録できた！";
 } else {
-    echo "Lỗi: " . $stmt->error;
+    echo "エラー: " . $stmt->error;
 }
 
 $stmt->close();
