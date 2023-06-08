@@ -7,7 +7,7 @@ $dbname = "your_database_name";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-//接続のチェック
+//接続のチェック 
 if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
