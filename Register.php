@@ -31,9 +31,10 @@ if ($selectedOption == 'store') {
                             VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $name, $telephone, $email, $hashedPassword, $address);
 }
-
+  
 if ($stmt->execute()) {
-    $message = "登録できました";
+    $conn->commit();
+    $message = "登録できました！";   
 } else {
    $message = "登録失敗した" . $stmt->error;
 }
