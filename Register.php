@@ -1,9 +1,9 @@
  <?php
 // データベースの情報　
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$username = "dbuser";
+$password = "ecc";
+$dbname = "food";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
