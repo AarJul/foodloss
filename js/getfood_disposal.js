@@ -3,26 +3,26 @@ document.addEventListener('click', function(event) {
         var row = event.target.parentNode.parentNode;
         var disposalId = row.getElementsByTagName('td')[0].textContent;
         
-        // Gửi yêu cầu AJAX đến tệp PHP để thực thi câu lệnh SQL
+        // SQL文を実行するためにPHPファイルにAJAXリクエストを送信する
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'js/deletedisposal.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    // Xóa dòng khỏi bảng chỉ khi câu lệnh SQL thành công
+                    // SQL文の実行が成功した場合に行をテーブルから削除する
                     row.parentNode.removeChild(row);
                 } else {
-                    // Xử lý lỗi khi câu lệnh SQL thất bại
-                    console.log('Lỗi SQL: ' + xhr.responseText);
+                    // SQL文の実行が失敗した場合のエラーハンドリング
+                    console.log('SQLエラー: ' + xhr.responseText);
                 }
             }
         };
         
-        // Truyền disposalId như một tham số trong yêu cầu POST
+        // disposalIdをPOSTリクエストのパラメータとして渡す
         var params = 'disposalId=' + encodeURIComponent(disposalId);
         
-        // Gửi yêu cầu AJAX
+        // AJAXリクエストを送信する
         xhr.send(params);
     }
 });

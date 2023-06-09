@@ -1,28 +1,28 @@
 <?php
-// Lấy disposalId từ yêu cầu POST
+// POSTリクエストからdisposalIdを取得する
 $disposalId = $_POST['disposalId'];
 
-//Thông tin kết nối tới CSDL
+// データベースへの接続情報
 $servername = "localhost";
 $username = "dbuser";
 $password = "ecc";
 $dbname = "food";
 
-// Thực hiện kết nối CSDL
+// データベースに接続する
 $db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 
-// Chuẩn bị câu lệnh SQL để xóa dữ liệu
+// データを削除するためのSQL文を準備する
 $sql = 'DELETE FROM disposal WHERE DISPOSAL_ID = :disposalId';
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':disposalId', $disposalId);
 
-// Thực thi câu lệnh SQL
+// SQL文を実行する
 if ($stmt->execute()) {
-    // Trả về mã trạng thái 200 (OK) nếu xóa thành công
+    // 削除が成功した場合はステータスコード200 (OK)を返す
     http_response_code(200);
 } else {
-    // Trả về mã trạng thái 500 (Internal Server Error) nếu xóa thất bại
+    // 削除が失敗した場合はステータスコード500 (Internal Server Error)を返し、エラーメッセージを出力する
     http_response_code(500);
-    echo 'Lỗi SQL: ' . $stmt->errorInfo()[2];
+    echo 'SQLエラー: ' . $stmt->errorInfo()[2];
 }
 ?>
