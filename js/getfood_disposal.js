@@ -5,7 +5,7 @@ document.addEventListener('click', function(event) {
         
         // Gửi yêu cầu AJAX đến tệp PHP để thực thi câu lệnh SQL
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'delete.php', true);
+        xhr.open('POST', 'js/deletedisposal.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {

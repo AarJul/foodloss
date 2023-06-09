@@ -2,14 +2,17 @@
 // Lấy disposalId từ yêu cầu POST
 $disposalId = $_POST['disposalId'];
 
-// Thực hiện kết nối CSDL (ví dụ: MySQL)
-$dsn = 'mysql:host=localhost;dbname=your_database;charset=utf8';
-$username = 'your_username';
-$password = 'your_password';
-$db = new PDO($dsn, $username, $password);
+//Thông tin kết nối tới CSDL
+$servername = "localhost";
+$username = "dbuser";
+$password = "ecc";
+$dbname = "food";
+
+// Thực hiện kết nối CSDL
+$db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 
 // Chuẩn bị câu lệnh SQL để xóa dữ liệu
-$sql = 'DELETE FROM your_table WHERE DISPOSAL_ID = :disposalId';
+$sql = 'DELETE FROM disposal WHERE DISPOSAL_ID = :disposalId';
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':disposalId', $disposalId);
 
