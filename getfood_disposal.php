@@ -42,7 +42,7 @@ $conn->close();
         <table>
             <tr>
                 <th>Disposal ID</th>
-                <th>Store ID</th>
+                <!-- <th>Store ID</th> -->
                 <th>Item</th>
                 <th>Qty</th>
                 <th>Date</th>
@@ -51,17 +51,17 @@ $conn->close();
             <?php foreach ($rows as $row) : ?>
                 <tr>
                     <td><?php echo $row['DISPOSAL_ID']; ?></td>
-                    <td><?php echo $row['STORE_ID']; ?></td>
+                    <!-- <td><?php //echo $row['STORE_ID']; ?></td> -->
                     <td><?php echo $row['ITEM']; ?></td>
                     <td><?php echo $row['QTY']; ?></td>
                     <td><?php echo $row['DATE']; ?></td>
                     <td><?php echo $row['STATUS']; ?></td>
+                    <td><button>削除</button></td>
                 </tr>
             <?php endforeach; ?>
         </table>
     <?php else : ?>
         <p>廃棄がなさそうですね！</p>
     <?php endif; ?>
-
 </body>
 </html>
