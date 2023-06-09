@@ -1,19 +1,28 @@
-
-// Lắng nghe sự kiện khi nhấp vào nút "削除"
 document.addEventListener('click', function(event) {
-    // Kiểm tra xem phần tử được nhấp vào có phải là nút "削除" không
     if (event.target && event.target.nodeName == 'BUTTON' && event.target.id == 'deleteButton') {
-        // Lấy phần tử tr (dòng) chứa nút "削除"
         var row = event.target.parentNode.parentNode;
-        
-        // Lấy giá trị của cột DISPOSAL_ID trong phần tử td đầu tiên của dòng
         var disposalId = row.getElementsByTagName('td')[0].textContent;
         
-        // Gửi yêu cầu xóa dữ liệu dựa trên disposalId
-        // Thực hiện các xử lý xóa tại đây
+        // Gửi yêu cầu AJAX đến tệp PHP để thực thi câu lệnh SQL
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Xóa dòng khỏi bảng chỉ khi câu lệnh SQL thành công
+                    row.parentNode.removeChild(row);
+                } else {
+                    // Xử lý lỗi khi câu lệnh SQL thất bại
+                    console.log('Lỗi SQL: ' + xhr.responseText);
+                }
+            }
+        };
         
-        // Xóa dòng khỏi bảng
-        row.parentNode.removeChild(row);
+        // Truyền disposalId như một tham số trong yêu cầu POST
+        var params = 'disposalId=' + encodeURIComponent(disposalId);
+        
+        // Gửi yêu cầu AJAX
+        xhr.send(params);
     }
 });
-

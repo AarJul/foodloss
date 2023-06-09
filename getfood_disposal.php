@@ -63,5 +63,6 @@ $conn->close();
     <?php else : ?>
         <p>廃棄がなさそうですね！</p>
     <?php endif; ?>
+    <script src ="js/getfood_disposal.js"></script>
 </body>
 </html>
