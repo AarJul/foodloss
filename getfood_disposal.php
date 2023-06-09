@@ -56,7 +56,7 @@ $conn->close();
                     <td><?php echo $row['QTY']; ?></td>
                     <td><?php echo $row['DATE']; ?></td>
                     <td><?php echo $row['STATUS']; ?></td>
-                    <td><button>削除</button></td>
+                    <td><button id="deleteButton">削除</button></td>
                 </tr>
             <?php endforeach; ?>
         </table>
