@@ -1,176 +1,289 @@
 <!DOCTYPE html>
 <html lang="ja">
-
+<<<<<<< HEAD
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FOOD LOSS</title>
-    <!-- tailwind -->
-    <link href="./css/output.css" rel="stylesheet" />
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新規登録画面</title>
+  <link rel="stylesheet" href="css/register.css" />
+  <link rel="stylesheet" href="css/color.css" />
+
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/navbar.css">
+
+  <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
-    <main>
-        <div class="flex flex-wrap z-50" id="tab-id">
-            <div class="w-full">
-                <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
-                    <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-blue-600"
-                            onclick="change(event,'user')">USER</a>
-                    </li>
-                    <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-blue-600 bg-white"
-                            onclick="change(event,'store')">STORE</a>
-                    </li>
-                </ul>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">OpenSeaS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Page 1 <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="Register.html"
+            ><span class="glyphicon glyphicon-user"></span> 新規登録</a
+          >
+        </li>
+        <li>
+          <a href="login.html"
+            ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-                <div class="z-50 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                    <div class="px-4 py-5 flex-col justify-center">
-                      
-                        <div class="tab-content w-full">
-                            <div class="block" id="user">
-                                <div class="flex-row justify-center">
-                                    <h1 class="text-center my-4">User Account</h1>
-                                    <form action="create.php?action=userCreateAccount" method="post">
-                                        <!-- name -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="text" name="user_name" id="user_name"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="user_name"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">名前</label>
-                                        </div>
-                                        <!-- tel -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="tel" name="user_tel" id="user_tel"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="user_tel"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">電話番号</label>
-                                        </div>
-                                        <!-- email -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="eemail" name="user_email" id="user_email"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " />
-                                            <label for="user_email"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">メールアドレス</label>
-                                        </div>
-                                        <!-- address -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="text" name="user_address" id="user_address"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="user_address"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">住所</label>
-                                        </div>
-                                        <!-- password -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="password" name="user_password" id="user_password"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="user_password"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">パスワード</label>
-                                        </div>
-                                        <!-- password_conf -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="password" name="user_password_conf" id="user_password_conf"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="user_password_conf"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">パスワード確認</label>
-                                        </div>
-                                        <!-- 送信ボタン -->
-                                        <div class="flex justify-center mx-auto">
-                                            <button type="submit" name="user_submit"
-                                                class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">登録</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
 
-                            <div class="hidden" id="store">
-                                <div class="flex-row justify-center">
-                                    <h1 class="text-center my-4 mx-auto">Store Account </h1>
-                                    <form action="create.php?action=storeCreateAccount" method="post">
-                                        <!-- name -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="text" name="store_name" id="store_name"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="store_name"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">名前</label>
-                                        </div>
-                                        <!-- tel -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="tel" name="store_tel" id="store_tel"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="store_tel"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">電話番号</label>
-                                        </div>
-                                        <!-- email -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="eemail" name="store_email" id="store_email"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="store_email"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">メールアドレス</label>
-                                        </div>
-                                        <!-- address -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="text" name="store_address" id="store_address"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="store_address"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">住所</label>
-                                        </div>
-                                        <!-- password -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="password" name="store_password" id="store_password"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="store_password"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">パスワード</label>
-                                        </div>
-                                        <!-- password_conf -->
-                                        <div class="relative mb-5 m-5 md:w-3/4 mx-auto">
-                                            <input type="password" name="store_password_conf" id="password_conf"
-                                                class="block p-4 w-full h-20 text-lg text-black rounded-lg border-2 bg-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" " required />
-                                            <label for="store_password_conf"
-                                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1">パスワード確認</label>
-                                        </div>
-                                        <!-- 送信ボタン -->
-                                        <div class="flex justify-center mx-auto">
-                                            <button type="submit" name="store_submit"
-                                                class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">登録</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- admin -->
-                            <div class="hidden" id="admin">
-                                <?php
-                                $_SESSION['access_granted'] = true;
-                                $_SESSION['show'] = true;
-                                include('admin_register.php');
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container" style="margin-top: 70px;">
+  <form id="registration-form" method="post" action="Register.php">
+    <div class="form-group form-group-lg">
+      <label for="user_id">名前</label>
+      <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="名前を入力"
+              required
+      />
+    </div>
+    <div class="form-group form-group-lg">
+      <label for="Phone">電話番号</label>
+      <input
+              type="tel"
+              class="form-control"
+              id="telephone"
+              name="telephone"
+              placeholder="電話番号を入力"
+              required
+      />
+    </div>
+    <div class="form-group form-group-lg">
+      <label for="email-input">メール</label>
+      <input
+              type="email"
+              class="form-control"
+              id="email-input"
+              name="email"
+              placeholder="メールアドレスを入力"
+              required
+      />
+    </div>
+    <div class="form-group form-group-lg">
+      <label for="password-input">パスワード</label>
+      <input
+              type="password"
+              class="form-control"
+              id="password-input"
+              name="password"
+              placeholder="パスワードを入力"
+              required
+      />
+    </div>
+    <div class="form-group form-group-lg">
+      <label for="address-input">住所</label>
+      <input
+              type="text"
+              class="form-control"
+              id="address-input"
+              name="address"
+              placeholder="住所を入力"
+              required
+      />
+    </div>
+    <div class="form-group form-group-lg">
+      <label for="user-type">ユーザータイプ</label>
+      <div class="dropdown">
+        <button
+                class="btn btn-default dropdown-toggle btn-lg"
+                type="button"
+                data-toggle="dropdown"
+                id="ddown"
+        >
+          --選択-- <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#" onclick="selectOption('user', 'ユーザー側 ')"
+            >ユーザー側</a
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新規登録画面</title>
+    <link rel="stylesheet" href="css/register.css" />
+    <link rel="stylesheet" href="css/color.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <form id="registration-form" method="post" action="Register.php">
+        <div class="form-group form-group-lg">
+          <label for="user_id">名前</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="名前を入力"
+            required
+          />
         </div>
-    </main>
-    <script type="text/javascript" src="./js/tab_sele.js"></script>
-    <script src="./js/navbar.js"></script>
-</body>
+        <div class="form-group form-group-lg">
+          <label for="Phone">電話番号</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="telephone"
+            name="telephone"
+            placeholder="電話番号を入力"
+            required
+          />
+        </div>
+        <div class="form-group form-group-lg">
+          <label for="email-input">メール</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email-input"
+            name="email"
+            placeholder="メールアドレスを入力"
+            required
+          />
+        </div>
+        <div class="form-group form-group-lg">
+          <label for="password-input">パスワード</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password-input"
+            name="password"
+            placeholder="パスワードを入力"
+            required
+          />
+        </div>
+        <div class="form-group form-group-lg">
+          <label for="address-input">住所</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address-input"
+            name="address"
+            placeholder="住所を入力"
+            required
+          />
+        </div>
+        <div class="form-group form-group-lg">
+          <label for="user-type">ユーザータイプ</label>
+          <div class="dropdown">
+            <button
+              class="btn btn-default dropdown-toggle btn-lg"
+              type="button"
+              data-toggle="dropdown"
+              id="ddown"
+>>>>>> 6279d395cdc68ec6c15095771bafbf6478e18940
 
+            >
+              --選択-- <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#" onclick="selectOption('user', 'ユーザー側 ')"
+                  >ユーザー側</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="selectOption('store', 'ストア側 ')"
+                  >ストア側</a
+                >
+              </li>
+            </ul>
+          </div>
+          <input
+            type="text"
+            id="store-code"
+            class="form-control"
+            placeholder="ストアコード"
+          />
+        </div>
+
+    <!-- Hidden input field to store the selected option -->
+    <input type="hidden" id="selectedOption" />
+
+        <div id="response"></div>
+
+        <!-- fixing -->
+        <input type="submit" class="btn btn-success btn-lg" value="登録" />
+        <a href="../Login/login.html" class="btn btn-info btn-lg" role="button"
+          >戻る</a
+        >
+      </form>
+    </div>
+
+    <script>
+      function selectOption(option, selectedText) {
+        document.getElementById("selectedOption").value = option;
+        document.getElementById("ddown").innerHTML =
+          selectedText + '<span class="caret"></span>';
+        let storeCodeInput = document.getElementById("store-code");
+        if (option === "store") {
+          storeCodeInput.style.display = "block"; // Show the input field
+        } else {
+          storeCodeInput.style.display = "none"; // Hide the input field
+        }
+      }
+      window.onload = function () {
+        var storeCodeInput = document.getElementById("store-code");
+        storeCodeInput.style.display = "none";
+      };
+    </script>
+
+    <footer class="custom-footer ">
+      <div class="container-fixed-bottom">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>About Us</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="col-md-6">
+            <h5>Contact</h5>
+            <ul class="list-unstyled">
+              <li>Phone: 123-456-7890</li>
+              <li>Email: info@example.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
