@@ -1,4 +1,6 @@
 <?php
+//PHP部分完成
+
 // データベースの情報　
 $servername = "localhost";
 $username = "dbuser";
@@ -63,6 +65,6 @@ $conn->close();
     <?php else : ?>
         <p>廃棄がなさそうですね！</p>
     <?php endif; ?>
-    <script src ="js/deleteItemFromDisposal.js"></script>
+    <script src ="../js/deleteItemFromDisposal.js"></script>
 </body>
 </html>

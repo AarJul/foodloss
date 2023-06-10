@@ -1,3 +1,6 @@
+
+//完成
+
 document.addEventListener('click', function(event) {
     if (event.target && event.target.nodeName == 'BUTTON' && event.target.id == 'deleteButton') {
         var row = event.target.parentNode.parentNode;
@@ -5,7 +8,8 @@ document.addEventListener('click', function(event) {
         
         // SQL文を実行するためにPHPファイルにAJAXリクエストを送信する
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'js/deleteItem.php', true);
+        xhr.open('POST', '../store_page/deleteItem.php', true);
+
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
