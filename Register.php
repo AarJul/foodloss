@@ -1,4 +1,6 @@
 <?php
+//PHP部分完成
+
 // データベースの情報　
 $servername = "localhost";
 $username = "dbuser";
