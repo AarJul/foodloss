@@ -42,9 +42,9 @@ $conn->close();
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/storeInvnt.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/storeInvnt.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -92,39 +92,44 @@ $conn->close();
           <div id="dashboard">
             <h3>ダッシュボード</h3>
             <div class="btn-group-vertical">
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能１</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能２</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能３</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">アイテム登録</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">発送問い合わせ</button>
             </div>
           </div>
         </div>
         <div class="col-sm-10">
+          <div id="addItem">
+
+          </div>
           <!-- Inventory management section -->
           <h3>Inventory Management</h3>
           <table class="table-bordered table-hover" id="inventory">
             <thead>
               <tr>
                 <th onclick="sortTable(0)">
-                  Store ID <span class="glyphicon glyphicon-sort"></span>
+                  ストアID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(1)">
-                  Disposal ID <span class="glyphicon glyphicon-sort"></span>
+                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(2)">
-                  Item <span class="glyphicon glyphicon-sort"></span>
-                </th> 
+                  アイテム <span class="glyphicon glyphicon-sort"></span>
+                </th>
                 <th onclick="sortTable(3)">
-                  Qty <span class="glyphicon glyphicon-sort"></span>
+                  個数 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(4)">
-                  Date <span class="glyphicon glyphicon-sort"></span>
+                  日付 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(5)">
-                  Status <span class="glyphicon glyphicon-sort"></span>
+                  ステータス <span class="glyphicon glyphicon-sort"></span>
                 </th>
+                <th id="deleteColumn"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="inventoryBody">
+              <!-- Table rows will be generated dynamically -->
             <?php foreach ($rows as $row) : ?>
                 <tr>
                     <td><?php echo $row['STORE_ID']; ?></td>
@@ -182,3 +187,10 @@ $conn->close();
     <script src ="../js/deleteItemFromDisposal.js"></script>
   </body>
 </html>
+
+
+
+
+
+
+
