@@ -41,56 +41,57 @@
     // Add more inventory data as needed
   ];
 
-  // Generate the table rows dynamically
-  function generateTableRows() {
-    var tbody = document.getElementById("inventoryBody");
+// Generate the table rows dynamically
+function generateTableRows() {
+  var tbody = document.getElementById("inventoryBody");
 
-    // Clear the existing table body
-    tbody.innerHTML = "";
+  // Clear the existing table body
+  tbody.innerHTML = "";
 
-    // Generate a table row for each item in the inventory
-    inventoryData.forEach(function (item) {
-      var row = document.createElement("tr");
+  // Generate a table row for each item in the inventory
+  <?php foreach ($rows as $row) : ?>
+  var row = document.createElement("tr");
 
-      // Create table cells for each item property
-      var storeIdCell = document.createElement("td");
-      storeIdCell.textContent = item.storeId;
-      row.appendChild(storeIdCell);
+  // Create table cells for each item property
+  var storeIdCell = document.createElement("td");
+  storeIdCell.textContent = "<?php echo $row['STORE_ID']; ?>";
+  row.appendChild(storeIdCell);
 
-      var disposalInfoCell = document.createElement("td");
-      disposalInfoCell.textContent = item.disposalInfo;
-      row.appendChild(disposalInfoCell);
+  var disposalInfoCell = document.createElement("td");
+  disposalInfoCell.textContent = "<?php echo $row['DISPOSAL_ID']; ?>";
+  row.appendChild(disposalInfoCell);
 
-      var itemCell = document.createElement("td");
-      itemCell.textContent = item.item;
-      row.appendChild(itemCell);
+  var itemCell = document.createElement("td");
+  itemCell.textContent = "<?php echo $row['ITEM']; ?>";
+  row.appendChild(itemCell);
 
-      var quantityCell = document.createElement("td");
-      quantityCell.textContent = item.quantity;
-      row.appendChild(quantityCell);
+  var quantityCell = document.createElement("td");
+  quantityCell.textContent = "<?php echo $row['QTY']; ?>";
+  row.appendChild(quantityCell);
 
-      var dateCell = document.createElement("td");
-      dateCell.textContent = item.date;
-      row.appendChild(dateCell);
+  var dateCell = document.createElement("td");
+  dateCell.textContent = "<?php echo $row['DATE']; ?>";
+  row.appendChild(dateCell);
 
-      var statusCell = document.createElement("td");
-      statusCell.textContent = item.status;
-      row.appendChild(statusCell);
+  var statusCell = document.createElement("td");
+  statusCell.textContent = "<?php echo $row['STATUS']; ?>";
+  row.appendChild(statusCell);
 
-      var actionCell = document.createElement("td");
-      var deleteButton = document.createElement("button");
-      deleteButton.classList.add("btn", "btn-danger", "btn-sm");
-      deleteButton.textContent = "Delete";
-      deleteButton.addEventListener("click", function () {
-        deleteItem(row);
-      });
-      actionCell.appendChild(deleteButton);
-      row.appendChild(actionCell);
+  var actionCell = document.createElement("td");
+  var deleteButton = document.createElement("button");
+  deleteButton.classList.add("btn", "btn-danger", "btn-sm");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", function () {
+    deleteItem(row);
+  });
+  actionCell.appendChild(deleteButton);
+  row.appendChild(actionCell);
 
-      // Append the row to the table body
-      tbody.appendChild(row);
-    });
-  }
+  // Append the row to the table body
+  tbody.appendChild(row);
+  <?php endforeach; ?>
+}
+
 
   // Call the function to generate table rows
   generateTableRows();
