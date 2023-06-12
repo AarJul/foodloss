@@ -112,7 +112,7 @@ $conn->close();
                 </th>
                 <th onclick="sortTable(2)">
                   Item <span class="glyphicon glyphicon-sort"></span>
-                </th>
+                </th> 
                 <th onclick="sortTable(3)">
                   Qty <span class="glyphicon glyphicon-sort"></span>
                 </th>
