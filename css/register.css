@@ -1,9 +1,4 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+@import url(color.css);
 
 #registration-form {
     width: 300px;
@@ -25,18 +20,6 @@ input[type="password"] {
     margin-bottom: 10px;
     border-radius: 3px;
     border: 1px solid #ccc;
-}
-.successAlert {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.successAlert.show {
-    opacity: 1;
 }
 
 .popup {

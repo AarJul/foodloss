@@ -35,6 +35,7 @@ if ($selectedOption == 'store') {
 }
 
 if ($stmt->execute()) {
+    $conn->commit();
     $message = "登録できました";
 } else {
    $message = "登録失敗した" . $stmt->error;
@@ -61,7 +62,7 @@ $conn->close();
     <h1><?=$message?></h1>
     
     <br>
-        <a href="../login.html" class="btn btn-danger btn-lg" role="button">戻る</a>
+        <a href="login.php" class="btn btn-danger btn-lg" role="button">戻る</a>
 
 </body>
 
