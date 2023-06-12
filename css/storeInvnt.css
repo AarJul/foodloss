@@ -4,6 +4,11 @@
 #inventory {
     width: 100%;
 }
+#inventory thead {
+    padding: 5px;
+    text-align: center;
+}
+
 #inventory thead{
     background-color: var(--dark-color-2);
     color: var(--text-color-white);

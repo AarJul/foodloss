@@ -96,6 +96,8 @@ login();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="css/reset.css">-->
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 
   <title>Login Page</title>
@@ -135,10 +137,10 @@ login();
       </ul>
     </div>
   </nav>
+  
 
   <h1>Login</h1>
   <span>or <a href="register.html">SignUp</a></span>
-
   <form action="login.php" method="POST">
     <input name="email" type="text" placeholder="Enter your email">
     <input name="password" type="password" placeholder="Enter your Password">
@@ -146,6 +148,8 @@ login();
       <input type="checkbox" name="pass_save" value="true">
       <label for="pass_save">Remember Me</label>
     </div>
+
+
     <footer class="custom-footer ">
       <div class="container-fixed-bottom">
         <div class="row">
