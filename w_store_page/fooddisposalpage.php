@@ -129,7 +129,6 @@ $conn->close();
               </tr>
             </thead>
             <tbody id="inventoryBody">
-              <!-- Table rows will be generated dynamically -->
             <?php foreach ($rows as $row) : ?>
                 <tr>
                     <td><?php echo $row['STORE_ID']; ?></td>
@@ -184,9 +183,9 @@ $conn->close();
         window.location.href = "login.html";
       }
     </script>
-    <script src ="../js/deleteItemFromDisposal.js"></script>
   </body>
 </html>
+
 
 
 
