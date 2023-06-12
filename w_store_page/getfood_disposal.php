@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
-// SQL Injection防止
+/* SQL Injection防止
 // フォームから送信されたデータを取得
 //$email = $_POST['email'];
 $email = "store@example.com";
@@ -46,11 +46,11 @@ if ($disposal_info->num_rows > 0) {
 }
 
 $stmt2->close();
-//
+*/
 
 
 
-/* テスト用
+//* テスト用
 $sql;
 //フォームから送信されたデータを取得
 $sql = "SELECT * FROM disposal WHERE store_id = 12345";
@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
         $rows[] = $row;
     }
 }
-*/
+//*/
 
 $conn->close();
 ?>
@@ -74,12 +74,7 @@ $conn->close();
     <title>廃棄状況</title>
 </head>
 <body>
-<form action="disposal_registration.html" method="post">
-
     <h1>廃棄状況</h1>
-
-    <p><a href="disposal_registration.html?email=<?php echo $email; ?>"><button id="Disposal_Register">廃棄登録</button></a></p>
-
     <?php if (!empty($rows)) : ?>
         <table>
             <tr>
@@ -106,6 +101,5 @@ $conn->close();
         <p>廃棄がなさそうですね！</p>
     <?php endif; ?>
     <script src ="../js/deleteItemFromDisposal.js"></script>
-    </form>
 </body>
 </html>

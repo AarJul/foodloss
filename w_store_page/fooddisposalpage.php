@@ -166,6 +166,7 @@ $conn->close();
     </footer>
 
     <script src="../js/inventory.js"></script>
+    <script src ="../js/deleteItemFromDisposal.js"></script>
     <script>
       function userCheck() {
         let = document.getElementById("user");

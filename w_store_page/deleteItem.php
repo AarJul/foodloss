@@ -21,11 +21,15 @@ $stmt->bindParam(':disposalId', $disposalId);
 
 // SQL文を実行する
 if ($stmt->execute()) {
-    // 削除が成功した場合はステータスコード200 (OK)を返す
+    // Commit thay đổi vào cơ sở dữ liệu
+    $db->commit();
+    // Trả về mã trạng thái 200 (OK)
     http_response_code(200);
 } else {
-    // 削除が失敗した場合はステータスコード500 (Internal Server Error)を返し、エラーメッセージを出力する
+    // Lệnh SQL thất bại, rollback các thay đổi (nếu có)
+    $db->rollback();
+    // Trả về mã trạng thái 500 (Internal Server Error) và hiển thị thông báo lỗi
     http_response_code(500);
-    echo 'SQLエラー: ' . $stmt->errorInfo()[2];
+    echo 'SQL Error: ' . $stmt->errorInfo()[2];
 }
 ?>

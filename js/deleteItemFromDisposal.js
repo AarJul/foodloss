@@ -8,7 +8,7 @@ document.addEventListener('click', function(event) {
         
         // SQL文を実行するためにPHPファイルにAJAXリクエストを送信する
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../store_page/deleteItem.php', true);
+        xhr.open('POST', '../w_store_page/deleteItem.php', true);
 
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
