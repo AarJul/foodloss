@@ -8,9 +8,9 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/storeInvnt.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/storeInvnt.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -58,13 +58,16 @@
           <div id="dashboard">
             <h3>ダッシュボード</h3>
             <div class="btn-group-vertical">
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能１</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能２</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能３</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">アイテム登録</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">発送問い合わせ</button>
             </div>
           </div>
         </div>
         <div class="col-sm-10">
+          <div id="addItem">
+            
+          </div>
           <!-- Inventory management section -->
           <h3>Inventory Management</h3>
           <table class="table-bordered table-hover" id="inventory">
@@ -79,19 +82,11 @@
                 <th onclick="sortTable(2)">
                   Price <span class="glyphicon glyphicon-sort"></span>
                 </th>
+                <th id="deleteColumn"></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Product 1</td>
-                <td>10</td>
-                <td>$20</td>
-              </tr>
-              <tr>
-                <td>Product 2</td>
-                <td>5</td>
-                <td>$15</td>
-              </tr>
+            <tbody id="inventoryBody">
+              <!-- Table rows will be generated dynamically -->
             </tbody>
           </table>
         </div>
@@ -117,7 +112,7 @@
       </div>
     </footer>
 
-    <script src="js/inventory.js"></script>
+    <script src="../js/inventory.js"></script>
     <script>
       function userCheck() {
         let = document.getElementById("user");

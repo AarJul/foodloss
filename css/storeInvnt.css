@@ -8,12 +8,19 @@
     background-color: var(--dark-color-2);
     color: var(--text-color-white);
 }
+#deleteColumn {
+    width: 70px;
+}
 
 #dashboard{
     background-color: var(--dark-color-1);
     color: var(--text-color-white);
+    text-align: center;
+}
+#dashboard h3 {
+    padding: 5px;
 }
 #dash-btn {
     background-color: var(--light-color-2);
-    width: 100%;
+    width: 225px;
 }
