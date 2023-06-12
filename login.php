@@ -91,23 +91,50 @@ login();
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="css/reset.css">-->
-  <link rel="stylesheet" href="css/login.css">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 
   <title>Login Page</title>
 </head>
 
 <body>
-  <?php require 'partials/header.php' ?>
-  <?php if (!empty($message)): ?>
-    <p>
-      <?= $message ?>
-    </p>
-  <?php endif; ?>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">OpenSeaS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Page 1 <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="Register.html"
+            ><span class="glyphicon glyphicon-user"></span> 新規登録</a
+          >
+        </li>
+        <li>
+          <a href="login.html"
+            ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <h1>Login</h1>
   <span>or <a href="register.html">SignUp</a></span>
@@ -119,8 +146,23 @@ login();
       <input type="checkbox" name="pass_save" value="true">
       <label for="pass_save">Remember Me</label>
     </div>
-    <input type="submit" value="Submit">
-  </form>
+    <footer class="custom-footer ">
+      <div class="container-fixed-bottom">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>About Us</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="col-md-6">
+            <h5>Contact</h5>
+            <ul class="list-unstyled">
+              <li>Phone: 123-456-7890</li>
+              <li>Email: info@example.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 
 </html>
