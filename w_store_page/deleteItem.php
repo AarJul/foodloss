@@ -1,6 +1,6 @@
 <?php
 
-//完成ok
+//完成
 
 // POSTリクエストからdisposalIdを取得する
 $disposalId = $_POST['disposalId'];
