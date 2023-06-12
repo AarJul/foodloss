@@ -76,13 +76,16 @@ login();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="css/reset.css">-->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="./css/register.css" />
+    <link rel="stylesheet" href="./css/color.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 
     <title>Login Page</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">OpenSeaS</a>
@@ -136,7 +139,7 @@ login();
         
     </div>
     <footer class="custom-footer ">
-      <div class="container-fixed-bottom">
+      <div class="container fixed-bottom">
         <div class="row">
           <div class="col-md-6">
             <h5>About Us</h5>
