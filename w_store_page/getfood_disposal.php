@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
-/* SQL Injection防止
+//* SQL Injection防止
 // フォームから送信されたデータを取得
 //$email = $_POST['email'];
 $email = "store@example.com";
@@ -46,11 +46,11 @@ if ($disposal_info->num_rows > 0) {
 }
 
 $stmt2->close();
-*/
+//*/
 
 
 
-//* テスト用
+/* テスト用
 $sql;
 //フォームから送信されたデータを取得
 $sql = "SELECT * FROM disposal WHERE store_id = 12345";
@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
         $rows[] = $row;
     }
 }
-//*/
+*/
 
 $conn->close();
 ?>
@@ -93,8 +93,7 @@ $conn->close();
                     <td><?php echo $row['QTY']; ?></td>
                     <td><?php echo $row['DATE']; ?></td>
                     <td><?php echo $row['STATUS']; ?></td>
-                    <td><button id="deleteButton">削除</button></td>
-                </tr>
+                    <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
             <?php endforeach; ?>
         </table>
     <?php else : ?>
