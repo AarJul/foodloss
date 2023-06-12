@@ -38,13 +38,17 @@ $conn->close();
     <title>廃棄状況</title>
 </head>
 <body>
+<form action="disposal_registration.html" method="post">
+
     <h1>廃棄状況</h1>
+
+    <p><a href="disposal_registration.html?email=<?php echo $email; ?>"><button id="Disposal_Register">廃棄登録</button></a></p>
 
     <?php if (!empty($rows)) : ?>
         <table>
             <tr>
+                <th>Store ID</th>
                 <th>Disposal ID</th>
-                <!-- <th>Store ID</th> -->
                 <th>Item</th>
                 <th>Qty</th>
                 <th>Date</th>
@@ -52,8 +56,8 @@ $conn->close();
             </tr>
             <?php foreach ($rows as $row) : ?>
                 <tr>
+                    <td><?php echo $row['STORE_ID']; ?></td>
                     <td><?php echo $row['DISPOSAL_ID']; ?></td>
-                    <!-- <td><?php //echo $row['STORE_ID']; ?></td> -->
                     <td><?php echo $row['ITEM']; ?></td>
                     <td><?php echo $row['QTY']; ?></td>
                     <td><?php echo $row['DATE']; ?></td>
@@ -66,5 +70,6 @@ $conn->close();
         <p>廃棄がなさそうですね！</p>
     <?php endif; ?>
     <script src ="../js/deleteItemFromDisposal.js"></script>
+    </form>
 </body>
 </html>
