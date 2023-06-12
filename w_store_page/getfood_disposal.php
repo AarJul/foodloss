@@ -14,10 +14,45 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
+// SQL Injection防止
+// フォームから送信されたデータを取得
+//$email = $_POST['email'];
+$email = "store@example.com";
+$stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$store_id = null;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $store_id = $row['store_id'];
+}
+
+$stmt->close();
+
+$stmt2 = $conn->prepare("SELECT * FROM disposal WHERE store_id = ?");
+$stmt2->bind_param("s", $store_id);
+$stmt2->execute();
+$disposal_info = $stmt2->get_result();
+
+// 結果を配列に格納
+$rows = array();
+if ($disposal_info->num_rows > 0) {
+    while ($row = $disposal_info->fetch_assoc()) {
+        $rows[] = $row;
+    }
+}
+
+$stmt2->close();
+//
+
+
+
+/* テスト用
 $sql;
 //フォームから送信されたデータを取得
-//$email = $_POST['email'];
-//$sql = "SELECT * FROM disposal WHERE store_id = (SELECT store_id FROM store WHERE store_email = '$email')";
 $sql = "SELECT * FROM disposal WHERE store_id = 12345";
 $result = $conn->query($sql);
 
@@ -28,6 +63,7 @@ if ($result->num_rows > 0) {
         $rows[] = $row;
     }
 }
+*/
 
 $conn->close();
 ?>
