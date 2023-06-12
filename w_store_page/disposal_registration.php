@@ -17,9 +17,10 @@ if ($conn->connect_error) {
 $sql;
 //フォームから送信されたデータを取得   
 $storeID = $_POST['storeId'];
-$disposalId = $_POST['disposalId'];
 $iteml = $_POST['item'];
 $qty = $_POST['qty'];
 $date = $_POST['date'];
+
+
 
 ?>
