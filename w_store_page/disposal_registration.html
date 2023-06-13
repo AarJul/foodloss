@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Page</title>
-    <script>
+    <!-- <script>
         function submitForm() {
             // Show submit successful pop-up
             alert("Submit Successful");
@@ -21,23 +21,36 @@
                 alert("Please continue");
             }
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
     <h1>廃棄登録</h1>
 
-    <form>
+    <form method="post" action="disposal_registration.php">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
         <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" required><br><br>
-
+        <input type="text" id="quantity" name="quantity" required><br><br>
+        <script>
+          const quantityInput = document.getElementById('quantity');
+        
+          quantityInput.addEventListener('input', function(event) {
+            const input = event.target.value;
+            const pattern = /^[0-9]+$/;
+        
+            if (!pattern.test(input)) {
+              event.target.value = input.replace(/[^0-9]/g, '');
+            }
+          });
+        </script>
+        
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required><br><br>
 
-        <input type="button" value="Submit" onclick="submitForm()">
+        <!-- <input type="button" value="Submit" onclick="submitForm()"> -->
+        <button>登録</button>
     </form>
 </body>
 
