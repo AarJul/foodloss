@@ -115,26 +115,23 @@ $conn->close();
           </div>
           <!-- Inventory management section -->
           <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
-            <h3>Store ID: <?php echo $store_id; ?></h3>
+            <h3>Store ID: <?php echo $store_id; echo $store_name; ?></h3>
             <table class="table-bordered table-hover" id="inventory">
               <thead>
                 <tr>
                   <th onclick="sortTable(0)">
-                    ストア名 <span class="glyphicon glyphicon-sort"></span>
-                  </th>
-                  <th onclick="sortTable(1)">
                     廃棄情報 <span class="glyphicon glyphicon-sort"></span>
                   </th>
-                  <th onclick="sortTable(2)">
+                  <th onclick="sortTable(1)">
                     アイテム <span class="glyphicon glyphicon-sort"></span>
                   </th>
-                  <th onclick="sortTable(3)">
+                  <th onclick="sortTable(2)">
                     個数 <span class="glyphicon glyphicon-sort"></span>
                   </th>
-                  <th onclick="sortTable(4)">
+                  <th onclick="sortTable(3)">
                     日付 <span class="glyphicon glyphicon-sort"></span>
                   </th>
-                  <th onclick="sortTable(5)">
+                  <th onclick="sortTable(4)">
                     ステータス <span class="glyphicon glyphicon-sort"></span>
                   </th>
                   <th id="deleteColumn"></th>
@@ -143,7 +140,6 @@ $conn->close();
               <tbody>
                 <?php foreach ($disposal_rows as $row) : ?>
                   <tr>
-                    <td><?php echo $store_rows[$store_id]; ?></td>
                     <td><?php echo $row['DISPOSAL_ID']; ?></td>
                     <td><?php echo $row['ITEM']; ?></td>
                     <td><?php echo $row['QTY']; ?></td>
