@@ -115,7 +115,7 @@ $conn->close();
           </div>
           <!-- Inventory management section -->
           <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
-            <h3>Store ID: <?php echo $store_id; echo $store_rows[$store_id]; ?></h3>
+            <h3>Store ID: <?php echo $store_id; ?>&nbsp;<?php echo $store_rows[$store_id]; ?></h3>
             <table class="table-bordered table-hover" id="inventory">
               <thead>
                 <tr>
