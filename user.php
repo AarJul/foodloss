@@ -94,22 +94,23 @@ $message = '';
     </div>
 
     <footer class="custom-footer">
-        <div class="container-fixed-bottom">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>About Us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="col-md-6">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled">
-                        <li>Phone: 123-456-7890</li>
-                        <li>Email: info@example.com</li>
-                    </ul>
-                </div>
+    <div class="container fixed-bottom">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>About Us</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Contact</h5>
+                <ul class="list-unstyled">
+                    <li>Phone: 123-456-7890</li>
+                    <li>Email: info@example.com</li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
     <script src="script.js"></script>
 </body>
 </html>
