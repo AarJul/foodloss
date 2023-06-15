@@ -8,7 +8,6 @@ $message = '';
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -18,16 +17,15 @@ $message = '';
     <title>Quản lý hàng tồn kho</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/user.css">
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-    <link rel="stylesheet" href="../css/storeInvnt.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/storeInvnt.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-
     <nav class="navbar navbar-inverse fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -55,6 +53,7 @@ $message = '';
             </ul>
         </div>
     </nav>
+
     <div class="container">
         <div class="left-section">
             <h2>User ID: <span id="userid"></span></h2>
@@ -94,8 +93,8 @@ $message = '';
         </div>
     </div>
 
-    <footer class="custom-footer ">
-        <div class="container fixed-bottom">
+    <footer class="custom-footer">
+        <div class="container-fixed-bottom">
             <div class="row">
                 <div class="col-md-6">
                     <h5>About Us</h5>
@@ -111,7 +110,6 @@ $message = '';
             </div>
         </div>
     </footer>
-    
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
