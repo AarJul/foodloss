@@ -14,25 +14,7 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
-// フォームから送信されたデータを取得
-//$email = $_POST['email'];
-$email = "store@example.com";
-$stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$store_id = null;
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $store_id = $row['store_id'];
-}
-
-$stmt->close();
-
-$stmt2 = $conn->prepare("SELECT * FROM disposal WHERE store_id = ?");
-$stmt2->bind_param("s", $store_id);
+$stmt2 = $conn->prepare("SELECT * FROM disposal");
 $stmt2->execute();
 $disposal_info = $stmt2->get_result();
 
@@ -100,7 +82,7 @@ $conn->close();
         </ul>
       </nav>
       <div class="text-center">
-        <h1 class="mx-auto">ストア画面表示</h1>
+        <h1 class="mx-auto">会社画面表示</h1>
         <h2>test</h2>
       </div>
       <div class="row">
@@ -127,18 +109,21 @@ $conn->close();
                   ストアID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(1)">
-                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
+                  ストア名 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(2)">
-                  アイテム <span class="glyphicon glyphicon-sort"></span>
+                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(3)">
-                  個数 <span class="glyphicon glyphicon-sort"></span>
+                  アイテム <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(4)">
-                  日付 <span class="glyphicon glyphicon-sort"></span>
+                  個数 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(5)">
+                  日付 <span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th onclick="sortTable(6)">
                   ステータス <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th id="deleteColumn"></th>
@@ -148,6 +133,7 @@ $conn->close();
             <?php foreach ($rows as $row) : ?>
                 <tr>
                     <td><?php echo $row['STORE_ID']; ?></td>
+                    <td><?php echo $row['STORE_NAME']; ?></td>
                     <td><?php echo $row['DISPOSAL_ID']; ?></td>
                     <td><?php echo $row['ITEM']; ?></td>
                     <td><?php echo $row['QTY']; ?></td>
