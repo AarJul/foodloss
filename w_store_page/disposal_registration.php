@@ -48,7 +48,7 @@ $conn->close();
     <h1>廃棄登録</h1>
  <!-- Các phần còn lại của trang disposal_registration.html -->
     <!-- <form method="post" action="disposal_registration.php"> -->
-        <p><?php echo $store_id; ?></p>
+    <p id="store-id" data-store-id="<?php echo $store_id; ?>"></p>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -114,6 +114,7 @@ $conn->close();
         
         <!-- JavaScript -->
         <script>
+          console.log(<?php echo json_encode($store_id); ?>);
           function showPopup() {
             var nameInput = document.getElementById("name");
             var quantityInput = document.getElementById("quantity");
@@ -128,44 +129,46 @@ $conn->close();
           }
         
           function continueAction() {
-            var nameInput = document.getElementById("name");
-            var quantityInput = document.getElementById("quantity");
-            var dateInput = document.getElementById("date");
+          var store_id = <?php echo json_encode($store_id); ?>;
+          var nameInput = document.getElementById("name");
+          var quantityInput = document.getElementById("quantity");
+          var dateInput = document.getElementById("date");
 
-            var data = {
-              name: nameInput.value,
-              quantity: quantityInput.value,
-              date: dateInput.value
-            };
+          var data = {
+            store_id: store_id, 
+            name: nameInput.value,
+            quantity: quantityInput.value,
+            date: dateInput.value
+          };
 
-            fetch("disposald_registration.php", {
-              method: "POST",
-              body: JSON.stringify(data),
-              headers: {
-                "Content-Type": "application/json"
-              }
-            })
-            .then(function(response) {
-              if (response.ok) {
-                return response.text();
-              } else {
-                throw new Error("Đã xảy ra lỗi khi gửi dữ liệu.");
-              }
-            })
-            .then(function(data) {
-              alert(data); // Hiển thị thông báo từ PHP trong hộp thoại
-              closePopup();
-            })
-            .catch(function(error) {
-              alert("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
-            });
-          }
+          fetch("disposal_registration.php", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(function(response) {
+            if (response.ok) {
+              return response.text();
+            } else {
+              throw new Error("Đã xảy ra lỗi khi gửi dữ liệu.");
+            }
+          })
+          .then(function(data) {
+            // Hiển thị thông báo từ PHP trong cửa sổ popup
+            var popupContent = document.querySelector(".popup-content");
+            popupContent.innerHTML = "<p>" + data + "</p>";
+          })
+          .catch(function(error) {
+            alert("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
+          });
+        }
 
-        
-          function goBackAction() {
-            // closePopup();
-            window.location.href = "trang_web_khac.html"; // Thay đổi đường dẫn "trang_web_khac.html" thành trang web muốn chuyển hướng đến
-          }
+        function goBackAction() {
+          window.location.href = "trang_web_khac.html"; // Thay đổi đường dẫn "trang_web_khac.html" thành trang web muốn chuyển hướng đến
+        }
+
         
           function closePopup() {
             var popup = document.getElementById("popup");
