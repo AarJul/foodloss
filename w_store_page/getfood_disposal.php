@@ -74,6 +74,12 @@ $conn->close();
     <title>廃棄状況</title>
 </head>
 <body>
+
+    <form action="disposal_registration.php" method="post">
+        <input type="hidden" name="store id" value="<?php echo $store_id; ?>">
+        <button type="submit" id="store_id">廃棄登録</button>
+    </form>
+    <p><?php echo $store_id; ?></p>
     <h1>廃棄状況</h1>
     <?php if (!empty($rows)) : ?>
         <table>
