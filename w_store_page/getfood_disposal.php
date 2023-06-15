@@ -1,5 +1,6 @@
 <?php
 //PHP部分完成
+session_start();
 
 // データベースの情報　
 $servername = "localhost";
@@ -16,8 +17,8 @@ if ($conn->connect_error) {
 
 //* SQL Injection防止
 // フォームから送信されたデータを取得
-//$email = $_POST['email'];
 $email = "store@example.com";
+
 $stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -29,7 +30,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $store_id = $row['store_id'];
 }
-
+$_SESSION['store_id'] = $store_id;
 $stmt->close();
 
 $stmt2 = $conn->prepare("SELECT * FROM disposal WHERE store_id = ?");
@@ -75,9 +76,9 @@ $conn->close();
 </head>
 <body>
 
-    <form action="disposal_registration.php" method="post">
-        <input type="hidden" name="store id" value="<?php echo $store_id; ?>">
-        <button type="submit" id="store_id">廃棄登録</button>
+    <form id="redirect-form" method="post" action="disposal_registration.php">
+    <input type="hidden" name="email" value="<?php echo $email; ?>">
+    <button type="submit">廃棄登録</button>
     </form>
     <p><?php echo $store_id; ?></p>
     <h1>廃棄状況</h1>
