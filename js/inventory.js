@@ -1,46 +1,29 @@
 {
   function sortTable(columnIndex) {
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("inventoryTable");
-    switching = true;
+    var table = document.getElementById("inventory");
+    var tbody = table.querySelector("tbody");
+    var rows = Array.from(tbody.rows);
 
-    // Set the sorting direction to ascending
-    var direction = "asc";
+    rows.sort(function (a, b) {
+      var cellA = a.cells[columnIndex].innerText.toLowerCase();
+      var cellB = b.cells[columnIndex].innerText.toLowerCase();
 
-    while (switching) {
-      switching = false;
-      rows = table.rows;
+      return cellA.localeCompare(cellB);
+    });
 
-      for (i = 1; i < rows.length - 1; i++) {
-        shouldSwitch = false;
-        x = rows[i].getElementsByTagName("TD")[columnIndex];
-        y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+    // Create a new table body to hold the sorted rows
+    var newTbody = document.createElement("tbody");
+    rows.forEach(function (row) {
+      newTbody.appendChild(row);
+    });
 
-        // Compare the cell values for sorting
-        if (direction === "asc") {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          }
-        } else if (direction === "desc") {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
+    // Replace the existing table body with the sorted one
+    table.replaceChild(newTbody, tbody);
+  }
 
-      if (shouldSwitch) {
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      }
 
-      // Toggle the sorting direction
-      if (direction === "asc") {
-        direction = "desc";
-      } else {
-        direction = "asc";
-      }
-    }
+  // Delete an item from the table
+  function deleteItem(row) {
+    row.remove();
   }
 }

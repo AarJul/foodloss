@@ -1,3 +1,53 @@
+<?php
+//PHP部分完成
+
+// データベースの情報　
+$servername = "localhost";
+$username = "dbuser";
+$password = "ecc";
+$dbname = "food";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+//接続のチェック 
+if ($conn->connect_error) {
+    die("アクセス失敗: " . $conn->connect_error);
+}
+
+// フォームから送信されたデータを取得
+//$email = $_POST['email'];
+$email = "store@example.com";
+$stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$store_id = null;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $store_id = $row['store_id'];
+}
+
+$stmt->close();
+
+$stmt2 = $conn->prepare("SELECT * FROM disposal WHERE store_id = ?");
+$stmt2->bind_param("s", $store_id);
+$stmt2->execute();
+$disposal_info = $stmt2->get_result();
+
+// 結果を配列に格納
+$rows = array();
+if ($disposal_info->num_rows > 0) {
+    while ($row = $disposal_info->fetch_assoc()) {
+        $rows[] = $row;
+    }
+}
+
+$stmt2->close();
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,9 +58,9 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/storeInvnt.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/storeInvnt.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -58,40 +108,54 @@
           <div id="dashboard">
             <h3>ダッシュボード</h3>
             <div class="btn-group-vertical">
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能１</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能２</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能３</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">アイテム登録</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能</button>
+              <button type="button" class="btn btn-lg w-100" id="dash-btn">発送問い合わせ</button>
             </div>
           </div>
         </div>
         <div class="col-sm-10">
+          <div id="addItem">
+
+          </div>
           <!-- Inventory management section -->
           <h3>Inventory Management</h3>
           <table class="table-bordered table-hover" id="inventory">
             <thead>
               <tr>
                 <th onclick="sortTable(0)">
-                  Product <span class="glyphicon glyphicon-sort"></span>
+                  ストアID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(1)">
-                  Quantity <span class="glyphicon glyphicon-sort"></span>
+                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(2)">
-                  Price <span class="glyphicon glyphicon-sort"></span>
+                  アイテム <span class="glyphicon glyphicon-sort"></span>
                 </th>
+                <th onclick="sortTable(3)">
+                  個数 <span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th onclick="sortTable(4)">
+                  日付 <span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th onclick="sortTable(5)">
+                  ステータス <span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th id="deleteColumn"></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Product 1</td>
-                <td>10</td>
-                <td>$20</td>
-              </tr>
-              <tr>
-                <td>Product 2</td>
-                <td>5</td>
-                <td>$15</td>
-              </tr>
+            <tbody id="inventoryBody">
+            <?php foreach ($rows as $row) : ?>
+                <tr>
+                    <td><?php echo $row['STORE_ID']; ?></td>
+                    <td><?php echo $row['DISPOSAL_ID']; ?></td>
+                    <td><?php echo $row['ITEM']; ?></td>
+                    <td><?php echo $row['QTY']; ?></td>
+                    <td><?php echo $row['DATE']; ?></td>
+                    <td><?php echo $row['STATUS']; ?></td>
+                    <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
           </table>
         </div>
@@ -117,7 +181,8 @@
       </div>
     </footer>
 
-    <script src="js/inventory.js"></script>
+    <script src="../js/inventory.js"></script>
+    <script src ="../js/deleteItemFromDisposal.js"></script>
     <script>
       function userCheck() {
         let = document.getElementById("user");
@@ -137,3 +202,11 @@
     </script>
   </body>
 </html>
+
+
+
+
+
+
+
+

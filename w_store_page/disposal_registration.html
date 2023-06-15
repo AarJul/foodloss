@@ -1,41 +1,5 @@
-<?php
-// データベースの情報
-$servername = "localhost";
-$username = "dbuser";
-$password = "ecc";
-$dbname = "food";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続のチェック
-if ($conn->connect_error) {
-    die("アクセス失敗: " . $conn->connect_error);
-}
-
-// フォームから送信されたデータを取得
-$store_id = $_POST['store_id'];
-$name = isset($_POST['name']) ? $_POST['name'] : '';
-$quantity = isset($_POST['quantity']) ? $_POST['quantity'] : '';
-$date = isset($_POST['date']) ? $_POST['date'] : '';
-
-// $name、$quantity、$date がデータを含んでいる場合のみ処理を実行
-if (!empty($name) && !empty($quantity) && !empty($date)) {
-    // データを挿入するためのSQLクエリを準備
-    $sql = "INSERT INTO disposal (store_ID, item, qty, date) VALUES ('$store_id', '$name', '$quantity', '$date')";
-
-    // クエリを実行して結果をチェック
-    if ($conn->query($sql) === TRUE) {
-        echo "データがテーブルに正常に挿入されました。";
-    } else {
-        echo "エラー: " . $sql . "<br>" . $conn->error;
-    }
-}
-
-$conn->close();
-?>
-
-
-
+<!DOCTYPE html>
 <html lang="jp">
 
 <head>
@@ -46,9 +10,35 @@ $conn->close();
 
 <body>
     <h1>廃棄登録</h1>
- <!-- Các phần còn lại của trang disposal_registration.html -->
+    <script>
+      function getEmail() {
+          var email = localStorage.getItem('email');
+          if (email) {
+              console.log('Địa chỉ email: ' + email);
+          } else {
+              console.log('Không có địa chỉ email');
+          }
+      }
+  </script>
+
+    <!-- Các phần còn lại của trang disposal_registration.html -->
+
+    <script>
+      function getEmailFromURL() {
+          var urlParams = new URLSearchParams(window.location.search);
+          var email = urlParams.get('email');
+          return email;
+      }
+      
+      var email = getEmailFromURL();
+      console.log(email); // In ra địa chỉ email trong console
+      
+      // Sử dụng biến email trong mã JavaScript của bạn
+      
+      // ... Đoạn mã JavaScript khác của bạn ở đây ...
+    </script>
+
     <!-- <form method="post" action="disposal_registration.php"> -->
-        <p><?php echo $store_id; ?></p>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -147,14 +137,11 @@ $conn->close();
             })
             .then(function(response) {
               if (response.ok) {
-                return response.text();
+                alert("Dữ liệu đã được gửi thành công.");
+                closePopup();
               } else {
-                throw new Error("Đã xảy ra lỗi khi gửi dữ liệu.");
+                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
               }
-            })
-            .then(function(data) {
-              alert(data); // Hiển thị thông báo từ PHP trong hộp thoại
-              closePopup();
             })
             .catch(function(error) {
               alert("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
