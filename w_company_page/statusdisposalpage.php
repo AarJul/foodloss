@@ -1,7 +1,7 @@
 <?php
 //PHP部分完成
 
-// データベースの情報
+// データベースの情報　
 $servername = "localhost";
 $username = "dbuser";
 $password = "ecc";
@@ -9,38 +9,37 @@ $dbname = "food";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-//接続のチェック
+//接続のチェック 
 if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
+}
+
+$stmt1 = $conn->prepare("SELECT * FROM store");
+$stmt1->execute();
+$store_info = $stmt1->get_result();
+
+// Storeデータを配列に格納
+$store_rows = array();
+while ($store_row = $store_info->fetch_assoc()) {
+    $store_rows[$store_row['STORE_ID']] = $store_row['STORE_NAME'];
 }
 
 $stmt2 = $conn->prepare("SELECT * FROM disposal");
 $stmt2->execute();
 $disposal_info = $stmt2->get_result();
 
-// 結果を配列に格納
-$rows = array();
-if ($disposal_info->num_rows > 0) {
-    while ($row = $disposal_info->fetch_assoc()) {
-        $rows[] = $row;
+// Storeごとのデータを配列に格納
+$store_data = array();
+while ($disposal_row = $disposal_info->fetch_assoc()) {
+    $store_id = $disposal_row['STORE_ID'];
+    if (!isset($store_data[$store_id])) {
+        $store_data[$store_id] = array();
     }
-}
-
-// ストア名を取得
-$stmt3 = $conn->prepare("SELECT STORE_ID, STORE_NAME FROM store");
-$stmt3->execute();
-$store_result = $stmt3->get_result();
-
-// ストア情報を配列に格納
-$store_rows = array();
-if ($store_result->num_rows > 0) {
-    while ($store_row = $store_result->fetch_assoc()) {
-        $store_rows[$store_row['STORE_ID']] = $store_row['STORE_NAME'];
-    }
+    $store_data[$store_id][] = $disposal_row;
 }
 
 $stmt2->close();
-$stmt3->close();
+$stmt1->close();
 $conn->close();
 ?>
 
@@ -115,62 +114,47 @@ $conn->close();
 
           </div>
           <!-- Inventory management section -->
-          <h3>Inventory Management</h3>
-          <table class="table-bordered table-hover" id="inventory">
-            <thead>
-              <tr>
-                <th onclick="sortTable(0)">
-                  ストアID <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(1)">
-                  ストア名 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(2)">
-                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(3)">
-                  アイテム <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(4)">
-                  個数 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(5)">
-                  日付 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(6)">
-                  ステータス <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th id="deleteColumn"></th>
-              </tr>
-            </thead>
-            <tbody id="inventoryBody">
-            <?php
-            $previousStoreID = null;
-            foreach ($rows as $row) :
-                $currentStoreID = $row['STORE_ID'];
-                $storeName = isset($store_rows[$currentStoreID]) ? $store_rows[$currentStoreID] : '';
-
-                if ($currentStoreID != $previousStoreID) {
-                    // Display store divider
-                    echo '<tr class="store-divider"><td colspan="8">' . $storeName . '</td></tr>';
-                }
-            ?>
+          <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
+            <h3>Store ID: <?php echo $store_id; ?></h3>
+            <table class="table-bordered table-hover" id="inventory">
+              <thead>
                 <tr>
-                    <td><?php echo $currentStoreID; ?></td>
-                    <td><?php echo $storeName; ?></td>
+                  <th onclick="sortTable(0)">
+                    ストア名 <span class="glyphicon glyphicon-sort"></span>
+                  </th>
+                  <th onclick="sortTable(1)">
+                    廃棄情報 <span class="glyphicon glyphicon-sort"></span>
+                  </th>
+                  <th onclick="sortTable(2)">
+                    アイテム <span class="glyphicon glyphicon-sort"></span>
+                  </th>
+                  <th onclick="sortTable(3)">
+                    個数 <span class="glyphicon glyphicon-sort"></span>
+                  </th>
+                  <th onclick="sortTable(4)">
+                    日付 <span class="glyphicon glyphicon-sort"></span>
+                  </th>
+                  <th onclick="sortTable(5)">
+                    ステータス <span class="glyphicon glyphicon-sort"></span>
+                  </th>
+                  <th id="deleteColumn"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($disposal_rows as $row) : ?>
+                  <tr>
+                    <td><?php echo $store_rows[$store_id]; ?></td>
                     <td><?php echo $row['DISPOSAL_ID']; ?></td>
                     <td><?php echo $row['ITEM']; ?></td>
                     <td><?php echo $row['QTY']; ?></td>
                     <td><?php echo $row['DATE']; ?></td>
                     <td><?php echo $row['STATUS']; ?></td>
                     <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
-                </tr>
-            <?php
-                $previousStoreID = $currentStoreID;
-            endforeach;
-            ?>
-            </tbody>
-          </table>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
@@ -185,33 +169,28 @@ $conn->close();
           </div>
           <div class="col-md-6">
             <h5>Contact</h5>
-            <ul class="list-unstyled">
-              <li>Phone: 123-456-7890</li>
-              <li>Email: info@example.com</li>
-            </ul>
+            <p>Email: info@example.com</p>
           </div>
         </div>
       </div>
     </footer>
 
-    <script src="../js/inventory.js"></script>
-    <script src ="../js/deleteItemFromDisposal.js"></script>
     <script>
-      function userCheck() {
-        let = document.getElementById("user");
-        if (user == loggedIn) {
-          element.innerHTML =
-            '<a href="#" onclick="logout();"><span class="glyphicon glyphicon-log-out"></span> ログアウト</a>';
-        }
-      }
-      function logout() {
-        // Perform logout operation
-        // You can make an AJAX request to a logout endpoint on the server-side
-        // Or clear any session/cookie/local storage data
-
-        // Redirect the user to the login page
-        window.location.href = "login.html";
-      }
+      $(document).ready(function () {
+        $(".deleteButton").click(function () {
+          var disposal_id = $(this).data("disposal-id");
+          // 削除処理を実行
+          $.ajax({
+            url: "delete_disposal.php",
+            type: "POST",
+            data: { disposal_id: disposal_id },
+            success: function (response) {
+              // テーブルの再読み込み
+              location.reload();
+            },
+          });
+        });
+      });
     </script>
   </body>
 </html>
