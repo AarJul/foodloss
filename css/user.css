@@ -1,0 +1,45 @@
+.top-right-section {
+    position: absolute;
+    top: 100px; /* Adjust this value to align with the navbar height */
+    right: 20px;
+}
+
+.confirm-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* テーブル */
+.table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.name {
+    width: 30%;
+}
+
+.deadline {
+    width: 20%;
+}
+
+.quantity {
+    width: 15%;
+}
+
+.requirement {
+    width: 35%;
+}
+
+.odd {
+    background-color: white;
+    color: black;
+}
+
+.even {
+    background-color: rgb(219, 229, 255);
+    color: black;
+}
