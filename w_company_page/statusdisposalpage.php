@@ -171,7 +171,7 @@ $conn->close();
       </div>
     </footer>
 
-    <script>
+    <!-- <script>
       $(document).ready(function () {
         $(".deleteButton").click(function () {
           var disposal_id = $(this).data("disposal-id");
@@ -187,6 +187,7 @@ $conn->close();
           });
         });
       });
-    </script>
+    </script> -->
+    <script src="../js/deleteItemFromDisposal.js"></script>
   </body>
 </html>

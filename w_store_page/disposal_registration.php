@@ -48,7 +48,7 @@ $conn->close();
     <h1>廃棄登録</h1>
  <!-- Các phần còn lại của trang disposal_registration.html -->
     <!-- <form method="post" action="disposal_registration.php"> -->
-    <p id="store-id" data-store-id="<?php echo $store_id; ?>"></p>
+    <p id="store-id"><?php echo $store_id; ?></p>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -129,13 +129,14 @@ $conn->close();
           }
         
           function continueAction() {
-          var store_id = <?php echo json_encode($store_id); ?>;
+                    var storeIdElement = document.getElementById("store-id");
+          var storeId = storeIdElement.dataset.storeId;
           var nameInput = document.getElementById("name");
           var quantityInput = document.getElementById("quantity");
           var dateInput = document.getElementById("date");
 
           var data = {
-            store_id: store_id, 
+            store_id: storeId, // Sử dụng biến storeId đã được định nghĩa
             name: nameInput.value,
             quantity: quantityInput.value,
             date: dateInput.value
