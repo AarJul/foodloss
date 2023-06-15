@@ -120,7 +120,7 @@ $conn->close();
         </ul>
       </nav>
       <div class="text-center">
-        <h1 class="mx-auto">ストア画面表示</h1>
+        <h1 class="mx-auto">廃棄状況一覧</h1>
         <h2>test</h2>
       </div>
       <div class="row">
