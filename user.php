@@ -7,8 +7,6 @@ $conn = connection();
 $message = '';
 
 
-$sql = "SELECT * FROM user where user_id = ? ";
-$result = mysqli_query($conn, $sql);
 
 $conn = null;
 ?>
@@ -47,8 +45,8 @@ $conn = null;
                     // Lặp qua kết quả và hiển thị trong bảng
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>" . $row['Ten'] . "</td>";
-                        echo "<td>" . $row['ThoiHan'] . "</td>";
+                        echo "<td>" . $row['user_name'] . "</td>";
+                        echo "<td>" . $row['user_'] . "</td>";
                         echo "<td>" . $row['SoLuong'] . "</td>";
                         echo "<td>" . $row['YeuCau'] . "</td>";
                         echo "</tr>";

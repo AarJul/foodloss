@@ -55,7 +55,7 @@ function login()
           // Successful login with store account
           // Save information to session or perform other actions
           $_SESSION['user_id'] = $storeResult['STORE_ID'];
-          header("Location: store.php");
+          header("Location: getfood_disposal.php");
           exit();
         } else {
           echo "Incorrect password!";
