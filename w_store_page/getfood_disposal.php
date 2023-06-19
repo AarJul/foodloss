@@ -15,18 +15,7 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
-<<<<<<< HEAD
-// Kiểm tra xem người dùng đã đăng nhập hay chưa
-if (!isset($_SESSION['user_email'])) {
-  header("Location: login.php");
-  exit();
-}
 
-$email = $_SESSION['user_email'];
-=======
-
-
->>>>>>> 68509ca950f3c9f7a7cb0a342edee45e3c61edf6
 //* SQL Injection防止
 // フォームから送信されたデータを取得
 $email =  $_SESSION['store_email'];

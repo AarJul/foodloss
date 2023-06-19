@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-
+$store_id = $_SESSION['store_id'];
 $user_id = $_SESSION['user_id'];
 
 // Truy vấn thông tin user dựa trên user_id
@@ -26,15 +26,6 @@ $storeStmt->bindParam(1, $store_id);
 $storeStmt->execute();
 $storeResult = $storeStmt->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($storeResult as $row) {
-    echo "<tr>";
-    echo "<td>" . $row['STORE_ID'] . "</td>";
-    echo "<td>" . $row['STORE_NAME'] . "</td>"; 
-    echo "<td>" . $row['ITEM'] . "</td>";
-    echo "<td>" . $row['QTY'] . "</td>";
-    echo "<td>" . $row['DATE'] . "</td>";
-    echo "</tr>";
-}
 
 if ($userResult) {
     $user_id = $userResult['USER_ID'];
@@ -76,16 +67,22 @@ $conn = null;
             <button onclick="viewDetails()">Chi tiết</button>
         </div>
         <div class="bottom-section">
-        <table>
-    <tr>
-        <th>Item</th>
-        <th>Quantity</th>
-        <th>Date</th>
-        <th>Request</th>
-    </tr>
-</table>
-
-        </div>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Request</th>
+        </tr>
+        <?php foreach ($storeResult as $row) : ?>
+        <tr>
+            <td><?php echo $row['ITEM']; ?></td>
+            <td><?php echo $row['QTY']; ?></td>
+            <td><?php echo $row['DATE']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
     </div>
 
     <script src="script.js"></script>
