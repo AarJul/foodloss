@@ -251,11 +251,6 @@ $conn->close();
         }
       }
       function logout() {
-        // Perform logout operation
-        // You can make an AJAX request to a logout endpoint on the server-side
-        // Or clear any session/cookie/local storage data
-
-        // Redirect the user to the login page
         window.location.href = "login.html";
       }
     </script>
