@@ -15,10 +15,40 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
+//additem
+// Kiểm tra xem có dữ liệu được gửi đi không
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Kiểm tra xem các trường dữ liệu có tồn tại không
+  if (isset($_POST['itemInput']) && isset($_POST['quantityInput']) && isset($_POST['dateInput']) && isset($_POST['statusInput'])) {
+      // Lấy giá trị từ các trường dữ liệu
+      $item = $_POST['itemInput'];
+      $quantity = $_POST['quantityInput'];
+      $date = $_POST['dateInput'];
+      $status = $_POST['statusInput'];
+
+      // Thực hiện xử lý dữ liệu tại đây (ví dụ: lưu vào cơ sở dữ liệu)
+
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
+
+      // Chuẩn bị câu truy vấn INSERT
+      $stmt = $conn->prepare("INSERT INTO disposal (store_id, item, qty, date, status) VALUES (?, ?, ?, ?, ?)");
+      $stmt->bind_param("isiss", $_SESSION['store_id'], $item, $quantity, $date, $status);
+      
+      if ($stmt->execute()) {
+          // Nếu thêm dữ liệu thành công, bạn có thể thực hiện hành động khác tại đây
+          // Ví dụ: hiển thị thông báo thành công, chuyển hướng trang, v.v.
+      } else {
+          // Nếu có lỗi xảy ra trong quá trình thêm dữ liệu, bạn có thể xử lý tại đây
+      }
+  }
+}
+//additem
+
 //* SQL Injection防止
 // フォームから送信されたデータを取得
-//$email = "store@example.com";
-
+$email =  $_SESSION['store_email'];
 $stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -29,7 +59,7 @@ $store_id = null;
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $store_id = $row['store_id'];
-}
+} 
 $_SESSION['store_id'] = $store_id;
 $stmt->close();
 
@@ -47,25 +77,6 @@ if ($disposal_info->num_rows > 0) {
 }
 
 $stmt2->close();
-//*/
-
-
-
-/* テスト用
-$sql;
-//フォームから送信されたデータを取得
-$sql = "SELECT * FROM disposal WHERE store_id = 12345";
-$result = $conn->query($sql);
-
-// 結果を配列に格納
-$rows = array();
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $rows[] = $row;
-    }
-}
-*/
-
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -121,7 +132,7 @@ $conn->close();
       </nav>
       <div class="text-center">
         <h1 class="mx-auto">ストア画面表示</h1>
-        <h2>test</h2>
+        <h2><?php echo $email; ?></h2>
       </div>
       <div class="row">
         <div class="col-sm-2">
@@ -146,49 +157,29 @@ $conn->close();
               <h3>アイテム追加フォーム</h3>
             </div>
             <div class="row">
-              <form id="itemForm" class="text-left">
-                <div class="col-sm-5">
+            <form id="itemForm" class="text-left" method="post" action="getfood_disposal.php">
+              <div class="col-sm-5">
                   <div class="form-group">
-                    <label for="itemInput">アイテム</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="itemInput"
-                      required
-                    />
+                      <label for="itemInput">アイテム</label>
+                      <input type="text" class="form-control" id="itemInput" name="itemInput" required />
                   </div>
                   <div class="form-group">
-                    <label for="quantityInput">個数</label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="quantityInput"
-                      required
-                    />
+                      <label for="quantityInput">個数</label>
+                      <input type="number" class="form-control" id="quantityInput" name="quantityInput" required />
                   </div>
-                </div>
-                <div class="col-sm-5">
+              </div>
+              <div class="col-sm-5">
                   <div class="form-group">
-                    <label for="dateInput">日付</label>
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="dateInput"
-                      required
-                    />
+                      <label for="dateInput">日付</label>
+                      <input type="date" class="form-control" id="dateInput" name="dateInput" required />
                   </div>
                   <div class="form-group">
-                    <label for="statusInput">ステータス</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="statusInput"
-                      required
-                    />
+                      <label for="statusInput">ステータス</label>
+                      <input type="text" class="form-control" id="statusInput" name="statusInput" required />
                   </div>
                   <button type="submit" class="btn btn-success">追加</button>
-                </div>
-              </form>
+              </div>
+          </form>
             </div>
           </div>
           <!-- Inventory management section -->
