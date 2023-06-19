@@ -21,6 +21,7 @@ $stmt->bindParam(':disposalId', $disposalId, PDO::PARAM_INT); // Sử dụng rà
 
 // Thực thi câu truy vấn SQL
 if ($stmt->execute()) {
+    $db -> commit();
     // Nếu xóa thành công, trả về mã trạng thái 200 (OK)
     http_response_code(200);
 } else {
