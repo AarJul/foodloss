@@ -1,5 +1,5 @@
 <?php
-// データベースの情報　
+// データベースの情報
 $servername = "localhost";
 $username = "dbuser";
 $password = "ecc";
@@ -160,47 +160,47 @@ $conn->close();
     </div>
 </div>
 
-<br/>
-<footer class="custom-footer">
-    <div class="container fixed-bottom">
-        <div class="row">
-            <div class="col-md-6">
-                <h5>About Us</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<!-- Status Change Modal -->
+<div id="statusChangeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">ステータス変更</h4>
             </div>
-            <div class="col-md-6">
-                <h5>Contact</h5>
-                <p>Email: info@example.com</p>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <input type="hidden" id="disposalId" name="disposalId" value="">
+                    <div class="form-group">
+                        <label for="status">ステータス:</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="未処理">未処理</option>
+                            <option value="処理済み">処理済み</option>
+                            <option value="キャンセル">キャンセル</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="statusChange">変更</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
             </div>
         </div>
     </div>
-</footer>
+</div>
+
 <script>
     $(document).ready(function () {
-        $(".statusButton").click(function () {
-            var disposalId = $(this).data("disposal-id");
-            var status = prompt("Enter new status:");
-            if (status !== null) {
-                $.ajax({
-                    url: "update_status.php",
-                    type: "POST",
-                    data: {
-                        disposalId: disposalId,
-                        status: status
-                    },
-                    success: function () {
-                        // Refresh the page or update the status dynamically
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("Error updating status.");
-                    }
-                });
-            }
+        // Status Change Modal
+        $('.statusButton').click(function () {
+            var disposalId = $(this).data('disposal-id');
+            $('#disposalId').val(disposalId);
+            $('#statusChangeModal').modal('show');
         });
     });
 </script>
+<script src="../js/inventory.js"></script>
 <script src ="../js/deleteItemFromDisposal.js"></script>
-
 </body>
 </html>
