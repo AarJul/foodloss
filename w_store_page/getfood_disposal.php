@@ -120,29 +120,80 @@ $conn->close();
         </ul>
       </nav>
       <div class="text-center">
-        <h1 class="mx-auto">廃棄状況一覧</h1>
+        <h1 class="mx-auto">ストア画面表示</h1>
         <h2>test</h2>
       </div>
       <div class="row">
         <div class="col-sm-2">
           <div id="dashboard">
             <h3>ダッシュボード</h3>
-            <div class="btn-group-vertical">
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">アイテム登録</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">機能</button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">発送問い合わせ</button>
+            <div class="btn-group-vertical custom-btn-group">
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
+                アイテム登録
+              </button>
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
+                廃棄物を選択
+              </button>
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
+                発送問い合わせ
+              </button>
             </div>
           </div>
         </div>
         <div class="col-sm-10">
           <div id="addItem">
-          <form id="redirect-form" method="post" action="disposal_registration.php">
-            <input type="hidden" name="email" value="<?php echo $email; ?>">
-            <button type="submit">廃棄登録</button>
-            </form>
+            <div class="row">
+              <h3>アイテム追加フォーム</h3>
+            </div>
+            <div class="row">
+              <form id="itemForm" class="text-left">
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <label for="itemInput">アイテム</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="itemInput"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="quantityInput">個数</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="quantityInput"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <label for="dateInput">日付</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="dateInput"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="statusInput">ステータス</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="statusInput"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-success">追加</button>
+                </div>
+              </form>
+            </div>
           </div>
           <!-- Inventory management section -->
           <h3>Inventory Management</h3>
+          <br>
           <table class="table-bordered table-hover" id="inventory">
             <thead>
               <tr>
@@ -168,17 +219,7 @@ $conn->close();
               </tr>
             </thead>
             <tbody id="inventoryBody">
-            <?php foreach ($rows as $row) : ?>
-                <tr>
-                    <td><?php echo $row['STORE_ID']; ?></td>
-                    <td><?php echo $row['DISPOSAL_ID']; ?></td>
-                    <td><?php echo $row['ITEM']; ?></td>
-                    <td><?php echo $row['QTY']; ?></td>
-                    <td><?php echo $row['DATE']; ?></td>
-                    <td><?php echo $row['STATUS']; ?></td>
-                    <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
-                </tr>
-            <?php endforeach; ?>
+              <!-- Table rows will be generated dynamically -->
             </tbody>
           </table>
         </div>
@@ -196,7 +237,7 @@ $conn->close();
           <div class="col-md-6">
             <h5>Contact</h5>
             <ul class="list-unstyled">
-              <li>Phone: 123-456-7890</li>
+              <li>Phone: 123-356-7890</li>
               <li>Email: info@example.com</li>
             </ul>
           </div>
