@@ -2,13 +2,14 @@
 //完成
 
 document.addEventListener('click', function(event) {
-    if (event.target && event.target.nodeName == 'BUTTON' && event.target.id == 'deleteButton') {
+    if (event.target && event.target.nodeName == 'BUTTON' && event.target.classList.contains('deleteButton')) {
         var row = event.target.parentNode.parentNode;
-        var disposalId = row.getElementsByTagName('td')[0].textContent;
+        var disposalId = event.target.getAttribute('data-disposal-id');
+        
         
         // SQL文を実行するためにPHPファイルにAJAXリクエストを送信する
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../store_page/deleteItem.php', true);
+        xhr.open('POST', '../w_store_page/deleteItem.php', true);
 
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
