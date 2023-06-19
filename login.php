@@ -55,7 +55,7 @@ function login()
           // Successful login with store account
           // Save information to session or perform other actions
           $_SESSION['user_id'] = $storeResult['STORE_ID'];
-          header("Location: getfood_disposal.php");
+          header("Location: ../getfood_disposal.php");
           exit();
         } else {
           echo "Incorrect password!";
@@ -91,20 +91,20 @@ login();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="css/reset.css">-->
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="css/reset.css">-->
+  <link rel="stylesheet" href="../css/login.css">
+  <!-- <link rel="stylesheet" href="../css/footer.css" />
+  <link rel="stylesheet" href="../css/navbar.css"> -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 
   <title>Login Page</title>
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">OpenSeaS</a>
@@ -112,9 +112,7 @@ login();
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-            >Page 1 <span class="caret"></span
-          ></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Page 1-1</a></li>
             <li><a href="#">Page 1-2</a></li>
@@ -125,19 +123,15 @@ login();
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="Register.html"
-            ><span class="glyphicon glyphicon-user"></span> 新規登録</a
-          >
+          <a href="Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
         </li>
         <li>
-          <a href="login.html"
-            ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
-          >
+          <a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
         </li>
       </ul>
     </div>
   </nav>
-  
+
 
   <h1>Login</h1>
   <span>or <a href="register.html">SignUp</a></span>
@@ -148,7 +142,9 @@ login();
       <input type="checkbox" name="pass_save" value="true">
       <label for="pass_save">Remember Me</label>
     </div>
-
+    <div class="btn btn-primary">
+      <button type="submit" class="btn btn-primary form-submit" type="submit" name="login">Log In</button>
+    </div>
 
     <footer class="custom-footer ">
       <div class="container-fixed-bottom">
