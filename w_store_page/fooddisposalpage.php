@@ -1,6 +1,6 @@
 <?php
 //PHP部分完成
-
+session_start();
 // データベースの情報　
 $servername = "localhost";
 $username = "dbuser";
@@ -14,9 +14,17 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
+// Kiểm tra xem người dùng đã đăng nhập hay chưa
+if (!isset($_SESSION['store_id'])) {
+  header("Location: login.php");
+  exit();
+}
+
+$store_id = $_SESSION['store_id'];
 // フォームから送信されたデータを取得
 //$email = $_POST['email'];
-$email = "store@example.com";
+//$email = "store@example.com";
+$email = $_SESSION['email'];
 $stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -101,7 +109,7 @@ $conn->close();
       </nav>
       <div class="text-center">
         <h1 class="mx-auto">ストア画面表示</h1>
-        <h2>test</h2>
+        <h2><?php echo $email; ?></h2>
       </div>
       <div class="row">
         <div class="col-sm-2">

@@ -20,6 +20,22 @@ $userStmt->bindParam(1, $user_id);
 $userStmt->execute();
 $userResult = $userStmt->fetch(PDO::FETCH_ASSOC);
 
+$storeQuery = "SELECT s.*, d.ITEM, d.QTY, d.DATE FROM store s LEFT JOIN disposal d ON s.STORE_ID = d.STORE_ID WHERE s.STORE_ID = ?";
+$storeStmt = $conn->prepare($storeQuery);
+$storeStmt->bindParam(1, $store_id);
+$storeStmt->execute();
+$storeResult = $storeStmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($storeResult as $row) {
+    echo "<tr>";
+    echo "<td>" . $row['STORE_ID'] . "</td>";
+    echo "<td>" . $row['STORE_NAME'] . "</td>"; 
+    echo "<td>" . $row['ITEM'] . "</td>";
+    echo "<td>" . $row['QTY'] . "</td>";
+    echo "<td>" . $row['DATE'] . "</td>";
+    echo "</tr>";
+}
+
 if ($userResult) {
     $user_id = $userResult['USER_ID'];
     $user_name = $userResult['USER_NAME'];
@@ -30,7 +46,7 @@ if ($userResult) {
     exit();
 }
 
-mysqli_close($conn);
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -60,25 +76,15 @@ mysqli_close($conn);
             <button onclick="viewDetails()">Chi tiết</button>
         </div>
         <div class="bottom-section">
-            <table>
-                <tr>
-                    <th>Tên</th>
-                    <th>Thời Hạn</th>
-                    <th>Số Lượng</th>
-                    <th>Yêu Cầu</th>
-                </tr>
-                <!-- <?php
-                // Hiển thị thông tin hàng hóa của người dùng
-                // while ($row = mysqli_fetch_assoc($result)) {
-                //     echo "<tr>";
-                //     echo "<td>" . $row['Ten'] . "</td>";
-                //     echo "<td>" . $row['ThoiHan'] . "</td>";
-                //     echo "<td>" . $row['SoLuong'] . "</td>";
-                //     echo "<td>" . $row['YeuCau'] . "</td>";
-                //     echo "</tr>";
-                // }
-                ?> -->
-            </table>
+        <table>
+    <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Date</th>
+        <th>Request</th>
+    </tr>
+</table>
+
         </div>
     </div>
 

@@ -54,8 +54,9 @@ function login()
         if (count($storeResult) > 0 && password_verify($password, $storeResult['STORE_PASSWORD'])) {
           // Successful login with store account
           // Save information to session or perform other actions
-          $_SESSION['user_id'] = $storeResult['STORE_ID'];
-          header("Location: w_store_page/getfood_disposal.php");
+          $_SESSION['store_id'] = $storeResult['STORE_ID'];
+          $_SESSION['email'] = $storeResult['STORE_EMAIL'];
+          header("Location: w_store_page/fooddisposalpage.php");
           exit();
         } else {
           echo "Incorrect password!";
