@@ -1,6 +1,10 @@
+@charset "UTF-8";
+@import url("color.css");
+
 .top-right-section {
     position: absolute;
-    top: 100px; /* Adjust this value to align with the navbar height */
+    top: 100px;
+    /* Adjust this value to align with the navbar height */
     right: 20px;
 }
 
@@ -13,7 +17,27 @@
 }
 
 /* テーブル */
-.table {
+
+
+#inventory {
+    width: 100%;
+}
+
+#inventory thead {
+    padding: 5px;
+    text-align: center;
+}
+
+#inventory thead {
+    background-color: var(--dark-color-2);
+    color: var(--text-color-white);
+}
+
+#deleteColumn {
+    width: 70px;
+}
+
+/* .table {
     width: 100%;
     border: 1px solid black;
 }
@@ -22,7 +46,7 @@
     width: 30%;
 }
 
-.info {
+.deadline {
     width: 20%;
 }
 
@@ -30,15 +54,7 @@
     width: 15%;
 }
 
-.date {
-    width: 35%;
-}
-
-.status {
-    width:35%;
-}
-
-.note {
+.requirement {
     width: 35%;
 }
 
@@ -50,4 +66,4 @@
 .even {
     background-color: rgb(219, 229, 255);
     color: black;
-}
+} */
