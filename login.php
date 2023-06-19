@@ -13,8 +13,7 @@ function login()
 
   // Check if the "Remember Me" checkbox is checked
   if (isset($_POST['pass_save'])) {
-    // $email = $_POST['email'];
-    $email = "store@example.com";
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Store the email and password in the session
@@ -56,11 +55,7 @@ function login()
           // Successful login with store account
           // Save information to session or perform other actions
           $_SESSION['user_id'] = $storeResult['STORE_ID'];
-<<<<<<< HEAD
-          header("Location: ../getfood_disposal.php");
-=======
-          header("Location: /w_store_page/getfood_disposal.php");
->>>>>>> d65e6fb51f886b9602b5b615cdc024715a258f44
+          header("Location: w_store_page/getfood_disposal.php");
           exit();
         } else {
           echo "Incorrect password!";

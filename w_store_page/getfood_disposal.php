@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 //* SQL Injection防止
 // フォームから送信されたデータを取得
-$email = "store@example.com";
+//$email = "store@example.com";
 
 $stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
 $stmt->bind_param("s", $email);
