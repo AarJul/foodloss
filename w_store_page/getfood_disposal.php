@@ -15,6 +15,25 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
+
+
+//* SQL Injection防止
+// フォームから送信されたデータを取得
+$email =  $_SESSION['store_email'];
+$stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$store_id = null;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $store_id = $row['store_id'];
+} 
+// $_SESSION['store_id'] = $store_id;
+$stmt->close();
+
 //additem
 // Kiểm tra xem có dữ liệu được gửi đi không
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -46,23 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 //additem
 
-//* SQL Injection防止
-// フォームから送信されたデータを取得
-$email =  $_SESSION['store_email'];
-$stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$store_id = null;
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $store_id = $row['store_id'];
-} 
-$_SESSION['store_id'] = $store_id;
-$stmt->close();
-
 $stmt2 = $conn->prepare("SELECT * FROM disposal WHERE store_id = ?");
 $stmt2->bind_param("s", $store_id);
 $stmt2->execute();
@@ -75,6 +77,7 @@ if ($disposal_info->num_rows > 0) {
         $rows[] = $row;
     }
 }
+var_dump($rows);
 
 $stmt2->close();
 $conn->close();
@@ -133,6 +136,7 @@ $conn->close();
       <div class="text-center">
         <h1 class="mx-auto">ストア画面表示</h1>
         <h2><?php echo $email; ?></h2>
+        <h2><?php echo $store_id; ?></h2>
       </div>
       <div class="row">
         <div class="col-sm-2">
