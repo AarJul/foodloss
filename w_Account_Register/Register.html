@@ -186,6 +186,21 @@
     </div>
 
     <script>
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+        var storeCodeInput = document.getElementById("store-code");
+        var storeCode = storeCodeInput.value.trim();
+        
+        if (storeCode !== "123") {
+          event.preventDefault(); 
+          var errorDiv = document.getElementById("response");
+          errorDiv.innerHTML = "ストアコードが無効です。もう一度試してください！";
+          errorDiv.style.color = "red";
+          errorDiv.style.fontWeight = "bold";
+        }
+      });
+    </script>
+
+    <script>
       function selectOption(option, selectedText) {
         document.getElementById("selectedOption").value = option;
         document.getElementById("ddown").innerHTML =

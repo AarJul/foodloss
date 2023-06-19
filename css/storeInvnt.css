@@ -2,30 +2,39 @@
 @import url("color.css");
 
 #inventory {
-    width: 100%;
+  width: 100%;
 }
 #inventory thead {
-    padding: 5px;
-    text-align: center;
+  padding: 5px;
+  text-align: center;
 }
 
-#inventory thead{
-    background-color: var(--dark-color-2);
-    color: var(--text-color-white);
+#inventory thead {
+  background-color: var(--dark-color-2);
+  color: var(--text-color-white);
 }
 #deleteColumn {
-    width: 70px;
+  width: 70px;
 }
 
-#dashboard{
-    background-color: var(--dark-color-1);
-    color: var(--text-color-white);
-    text-align: center;
+#dashboard {
+  background-color: var(--dark-color-1);
+  color: var(--text-color-white);
+  text-align: center;
 }
 #dashboard h3 {
-    padding: 5px;
+  padding: 10px 5px;
 }
 #dash-btn {
-    background-color: var(--light-color-2);
-    width: 225px;
+  background-color: var(--light-color-2);
+}
+.custom-btn-group {
+  width: 100%;
+}
+.custom-btn-group .btn {
+  width: 100%;
+}
+#addItem {
+    display:inline-flex;
+    width: 90%;
 }
