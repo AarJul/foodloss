@@ -33,7 +33,7 @@ function auto_login()
       // If the email exists in the store table and the password is correct, auto-login
       if (count($storeResult) > 0 && password_verify($password, $storeResult['STORE_PASSWORD'])) {
         $_SESSION['user_id'] = $storeResult['STORE_ID'];
-        header("Location: store.php");
+        header("Location: getfood_disposal.php");
         exit();
       }
     } elseif ($userResult) {
