@@ -35,5 +35,6 @@
   width: 100%;
 }
 #addItem {
-    
+    display:inline-flex;
+    width: 90%;
 }
