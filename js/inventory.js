@@ -26,4 +26,13 @@
   function deleteItem(row) {
     row.remove();
   }
+
+  document.getElementById("addBtn").addEventListener("click", function() {
+    var itemForm = document.getElementById("addItem");
+    if (itemForm.classList.contains("show")) {
+      itemForm.classList.remove("show");
+    } else {
+      itemForm.classList.add("show");
+    }
+  });
 }
