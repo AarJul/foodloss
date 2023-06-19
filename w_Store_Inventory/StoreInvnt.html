@@ -58,13 +58,13 @@
           <div id="dashboard">
             <h3>ダッシュボード</h3>
             <div class="btn-group-vertical custom-btn-group">
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
                 アイテム登録
               </button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">
-                機能
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
+                廃棄物を選択
               </button>
-              <button type="button" class="btn btn-lg w-100" id="dash-btn">
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
                 発送問い合わせ
               </button>
             </div>
@@ -75,69 +75,55 @@
             <div class="row">
               <h3>アイテム追加フォーム</h3>
             </div>
-            <br />
             <div class="row">
-              <form id="itemForm">
-                <div class="form-group">
-                  <label for="storeIdInput">ストアID</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="storeIdInput"
-                    required
-                  />
+              <form id="itemForm" class="text-left">
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <label for="itemInput">アイテム</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="itemInput"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="quantityInput">個数</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="quantityInput"
+                      required
+                    />
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="discardInfoInput">廃棄情報</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="discardInfoInput"
-                    required
-                  />
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <label for="dateInput">日付</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="dateInput"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="statusInput">ステータス</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="statusInput"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-success">追加</button>
                 </div>
-                <div class="form-group">
-                  <label for="itemInput">アイテム</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="itemInput"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="quantityInput">個数</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="quantityInput"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="dateInput">日付</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="dateInput"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="statusInput">ステータス</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="statusInput"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn btn-success">追加</button>
               </form>
             </div>
           </div>
           <!-- Inventory management section -->
           <h3>Inventory Management</h3>
+          <br>
           <table class="table-bordered table-hover" id="inventory">
             <thead>
               <tr>
@@ -181,7 +167,7 @@
           <div class="col-md-6">
             <h5>Contact</h5>
             <ul class="list-unstyled">
-              <li>Phone: 123-456-7890</li>
+              <li>Phone: 123-356-7890</li>
               <li>Email: info@example.com</li>
             </ul>
           </div>
