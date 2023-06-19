@@ -190,6 +190,10 @@
         var storeCodeInput = document.getElementById("store-code");
         var storeCode = storeCodeInput.value.trim();
         
+        if (selectedOption === "store") {
+        var storeCodeInput = document.getElementById("store-code");
+        var storeCode = storeCodeInput.value.trim();
+        
         if (storeCode !== "123") {
           event.preventDefault(); 
           var errorDiv = document.getElementById("response");
@@ -197,6 +201,7 @@
           errorDiv.style.color = "red";
           errorDiv.style.fontWeight = "bold";
         }
+      }
       });
     </script>
 
