@@ -146,10 +146,8 @@ $conn->close();
                             <td><?php echo $row['DATE']; ?></td>
                             <td><?php echo $row['STATUS']; ?></td>
                             <td>
-                                <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除
-                                </button>
-                                <button class="statusButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">ステータス変更
-                                </button>
+                                <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
+                                <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>" data-toggle="modal" data-target="#statusChangeModal">ステータス変更</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -170,7 +168,7 @@ $conn->close();
                 <h4 class="modal-title">ステータス変更</h4>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="update_status.php" method="POST">
                     <input type="hidden" id="disposalId" name="disposalId" value="">
                     <div class="form-group">
                         <label for="status">ステータス:</label>
@@ -190,17 +188,7 @@ $conn->close();
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        // Status Change Modal
-        $('.statusButton').click(function () {
-            var disposalId = $(this).data('disposal-id');
-            $('#disposalId').val(disposalId);
-            $('#statusChangeModal').modal('show');
-        });
-    });
-</script>
 <script src="../js/inventory.js"></script>
-<script src ="../js/deleteItemFromDisposal.js"></script>
+<script src="../js/deleteItemFromDisposal.js"></script>
 </body>
 </html>
