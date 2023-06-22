@@ -10,7 +10,9 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-$store_id = $_SESSION['store_id'];
+
+//kiểm tra xem khóa có tồn tại hay không
+$store_id = isset($_SESSION['store_id']) ? $_SESSION['store_id'] : null; 
 $user_id = $_SESSION['user_id'];
 
 // Truy vấn thông tin user dựa trên user_id
@@ -98,6 +100,11 @@ $conn = null;
         </div>
 
         <script src="script.js"></script>
+        <script>
+            function logout() {
+                window.location.href = "login.php";
+            }
+        </script>
 </body>
 
 </html>
