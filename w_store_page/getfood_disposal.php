@@ -15,11 +15,6 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
-<<<<<<< HEAD
-
-//* SQL Injection防止
-=======
->>>>>>> faae59f34772a32235888925ba5b31926b0fe313
 // フォームから送信されたデータを取得
 $email =  $_SESSION['store_email'];
 $stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
@@ -50,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt = $conn->prepare("INSERT INTO disposal (store_id, item, qty, date, status) VALUES (?, ?, ?, ?, ?)");
       $stmt->bind_param("isiss", $store_id, $item, $quantity, $date, $status);
       if ($stmt->execute()) {
+        $conn -> commit();
          $message = '在庫に追加できました！';
       } else {
         $message = '在庫の追加が失敗しました！';
