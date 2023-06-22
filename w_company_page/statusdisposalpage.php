@@ -181,9 +181,6 @@ $conn->close();
                     <button type="submit" class="btn btn-primary" name="statusChange">変更</button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-            </div>
         </div>
     </div>
 </div>
