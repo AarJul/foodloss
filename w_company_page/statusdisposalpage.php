@@ -142,9 +142,26 @@ $conn->close();
                         <tr>
                             <td><?php echo $row['DISPOSAL_ID']; ?></td>
                             <td><?php echo $row['ITEM']; ?></td>
-                            <td><?php echo $row['QTY']; ?></td>
+
+
+
+                            <td>
+                                <?php if ($row['QTY'] == 0): ?>
+                                    <span class="zero-qty">なし</span>
+                                <?php else: ?>
+                                    <?php echo $row['QTY']; ?>
+                                <?php endif; ?>
+                            </td>
+
+
                             <td><?php echo $row['DATE']; ?></td>
-                            <td><?php echo $row['STATUS']; ?></td>
+                            <td>
+                                <?php if ($row['QTY'] == 0): ?>
+                                    <span class="zero-qty">在庫切れ</span>
+                                <?php else: ?>
+                                    <?php echo $row['STATUS']; ?>
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
                                 <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>" data-toggle="modal" data-target="#statusChangeModal" onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
@@ -173,9 +190,9 @@ $conn->close();
                     <div class="form-group">
                         <label for="status">ステータス:</label>
                         <select class="form-control" id="status" name="status">
-                            <option value="未処理">未処理</option>
-                            <option value="処理済み">処理済み</option>
-                            <option value="キャンセル">キャンセル</option>
+                            <option value="受取待ち">受取待ち</option>
+                            <option value="受取完了">受取完了</option>
+                            <option value="在庫切れ">在庫切れ</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary" name="statusChange">変更</button>
