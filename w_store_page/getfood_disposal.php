@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt = $conn->prepare("INSERT INTO disposal (store_id, item, qty, date, status) VALUES (?, ?, ?, ?, ?)");
       $stmt->bind_param("isiss", $store_id, $item, $quantity, $date, $status);
       if ($stmt->execute()) {
+        $conn -> commit();
          $message = '在庫に追加できました！';
       } else {
         $message = '在庫の追加が失敗しました！';
