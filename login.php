@@ -115,39 +115,35 @@ login();
     <title>Login Page</title>
   </head>
 
-  <body>
-    <div class="container-fluid">
-      <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">OpenSeaS</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >Page 1 <span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Page 1-1</a></li>
-              <li><a href="#">Page 1-2</a></li>
-              <li><a href="#">Page 1-3</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Page 2</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="../w_Account_Register/Register.html"
-              ><span class="glyphicon glyphicon-user"></span> 新規登録</a
-            >
-          </li>
-          <li>
-            <a href="login.html"
-              ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
-            >
-          </li>
-        </ul>
-      </nav>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">OpenSeaS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
+        </li>
+        <li>
+          <a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
+        </li>
+      </ul>
+
+    </nav>
 
       <h1 class="text-center">ログイン</h1>
       <br>

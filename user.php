@@ -47,48 +47,86 @@ $conn = null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/footer.css"/>
+    <link rel="stylesheet" href="css/navbar.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/user.css">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <title>Quản lý hàng tồn kho</title>
-    <link rel="stylesheet" type="text/css" href="css/user.css">
 </head>
 <body>
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">OpenSeaS</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Page 1-1</a></li>
+                    <li><a href="#">Page 1-2</a></li>
+                    <li><a href="#">Page 1-3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Page 2</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span>
+                    新規登録</a>
+            </li>
+            <li>
+                <a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
+            </li>
+        </ul>
+    </nav>
+
     <div class="container">
         <div class="top-right-section">
             <h2>User ID: <span id="userid"><?php echo $user_id; ?></span></h2>
             <h2>Tên: <span id="username"><?php echo $user_name; ?></span></h2>
             <button onclick="logout()">Logout</button>
-            <a href="confirm.php"><button>Xác nhận đơn hàng</button></a>
+            <a href="confirm.php">
+                <button>Xác nhận đơn hàng</button>
+            </a>
         </div>
         <div class="center-section">
-            <?php foreach ($storeResult as $store): ?>
-                <div class="store">
-                    <h2><?php echo $store['STORE_NAME']; ?></h2>
-                    <table>
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Date</th>
-                        </tr>
-                        <?php if (!empty($store['ITEM'])): ?>
-                            <tr>
-                                <td><?php echo $store['ITEM']; ?></td>
-                                <td><?php echo $store['QTY']; ?></td>
-                                <td><?php echo $store['DATE']; ?></td>
-                            </tr>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="3">No disposal data</td>
-                            </tr>
-                        <?php endif; ?>
-                    </table>
-                </div>
-            <?php endforeach; ?>
+            <h1>Store Name</h1>
+            <button onclick="viewDetails()">Chi tiết</button>
         </div>
-        <script src="script.js"></script>
-        <script>
-            function logout() {
-                window.location.href = "login.php";
-            }
-        </script>
+        <div class="bottom-section">
+            <table>
+                <tr>
+                    <th>Tên</th>
+                    <th>Thời Hạn</th>
+                    <th>Số Lượng</th>
+                    <th>Yêu Cầu</th>
+                </tr>
+                <!-- <?php
+                // Hiển thị thông tin hàng hóa của người dùng
+                // while ($row = mysqli_fetch_assoc($result)) {
+                //     echo "<tr>";
+                //     echo "<td>" . $row['Ten'] . "</td>";
+                //     echo "<td>" . $row['ThoiHan'] . "</td>";
+                //     echo "<td>" . $row['SoLuong'] . "</td>";
+                //     echo "<td>" . $row['YeuCau'] . "</td>";
+                //     echo "</tr>";
+                // }
+                ?> -->
+            </table>
+        </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
