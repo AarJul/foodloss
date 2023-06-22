@@ -40,11 +40,10 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/login.css"/>
-    <link rel="stylesheet" href="css/footer.css"/>
-    <link rel="stylesheet" href="css/navbar.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/user.css">
+    <link rel="stylesheet" href="./css/reset.css"/>
+    <link rel="stylesheet" href="./css/footer.css"/>
+    <link rel="stylesheet" href="./css/navbar.css"/>
+    <link rel="stylesheet" href="./css/user.css">
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
