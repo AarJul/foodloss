@@ -1,6 +1,5 @@
 <?php
 session_start();
-//require_once dirname(__FILE__) . '/function/auto_login.php';
 require_once dirname(__FILE__) . '/function/db_connection.php';
 
 // Connect to the database
@@ -10,7 +9,6 @@ $message = '';
 // Function to check login and redirect users
 function login()
 {
-
   // Check if the "Remember Me" checkbox is checked
   if (isset($_POST['pass_save'])) {
     $email = $_POST['email'];
@@ -75,7 +73,6 @@ function login()
       } else {
         $message = 'User does not exist!';
       }
-
       $conn = null;
     } else {
       echo "Please enter email and password!";
@@ -91,21 +88,25 @@ login();
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="css/reset.css">-->
-  <link rel="stylesheet" href="../css/login.css">
-  <!-- <link rel="stylesheet" href="../css/footer.css" />
-  <link rel="stylesheet" href="../css/navbar.css"> -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <title>Login Page</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+  <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
       <div class="navbar-header">
         <a class="navbar-brand" href="#">OpenSeaS</a>
       </div>
@@ -129,25 +130,28 @@ login();
           <a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
         </li>
       </ul>
-    </div>
-  </nav>
 
+    </nav>
 
-  <h1>Login</h1>
-  <span>or <a href="register.html">SignUp</a></span>
-  <form action="login.php" method="POST">
-    <input name="email" type="text" placeholder="Enter your email">
-    <input name="password" type="password" placeholder="Enter your Password">
-    <div class="relative mb-5 mx-auto md:w-3/4">
-      <input type="checkbox" name="pass_save" value="true">
-      <label for="pass_save">Remember Me</label>
-    </div>
-    <div class="btn btn-primary">
-      <button type="submit" class="btn btn-primary form-submit" type="submit" name="login">Log In</button>
-    </div>
+    <h1>Login</h1>
+    <span>or <a href="register.html">SignUp</a></span>
+    <form action="login.php" method="POST">
+      <input name="email" type="text" placeholder="Enter your email" />
+      <input name="password" type="password" placeholder="Enter your Password" />
+      <div class="relative mb-5 mx-auto md:w-3/4">
+        <input type="checkbox" name="pass_save" value="true" />
+        <label for="pass_save">Remember Me</label>
+      </div>
+      <div class="btn btn-primary">
+        <button type="submit" class="btn btn-primary form-submit" type="submit" name="login">
+          Log In
+        </button>
+      </div>
+    </form>
 
-    <footer class="custom-footer ">
-      <div class="container-fixed-bottom">
+    <br />
+    <footer class="custom-footer">
+      <div class="container fixed-bottom">
         <div class="row">
           <div class="col-md-6">
             <h5>About Us</h5>
@@ -156,13 +160,14 @@ login();
           <div class="col-md-6">
             <h5>Contact</h5>
             <ul class="list-unstyled">
-              <li>Phone: 123-456-7890</li>
+              <li>Phone: 123-356-7890</li>
               <li>Email: info@example.com</li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
+  </div>
 </body>
 
 </html>

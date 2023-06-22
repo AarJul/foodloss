@@ -147,7 +147,7 @@ $conn->close();
                             <td><?php echo $row['STATUS']; ?></td>
                             <td>
                                 <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
-                                <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>" data-toggle="modal" data-target="#statusChangeModal">ステータス変更</button>
+                                <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>" data-toggle="modal" data-target="#statusChangeModal" onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -181,12 +181,17 @@ $conn->close();
                     <button type="submit" class="btn btn-primary" name="statusChange">変更</button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-            </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    function setDisposalId(disposalId) {
+        document.getElementById("disposalId").value = disposalId;
+        document.getElementById("statusChangeForm").action = "update_status.php?disposalId=" + disposalId;
+    }
+</script>
 
 <script src="../js/inventory.js"></script>
 <script src="../js/deleteItemFromDisposal.js"></script>
