@@ -22,7 +22,7 @@ while ($store_row = $store_info->fetch_assoc()) {
     $store_rows[$store_row['STORE_ID']] = $store_row['STORE_NAME'];
 }
 
-$stmt2 = $conn->prepare("SELECT * FROM order");
+$stmt2 = $conn->prepare("SELECT * FROM disposal");
 $stmt2->execute();
 $disposal_info = $stmt2->get_result();
 
@@ -55,7 +55,7 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>OpenSeaS管理システム</title>
+    <title>Home</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
@@ -71,19 +71,19 @@ $conn->close();
 <div class="container-fluid">
     <nav class="navbar navbar-inverse fixed-top">
         <div class="navbar-header">
-            <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+            <a class="navbar-brand" href="#">OpenSeaS</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">ホーム</a></li>
+            <li class="active"><a href="#">Home</a></li>
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">ストアフロント</a></li>
-                    <li><a href="./w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-                    <li><a href="./w_store_page/storeInfo.html">ストア情報</a></li>
+                    <li><a href="#">Page 1-1</a></li>
+                    <li><a href="#">Page 1-2</a></li>
+                    <li><a href="#">Page 1-3</a></li>
                 </ul>
             </li>
-            <li><a href="./w_disposal_page/deliveryDisposal">廃棄情報</a></li>
+            <li><a href="#">Page 2</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
