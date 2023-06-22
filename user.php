@@ -135,6 +135,54 @@ $conn = null;
         </div>
     </footer>
 
+            <?php
+            $currentStoreID = null;
+            foreach ($storeResult as $store) {
+                if ($store['STORE_ID'] != $currentStoreID) {
+                    // Hiển thị thông tin store chỉ khi store_id thay đổi
+                    ?>
+                    <div class="store">
+                        <table>
+                            <h2>
+                                <?php echo $store['STORE_NAME']; ?>
+                            </h2>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                            </tr>
+                            <?php
+                            $currentStoreID = $store['STORE_ID'];
+                }
+                if (!empty($store['ITEM'])) {
+                    // Hiển thị thông tin disposal của store hiện tại
+                    ?>
+                            <tr>
+                                <td>
+                                    <?php echo $store['ITEM']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $store['QTY']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $store['DATE']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                } else {
+                    // Hiển thị thông báo khi không có disposal data
+                    ?>
+                            <tr>
+                                <td colspan="3">No disposal data</td>
+                            </tr>
+                            <?php
+               }
+            }
+            ?>
+                </table>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
     <script>
         function logout() {
