@@ -109,7 +109,7 @@ $conn->close();
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="Register.html"
+            <a href="../w_Account_Register/Register.html"
               ><span class="glyphicon glyphicon-user"></span> 新規登録</a
             >
           </li>
