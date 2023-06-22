@@ -15,8 +15,11 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
+<<<<<<< HEAD
 
 //* SQL Injection防止
+=======
+>>>>>>> faae59f34772a32235888925ba5b31926b0fe313
 // フォームから送信されたデータを取得
 $email =  $_SESSION['store_email'];
 $stmt = $conn->prepare("SELECT store_id FROM store WHERE store_email = ?");
@@ -34,31 +37,22 @@ if ($result->num_rows > 0) {
 $stmt->close();
 
 //additem
-// Kiểm tra xem có dữ liệu được gửi đi không
+$message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Kiểm tra xem các trường dữ liệu có tồn tại không
   if (isset($_POST['itemInput']) && isset($_POST['quantityInput']) && isset($_POST['dateInput']) && isset($_POST['statusInput'])) {
-      // Lấy giá trị từ các trường dữ liệu
       $item = $_POST['itemInput'];
       $quantity = $_POST['quantityInput'];
       $date = $_POST['dateInput'];
       $status = $_POST['statusInput'];
-
-      // Thực hiện xử lý dữ liệu tại đây (ví dụ: lưu vào cơ sở dữ liệu)
-
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
       }
-
-      // Chuẩn bị câu truy vấn INSERT
       $stmt = $conn->prepare("INSERT INTO disposal (store_id, item, qty, date, status) VALUES (?, ?, ?, ?, ?)");
-      $stmt->bind_param("isiss", $_SESSION['store_id'], $item, $quantity, $date, $status);
-      
+      $stmt->bind_param("isiss", $store_id, $item, $quantity, $date, $status);
       if ($stmt->execute()) {
-          // Nếu thêm dữ liệu thành công, bạn có thể thực hiện hành động khác tại đây
-          // Ví dụ: hiển thị thông báo thành công, chuyển hướng trang, v.v.
+         $message = '在庫に追加できました！';
       } else {
-          // Nếu có lỗi xảy ra trong quá trình thêm dữ liệu, bạn có thể xử lý tại đây
+        $message = '在庫の追加が失敗しました！';
       }
   }
 }
@@ -76,7 +70,6 @@ if ($disposal_info->num_rows > 0) {
         $rows[] = $row;
     }
 }
-var_dump($rows);
 
 $stmt2->close();
 $conn->close();
@@ -136,13 +129,24 @@ $conn->close();
         <h1 class="mx-auto">ストア画面表示</h1>
         <h2><?php echo $email; ?></h2>
         <h2><?php echo $store_id; ?></h2>
+        <p id="message" style="font-style: italic; color: green;">
+          <?php if (isset($message) && $message != null) { echo $message;} ?>
+        </p>
+        <script>
+            setTimeout(function() {
+                var messageElement = document.getElementById('message');
+                if (messageElement) {
+                    messageElement.style.display = 'none';
+                }
+            }, 1000);
+        </script>
       </div>
       <div class="row">
         <div class="col-sm-2">
           <div id="dashboard">
             <h3>ダッシュボード</h3>
             <div class="btn-group-vertical custom-btn-group">
-              <button type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
+              <button onclick="hideInventory()" type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
                 アイテム登録
               </button>
               <button type="button" class="btn btn-lg w-100 dash-btn" id="">
@@ -181,12 +185,13 @@ $conn->close();
                       <input type="text" class="form-control" id="statusInput" name="statusInput" required />
                   </div>
                   <button type="submit" class="btn btn-success">追加</button>
+                  <a href="getfood_disposal.php" class="btn btn-success">戻る</a>
               </div>
           </form>
             </div>
           </div>
           <!-- Inventory management section -->
-          <h3>Inventory Management</h3>
+          <h3 id="h3">Inventory Management</h3>
           <br>
           <table class="table-bordered table-hover" id="inventory">
             <thead>
@@ -214,8 +219,32 @@ $conn->close();
             </thead>
             <tbody id="inventoryBody">
               <!-- Table rows will be generated dynamically -->
+              <?php foreach ($rows as $row) : ?>
+                <tr>
+                    <td><?php echo $row['STORE_ID']; ?></td>
+                    <td><?php echo $row['DISPOSAL_ID']; ?></td>
+                    <td><?php echo $row['ITEM']; ?></td>
+                    <td><?php echo $row['QTY']; ?></td>
+                    <td><?php echo $row['DATE']; ?></td>
+                    <td><?php echo $row['STATUS']; ?></td>
+                    <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
+              <?php endforeach; ?>
             </tbody>
           </table>
+          <script>
+            function hideInventory() {
+                var inventoryManagementElement = document.getElementById("h3");
+                var inventoryTableElement = document.getElementById("inventory");
+                
+                if (inventoryManagementElement) {
+                    inventoryManagementElement.style.display = "none";
+                }
+                
+                if (inventoryTableElement) {
+                    inventoryTableElement.style.display = "none";
+                }
+            }
+          </script>
         </div>
       </div>
     </div>
@@ -255,44 +284,3 @@ $conn->close();
     </script>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>廃棄状況</title>
-</head>
-<body>
-
-    <form id="redirect-form" method="post" action="disposal_registration.php">
-    <input type="hidden" name="email" value="<?php echo $email; ?>">
-    <button type="submit">廃棄登録</button>
-    </form>
-    <p><?php echo $store_id; ?></p>
-    <h1>廃棄状況</h1>
-    <?php if (!empty($rows)) : ?>
-        <table>
-            <tr>
-                <th>Store ID</th>
-                <th>Disposal ID</th>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
-            <?php foreach ($rows as $row) : ?>
-                <tr>
-                    <td><?php echo $row['STORE_ID']; ?></td>
-                    <td><?php echo $row['DISPOSAL_ID']; ?></td>
-                    <td><?php echo $row['ITEM']; ?></td>
-                    <td><?php echo $row['QTY']; ?></td>
-                    <td><?php echo $row['DATE']; ?></td>
-                    <td><?php echo $row['STATUS']; ?></td>
-                    <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
-            <?php endforeach; ?>
-        </table>
-    <?php else : ?>
-        <p>廃棄がなさそうですね！</p>
-    <?php endif; ?>
-    <script src ="../js/deleteItemFromDisposal.js"></script>
-</body>
-</html> -->
