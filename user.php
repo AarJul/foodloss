@@ -69,6 +69,72 @@ $conn = null;
             <a href="confirm.php"><button>Xác nhận đơn hàng</button></a>
         </div>
         <div class="center-section">
+            <h1>Store Name</h1>
+            <button onclick="viewDetails()">Chi tiết</button>
+        </div>
+        <br>
+
+        <div class="container">
+            <div class="bottom-section">
+                <table class="table-bordered table-hover" id="inventory">
+                    <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">
+                            名前 <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th onclick="sortTable(1)">
+                            期限 <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th onclick="sortTable(2)">
+                            個数 <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th onclick="sortTable(3)">
+                            個数 <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th onclick="sortTable(4)">
+                            要求 <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="inventoryBody">
+                    <!-- insert code -->
+                    </tbody>
+
+                </table>
+                <!-- <?php
+                    // Hiển thị thông tin hàng hóa của người dùng
+                    // while ($row = mysqli_fetch_assoc($result)) {
+                    //     echo "<tr>";
+                    //     echo "<td>" . $row['Ten'] . "</td>";
+                    //     echo "<td>" . $row['ThoiHan'] . "</td>";
+                    //     echo "<td>" . $row['SoLuong'] . "</td>";
+                    //     echo "<td>" . $row['YeuCau'] . "</td>";
+                    //     echo "</tr>";
+                    // }
+                    ?> -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="custom-footer">
+        <div class="container fixed-bottom">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Phone: 123-356-7890</li>
+                        <li>Email: info@example.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
             <?php
             $currentStoreID = null;
             foreach ($storeResult as $store) {
