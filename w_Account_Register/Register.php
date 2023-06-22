@@ -67,7 +67,7 @@ $conn->close();
     <h1><?=$message?></h1>
     
     <br>
-        <a href="login.php" class="btn btn-danger btn-lg" role="button">戻る</a>
+        <a href="../login.php" class="btn btn-danger btn-lg" role="button">戻る</a>
 
 </body>
 

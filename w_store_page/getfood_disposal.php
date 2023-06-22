@@ -110,7 +110,7 @@ $conn->close();
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="Register.html"
+            <a href="../w_Account_Register/Register.html"
               ><span class="glyphicon glyphicon-user"></span> 新規登録</a
             >
           </li>
@@ -183,7 +183,7 @@ $conn->close();
                   <button type="submit" class="btn btn-success">追加</button>
                   <a href="getfood_disposal.php" class="btn btn-success">戻る</a>
               </div>
-          </form>
+            </form>
             </div>
           </div>
           <!-- Inventory management section -->
@@ -231,7 +231,9 @@ $conn->close();
             function hideInventory() {
                 var inventoryManagementElement = document.getElementById("h3");
                 var inventoryTableElement = document.getElementById("inventory");
-                
+                var addButton = document.getElementById("addBtn");
+
+                addButton.disabled = true;
                 if (inventoryManagementElement) {
                     inventoryManagementElement.style.display = "none";
                 }
