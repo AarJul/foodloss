@@ -10,25 +10,23 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-
-//kiểm tra xem khóa có tồn tại hay không
-$store_id = isset($_SESSION['store_id']) ? $_SESSION['store_id'] : null; 
-$user_id = $_SESSION['user_id'];
+$store_id = isset($_SESSION['store_id']) ? $_SESSION['store_id'] : null;
 
 // Truy vấn thông tin user dựa trên user_id
+$user_id = $_SESSION['user_id'];
 $userQuery = "SELECT USER_ID, USER_NAME FROM user WHERE USER_ID = ?";
 $userStmt = $conn->prepare($userQuery);
 $userStmt->bindParam(1, $user_id);
 $userStmt->execute();
 $userResult = $userStmt->fetch(PDO::FETCH_ASSOC);
 
+// Truy vấn thông tin store và disposal
 $storeQuery = "SELECT s.STORE_ID, s.STORE_NAME, d.ITEM, d.QTY, d.DATE
                 FROM store s
                 LEFT JOIN disposal d ON s.STORE_ID = d.STORE_ID";
 $storeStmt = $conn->prepare($storeQuery);
 $storeStmt->execute();
 $storeResult = $storeStmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 if ($userResult) {
     $user_id = $userResult['USER_ID'];
@@ -66,18 +64,28 @@ $conn = null;
             <a href="confirm.php"><button>Xác nhận đơn hàng</button></a>
         </div>
         <div class="center-section">
-            <?php foreach ($storeResult as $store): ?>
-                <div class="store">
-                    <h2>
-                        <?php echo $store['STORE_NAME']; ?>
-                    </h2>
-                    <table>
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Date</th>
-                        </tr>
-                        <?php if (!empty($store['ITEM'])): ?>
+            <?php
+            $currentStoreID = null;
+            foreach ($storeResult as $store) {
+                if ($store['STORE_ID'] != $currentStoreID) {
+                    // Hiển thị thông tin store chỉ khi store_id thay đổi
+                    ?>
+                    <div class="store">
+                        <table>
+                            <h2>
+                                <?php echo $store['STORE_NAME']; ?>
+                            </h2>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                            </tr>
+                            <?php
+                            $currentStoreID = $store['STORE_ID'];
+                }
+                if (!empty($store['ITEM'])) {
+                    // Hiển thị thông tin disposal của store hiện tại
+                    ?>
                             <tr>
                                 <td>
                                     <?php echo $store['ITEM']; ?>
@@ -89,22 +97,26 @@ $conn = null;
                                     <?php echo $store['DATE']; ?>
                                 </td>
                             </tr>
-                        <?php else: ?>
+                            <?php
+                } else {
+                    // Hiển thị thông báo khi không có disposal data
+                    ?>
                             <tr>
                                 <td colspan="3">No disposal data</td>
                             </tr>
-                        <?php endif; ?>
-                    </table>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <script src="script.js"></script>
-        <script>
-            function logout() {
-                window.location.href = "login.php";
+                            <?php
+                }
             }
-        </script>
+            ?>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function logout() {
+            window.location.href = "login.php";
+        }
+    </script>
 </body>
-
 </html>
