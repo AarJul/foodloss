@@ -130,7 +130,6 @@ login();
           <a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
         </li>
       </ul>
-
     </nav>
 
     <h1>Login</h1>
