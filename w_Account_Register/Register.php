@@ -93,8 +93,9 @@ $conn->close();
 
 
 <body>
+    <h1><?php echo $message; ?></h1>
     <?php
-    echo $message;
+    
     if ($isRegistrationOk) {
         echo '
         <div id="image-container">
@@ -105,8 +106,8 @@ $conn->close();
     ?>
     
   <div id="button-container">
-    <a href="Register.html" target="_blank">
-      <button type="button">戻る</button>
+    <a href="../login.php" target="_blank">
+      <button type="button">ログインへ</button>
     </a>
   </div>
 </body>
