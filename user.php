@@ -20,9 +20,10 @@ $userStmt->bindParam(1, $user_id);
 $userStmt->execute();
 $userResult = $userStmt->fetch(PDO::FETCH_ASSOC);
 
-$storeQuery = "SELECT s.*, d.ITEM, d.QTY, d.DATE FROM store s LEFT JOIN disposal d ON s.STORE_ID = d.STORE_ID WHERE s.STORE_ID = ?";
+$storeQuery = "SELECT s.STORE_ID, s.STORE_NAME, d.ITEM, d.QTY, d.DATE
+                FROM store s
+                LEFT JOIN disposal d ON s.STORE_ID = d.STORE_ID";
 $storeStmt = $conn->prepare($storeQuery);
-$storeStmt->bindParam(1, $store_id);
 $storeStmt->execute();
 $storeResult = $storeStmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -63,29 +64,40 @@ $conn = null;
             <a href="confirm.php"><button>Xác nhận đơn hàng</button></a>
         </div>
         <div class="center-section">
-            <h1>Store Name</h1>
-            <button onclick="viewDetails()">Chi tiết</button>
+            <?php foreach ($storeResult as $store): ?>
+                <div class="store">
+                    <h2>
+                        <?php echo $store['STORE_NAME']; ?>
+                    </h2>
+                    <table>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                        </tr>
+                        <?php if (!empty($store['ITEM'])): ?>
+                            <tr>
+                                <td>
+                                    <?php echo $store['ITEM']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $store['QTY']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $store['DATE']; ?>
+                                </td>
+                            </tr>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3">No disposal data</td>
+                            </tr>
+                        <?php endif; ?>
+                    </table>
+                </div>
+            <?php endforeach; ?>
         </div>
-        <div class="bottom-section">
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Date</th>
-            <th>Request</th>
-        </tr>
-        <?php foreach ($storeResult as $row) : ?>
-        <tr>
-            <td><?php echo $row['ITEM']; ?></td>
-            <td><?php echo $row['QTY']; ?></td>
-            <td><?php echo $row['DATE']; ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-</div>
-    </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
