@@ -4,13 +4,6 @@ session_start();
 
 require_once dirname(__FILE__) . '/function/db_connection.php';
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
 $conn = connection();
 
 $message = '';
@@ -30,13 +23,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $store_id = isset($_SESSION['store_id']) ? $_SESSION['store_id'] : null;
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
 // Truy vấn thông tin user dựa trên user_id
 
 $user_id = $_SESSION['user_id'];
@@ -68,13 +54,6 @@ $storeStmt->execute();
 
 $storeResult = $storeStmt->fetchAll(PDO::FETCH_ASSOC);
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
 if ($userResult) {
 
     $user_id = $userResult['USER_ID'];
@@ -138,7 +117,6 @@ $conn = null;
 <body>
 
     <div class="container">
-<<<<<<< HEAD
     <nav class="navbar navbar-inverse fixed-top">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
@@ -166,25 +144,6 @@ $conn = null;
             </ul>
         </nav>
         <div class="top-right-section">
-=======
-
-        <div class="top-right-section">
-
-            <h2>User ID: <span id="userid">
-
-                    <?php echo $user_id; ?>
-
-                </span></h2>
-
-            <h2>Tên: <span id="username">
-
-                    <?php echo $user_name; ?>
-
-                </span></h2>
-
-            <button onclick="logout()">Logout</button>
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
             <a href="confirm.php"><button>Xác nhận đơn hàng</button></a>
 
         </div>
@@ -220,19 +179,9 @@ $conn = null;
                             <thead>
 
                                 <tr>
-<<<<<<< HEAD
                                     <th onclick="sortTable(0)">商品名 <span class="glyphicon glyphicon-sort"></span></th>
                                     <th onclick="sortTable(1)">期限 <span class="glyphicon glyphicon-sort"></span></th>
                                     <th onclick="sortTable(2)">個数 <span class="glyphicon glyphicon-sort"></span></th>
-=======
-
-                                    <th onclick="sortTable(0)">商品名 <span class="glyphicon glyphicon-sort"></span></th>
-
-                                    <th onclick="sortTable(1)">期限 <span class="glyphicon glyphicon-sort"></span></th>
-
-                                    <th onclick="sortTable(2)">個数 <span class="glyphicon glyphicon-sort"></span></th>
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
                                 </tr>
 
                             </thead>
@@ -256,22 +205,10 @@ $conn = null;
                     ?>
 
                             <tr>
-<<<<<<< HEAD
                                 <td><?php echo $store['ITEM']; ?></td>
                                 <td><?php echo $store['DATE']; ?></td>
                                 <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
                                 <td><button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>">要求</button></td>
-=======
-
-                                <td><?php echo $store['ITEM']; ?></td>
-
-                                <td><?php echo $store['QTY']; ?></td>
-
-                                <td><?php echo $store['DATE']; ?></td>
-
-                                <td><button>要求</button></td>
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
                             </tr>
 
                             <?php
@@ -283,13 +220,7 @@ $conn = null;
                     ?>
 
                             <tr>
-<<<<<<< HEAD
                                 <td colspan="4">No disposal data</td>
-=======
-
-                                <td colspan="3">No disposal data</td>
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
                             </tr>
 
                             <?php
@@ -341,7 +272,6 @@ $conn = null;
         </footer>
 
     </div>
-<<<<<<< HEAD
     <!-- Modal -->
     <div id="modal-container" class="modal">
         <div class="modal-content">
@@ -355,21 +285,6 @@ $conn = null;
 
     <script src="js/bootstrap.js"></script>
     <script src="js/userScript.js"></script>
-=======
-
-    <script src="script.js"></script>
-
-    <script>
-
-        function logout() {
-
-            window.location.href = "login.php";
-
-        }
-
-    </script>
-
->>>>>>> 1719bb15a091f2764c7dcea6bf73c93a5626c0d7
 </body>
 
 
