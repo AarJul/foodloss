@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("アクセス失敗: " . $conn->connect_error);
 }
 
-$stmt1 = $conn->prepare("SELECT * FROM user");
+$stmt1 = $conn->prepare("SELECT * FROM user ");
 $stmt1->execute();
 $user_info = $stmt1->get_result();
 
@@ -90,7 +90,7 @@ $conn->close();
     <div class="row content">
         <div class="col-sm-2 sidenav"></div>
         <div class="col-sm-8 text-center">
-            <h1>在庫管理</h1>
+            <h1>Order Information</h1>
             <hr>
 
             <!-- Inventory management section -->
@@ -103,8 +103,7 @@ $conn->close();
                             <th>注文ID</th>
                             <th>商品名</th>
                             <th>数量</th>
-                            <th>ステータス</th>
-                            <th>更新</th>
+                            <th>Date</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -114,18 +113,7 @@ $conn->close();
                                 <td><?php echo $disposal_row['ITEM']; ?></td>
                                 <td><?php echo $disposal_row['QTY']; ?></td>
                                 <td><?php echo $disposal_row['DATE']; ?></td>
-                                <td>
-                                    <form method="POST" action="">
-                                        <input type="hidden" name="disposalId"
-                                               value="<?php echo $disposal_row['ORDER_ID']; ?>"/>
-                                        <select name="status">
-                                            <option value="未処理">未処理</option>
-                                            <option value="処理済み">処理済み</option>
-                                            <option value="保留">保留</option>
-                                        </select>
-                                        <input type="submit" name="statusChange" value="変更"/>
-                                    </form>
-                                </td>
+                                
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
