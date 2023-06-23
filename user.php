@@ -46,16 +46,20 @@ $conn = null;
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý hàng tồn kho</title>
     <link rel="stylesheet" type="text/css" href="css/user.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/footer.css"/>
-    <link rel="stylesheet" href="css/navbar.css"/>
-    <link rel="stylesheet" href="css/storeInvnt.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/storeInvnt.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     <div class="container">
         <nav class="navbar navbar-inverse fixed-top">
@@ -76,7 +80,9 @@ $conn = null;
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"><?php echo $user_name; ?></span></a>
+                    <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user">
+                            <?php echo $user_name; ?>
+                        </span></a>
                 </li>
                 <li id="user">
                     <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
@@ -91,38 +97,36 @@ $conn = null;
             $currentStoreID = null;
             foreach ($storeResult as $store) {
                 if ($store['STORE_ID'] != $currentStoreID) {
-            ?>
+                    ?>
                     <div class="container">
                         <table class="table-bordered table-hover" id="inventory">
                             <h3>
-                                ストアー名: <?php echo $store['STORE_NAME']; ?>
+                                ストアー名:
+                                <?php echo $store['STORE_NAME']; ?>
 
                                 <!--　詳細ボタンの処理ここから　-->
                                 <!-- Button -->
                                 <button onclick="openPopup()">詳細</button>
 
                                 <!-- Modal -->
-                                <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <span class="close" onclick="closePopup()">&times;</span>
-                                    <h2> <?php echo $store['STORE_NAME']; ?></h2>
-                                    <p> <?php echo $store['STORE_EMAIL']; ?></p>
-                                    <p> <?php echo $store['STORE_TEL']; ?></p>
-                                    <p> <?php echo $store['STORE_ADDRESS']; ?></p>
-                                </div>
+                                <div id="info-Modal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close" onclick="closePopup()">&times;</span>
+                                        <h2>
+                                            <?php echo $store['STORE_NAME']; ?>
+                                        </h2>
+                                        <p>
+                                            <?php echo $store['STORE_EMAIL']; ?>
+                                        </p>
+                                        <p>
+                                            <?php echo $store['STORE_TEL']; ?>
+                                        </p>
+                                        <p>
+                                            <?php echo $store['STORE_ADDRESS']; ?>
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <script>
-                                function openPopup() {
-                                var modal = document.getElementById("myModal");
-                                modal.style.display = "block";
-                                }
-
-                                function closePopup() {
-                                var modal = document.getElementById("myModal");
-                                modal.style.display = "none";
-                                }
-                                </script>
                                 <!--　詳細ボタンの処理ここまで　-->
 
                             </h3>
@@ -136,28 +140,50 @@ $conn = null;
                             <tbody id="inventoryBody">
                                 <!-- insert code -->
                             </tbody>
-            <?php
-                $currentStoreID = $store['STORE_ID'];
-                }
+                            <?php
+                            $currentStoreID = $store['STORE_ID'];
+                } 
 
                 if (!empty($store['ITEM'])) {
-            ?>
-                        <tr>
-                            <td><?php echo $store['ITEM']; ?></td>
-                            <td><?php echo $store['DATE']; ?></td>
-                            <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
-                            <td><button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>">要求</button></td>
-                        </tr>
-            <?php
+                    ?>  
+                            <tr>
+                                <td>
+                                    <?php echo $store['ITEM']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $store['DATE']; ?>
+                                </td>
+                                <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
+                                <td>
+                                    <button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>"
+                                        onclick="openModal()">要求</button>
+                                </td>
+                                <!-- <td>
+                                    <?php if ($store['QTY'] > 0) { ?>
+                                    <button onclick="requestItem(<?php echo $store['STORE_ID']; ?>)" >要求</button>
+                                    <?php } ?>
+                                </td> -->
+
+                            </tr>
+                            <?php
                 } else {
-            ?>
-                        <tr>
-                            <td colspan="4">ただ今廃棄はないです！</td>
-                        </tr>
-            <?php
+                    ?>
+                            <tr>
+                                <td colspan="4">ただ今廃棄はないです！</td>
+                            </tr>
+                            <?php
                 }
             }
             ?>
+                    <!-- Modal -->
+                    <div id="request-modal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <h2>Yêu cầu số lượng</h2>
+                            <input type="text" id="quantityInput" placeholder="Nhập số lượng">
+                            <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
+                        </div>
+                    </div>
                 </table>
             </div>
         </div>
@@ -179,17 +205,10 @@ $conn = null;
             </div>
         </footer>
     </div>
-    <!-- Modal -->
-    <div id="modal-container" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Yêu cầu số lượng</h2>
-            <input type="text" id="quantityInput" placeholder="Nhập số lượng">
-            <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
-        </div>
-    </div>
+
 
     <script src="js/bootstrap.js"></script>
     <script src="js/userScript.js"></script>
 </body>
+
 </html>
