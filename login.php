@@ -147,7 +147,7 @@ login();
 
       <h1 class="text-center">ログイン</h1>
       <br>
-      <h4 class="text-center">アカウントをお持ちでない方は、 <a href="register.html">新規登録</a></h4>
+      <h4 class="text-center">アカウントをお持ちでない方は、 <a href="../w_Account_Register/Register.html">新規登録</a></h4>
       <form action="login.php" method="POST">
         <input name="email" type="text" placeholder="メールアドレスを入力" />
         <input
