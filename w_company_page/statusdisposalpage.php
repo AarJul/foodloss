@@ -22,7 +22,7 @@ while ($store_row = $store_info->fetch_assoc()) {
     $store_rows[$store_row['STORE_ID']] = $store_row['STORE_NAME'];
 }
 
-$stmt2 = $conn->prepare("SELECT * FROM order");
+$stmt2 = $conn->prepare("SELECT * FROM disposal");
 $stmt2->execute();
 $disposal_info = $stmt2->get_result();
 

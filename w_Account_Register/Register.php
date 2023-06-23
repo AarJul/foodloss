@@ -34,12 +34,16 @@ if ($selectedOption == 'store') {
     $stmt->bind_param("sssss", $name, $telephone, $email, $hashedPassword, $address);
 }
 
+$isRegistrationOk = false;
+$message;
 try {
     if ($stmt->execute()) {
         $conn->commit();
-        $message = "登録できました";
+        $isRegistrationOk = true;
+        $message = "アカウント作成できました！";
     } else {
-        $message = "登録失敗しました" . $stmt->error;
+        $isRegistrationOk = false;
+        $message = "登録に失敗しました！<br>もう一度お試しください！" . $stmt->error;
     }
 } catch (Exception $e) {
     // Handle the exception
@@ -58,17 +62,54 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>新規登録画面</title>
+    <title><?php
+     if($isRegistrationOk == false){
+        echo "Oops!";
+     }else{
+        echo "ありがとうございます！";
+     }
+    ?></title>
     <link rel="stylesheet" type="text/css" href="" />
 </head>
 
-<body>
-<form id="registration-form" method="post" action="#">
-    <h1><?=$message?></h1>
-    
-    <br>
-        <a href="../login.php" class="btn btn-danger btn-lg" role="button">戻る</a>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
 
+    #image-container {
+        margin-bottom: 20px;
+    }
+
+    #button-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+
+<body>
+    <h1><?php echo $message; ?></h1>
+    <?php
+    
+    if ($isRegistrationOk) {
+        echo '
+        <div id="image-container">
+            <img src="../img/thankyou.png">
+        </div>
+        ';
+    }
+    ?>
+    
+  <div id="button-container">
+    <a href="../login.php" target="_blank">
+      <button type="button">ログインへ</button>
+    </a>
+  </div>
 </body>
 
 </html>
