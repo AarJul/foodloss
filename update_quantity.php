@@ -20,9 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateStmt->bindParam(1, $quantity);
     $updateStmt->bindParam(2, $storeId);
     $updateStmt->execute();
+    $conn ->commit();
     $conn = null;
 
-    // Trả về phản hồi thành công
-    echo "Success";
 }
 ?>

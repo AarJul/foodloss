@@ -90,119 +90,135 @@ $conn = null;
             </ul>
         </nav>
         <div class="top-right-section">
-            <a href="confirm.php"><button>Xác nhận đơn hàng</button></a>
+            <a><button
+                    onclick="openConfirmationPopup()">Xác
+                    nhận đơn hàng</button></a>
+            <!-- Các phần còn lại của pop-up -->
         </div>
-        <div class="center-section">
-            <?php
-            $currentStoreID = null;
-            foreach ($storeResult as $store) {
-                if ($store['STORE_ID'] != $currentStoreID) {
-                    ?>
-                    <div class="container">
-                        <table class="table-bordered table-hover" id="inventory">
-                            <h3>
-                                ストアー名:
-                                <?php echo $store['STORE_NAME']; ?>
 
-                                <!--　詳細ボタンの処理ここから　-->
-                                <!-- Button -->
-                                <button onclick="openPopup()">詳細</button>
-
-                                <!-- Modal -->
-                                <div id="info-Modal" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close" onclick="closePopup()">&times;</span>
-                                        <h2>
-                                            <?php echo $store['STORE_NAME']; ?>
-                                        </h2>
-                                        <p>
-                                            <?php echo $store['STORE_EMAIL']; ?>
-                                        </p>
-                                        <p>
-                                            <?php echo $store['STORE_TEL']; ?>
-                                        </p>
-                                        <p>
-                                            <?php echo $store['STORE_ADDRESS']; ?>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <!--　詳細ボタンの処理ここまで　-->
-
-                            </h3>
-                            <thead>
-                                <tr>
-                                    <th onclick="sortTable(0)">商品名 <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th onclick="sortTable(1)">期限 <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th onclick="sortTable(2)">個数 <span class="glyphicon glyphicon-sort"></span></th>
-                                </tr>
-                            </thead>
-                            <tbody id="inventoryBody">
-                                <!-- insert code -->
-                            </tbody>
-                            <?php
-                            $currentStoreID = $store['STORE_ID'];
-                } 
-
-                if (!empty($store['ITEM'])) {
-                    ?>  
-                            <tr>
-                                <td>
-                                    <?php echo $store['ITEM']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $store['DATE']; ?>
-                                </td>
-                                <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
-                                
-                                <td>
-                                    <button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>"
-                                        onclick="openModal(<?php echo $store['STORE_ID']; ?>)">要求</button>
-                                </td>
-
-                            </tr>
-                            <?php
-                } else {
-                    ?>
-                            <tr>
-                                <td colspan="4">ただ今廃棄はないです！</td>
-                            </tr>
-                            <?php
-                }
-            }
-            ?>
-                    <!-- Modal -->
-                    <div id="request-modal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" onclick="closeModal()">&times;</span>
-                            <h2>Yêu cầu số lượng</h2>
-                            <input type="text" id="quantityInput" placeholder="Nhập số lượng">
-                            <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
-                        </div>
-                    </div>
-
-
-                    
-                </table>
+        <!-- Modal Xác nhận đơn hàng -->
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationPopup()">&times;</span>
+                <h2>Xác nhận đơn hàng</h2>
+                <p id="requestedItem"></p>
+                <p id="requestedQuantity"></p>
+                <button id="confirmOrderBtn" onclick="confirmOrder()">Xác nhận</button>
             </div>
         </div>
-        <footer class="custom-footer">
-            <div class="container fixed-bottom">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5>About Us</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Contact</h5>
-                        <ul class="list-unstyled">
-                            <li>Phone: 123-356-7890</li>
-                            <li>Email: info@example.com</li>
-                        </ul>
+
+
+    </div>
+    <div class="center-section">
+        <?php
+        $currentStoreID = null;
+        foreach ($storeResult as $store) {
+            if ($store['STORE_ID'] != $currentStoreID) {
+                ?>
+                <div class="container">
+                    <table class="table-bordered table-hover" id="inventory">
+                        <h3>
+                            ストアー名:
+                            <?php echo $store['STORE_NAME']; ?>
+
+                            <!--　詳細ボタンの処理ここから　-->
+                            <!-- Button -->
+                            <button onclick="openPopup()">詳細</button>
+
+                            <!-- Modal -->
+                            <div id="info-Modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" onclick="closePopup()">&times;</span>
+                                    <h2>
+                                        <?php echo $store['STORE_NAME']; ?>
+                                    </h2>
+                                    <p>
+                                        <?php echo $store['STORE_EMAIL']; ?>
+                                    </p>
+                                    <p>
+                                        <?php echo $store['STORE_TEL']; ?>
+                                    </p>
+                                    <p>
+                                        <?php echo $store['STORE_ADDRESS']; ?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!--　詳細ボタンの処理ここまで　-->
+
+                        </h3>
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">商品名 <span class="glyphicon glyphicon-sort"></span></th>
+                                <th onclick="sortTable(1)">期限 <span class="glyphicon glyphicon-sort"></span></th>
+                                <th onclick="sortTable(2)">個数 <span class="glyphicon glyphicon-sort"></span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryBody">
+                            <!-- insert code -->
+                        </tbody>
+                        <?php
+                        $currentStoreID = $store['STORE_ID'];
+
+            }
+
+            if (!empty($store['ITEM'])) {
+                ?>
+                        <tr>
+                            <td>
+                                <?php echo $store['ITEM']; ?>
+                            </td>
+                            <td>
+                                <?php echo $store['DATE']; ?>
+                            </td>
+                            <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
+
+                            <td>
+                                <button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>"
+                                    onclick="openModal(<?php echo $store['STORE_ID']; ?>)">要求</button>
+                            </td>
+
+                        </tr>
+                        <?php
+            } else {
+                ?>
+                        <tr>
+                            <td colspan="4">ただ今廃棄はないです！</td>
+                        </tr>
+                        <?php
+            }
+        }
+        ?>
+                <!-- Modal Yêu Cầu-->
+                <div id="request-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Yêu cầu số lượng</h2>
+                        <input type="text" id="quantityInput" placeholder="Nhập số lượng">
+                        <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
                     </div>
                 </div>
+
+            </table>
+        </div>
+    </div>
+    <footer class="custom-footer">
+        <div class="container fixed-bottom">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Phone: 123-356-7890</li>
+                        <li>Email: info@example.com</li>
+                    </ul>
+                </div>
             </div>
-        </footer>
+        </div>
+    </footer>
     </div>
 
 
