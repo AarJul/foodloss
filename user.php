@@ -154,15 +154,11 @@ $conn = null;
                                     <?php echo $store['DATE']; ?>
                                 </td>
                                 <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
+                                
                                 <td>
                                     <button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>"
-                                        onclick="openModal()">要求</button>
+                                        onclick="openModal(<?php echo $store['STORE_ID']; ?>)">要求</button>
                                 </td>
-                                <!-- <td>
-                                    <?php if ($store['QTY'] > 0) { ?>
-                                    <button onclick="requestItem(<?php echo $store['STORE_ID']; ?>)" >要求</button>
-                                    <?php } ?>
-                                </td> -->
 
                             </tr>
                             <?php
@@ -184,6 +180,9 @@ $conn = null;
                             <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
                         </div>
                     </div>
+
+
+                    
                 </table>
             </div>
         </div>
