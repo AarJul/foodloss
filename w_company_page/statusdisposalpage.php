@@ -96,81 +96,73 @@ $conn->close();
             <h1 class="mx-auto">会社画面表示</h1>
             <h2>test</h2>
         </div>
-        
-        <div class="col-sm-10 mx-auto">                
-            <div id="addItem">
 
-                </div>
-                <!-- Inventory management section -->
-                <?php foreach ($store_data as $store_id => $disposal_rows): ?>
-                    <h3>Store ID:
-                        <?php echo $store_id; ?>&nbsp;
-                        <?php echo $store_rows[$store_id]; ?>
-                    </h3>
-                    <table class="table-bordered table-hover" id="inventory">
-                        <thead>
+        <div class="col-sm-10 mx-auto">
+            <div id="addItem"></div>
+            <!-- Inventory management section -->
+            <?php foreach ($store_data as $store_id => $disposal_rows): ?>
+                <h3 class="text-center">Store ID:
+                    <?php echo $store_id; ?>&nbsp;
+                    <?php echo $store_rows[$store_id]; ?>
+                </h3>
+                <table class="table-bordered table-hover text-center" id="inventory">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">
+                                廃棄情報 <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(1)">
+                                アイテム <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(2)">
+                                個数 <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(3)">
+                                日付 <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(4)">
+                                ステータス <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th id="actionColumn"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($disposal_rows as $row): ?>
                             <tr>
-                                <th onclick="sortTable(0)">
-                                    廃棄情報 <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(1)">
-                                    アイテム <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(2)">
-                                    個数 <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(3)">
-                                    日付 <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(4)">
-                                    ステータス <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th id="actionColumn"></th>
+                                <td>
+                                    <?php echo $row['DISPOSAL_ID']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['ITEM']; ?>
+                                </td>
+                                <td>
+                                    <?php if ($row['QTY'] == 0): ?>
+                                        <span class="zero-qty">なし</span>
+                                    <?php else: ?>
+                                        <?php echo $row['QTY']; ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['DATE']; ?>
+                                </td>
+                                <td>
+                                    <?php if ($row['QTY'] == 0): ?>
+                                        <span class="zero-qty">在庫切れ</span>
+                                    <?php else: ?>
+                                        <?php echo $row['STATUS']; ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
+                                    <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>"
+                                        data-toggle="modal" data-target="#statusChangeModal"
+                                        onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($disposal_rows as $row): ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $row['DISPOSAL_ID']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['ITEM']; ?>
-                                    </td>
-
-
-
-                                    <td>
-                                        <?php if ($row['QTY'] == 0): ?>
-                                            <span class="zero-qty">なし</span>
-                                        <?php else: ?>
-                                            <?php echo $row['QTY']; ?>
-                                        <?php endif; ?>
-                                    </td>
-
-
-                                    <td>
-                                        <?php echo $row['DATE']; ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($row['QTY'] == 0): ?>
-                                            <span class="zero-qty">在庫切れ</span>
-                                        <?php else: ?>
-                                            <?php echo $row['STATUS']; ?>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
-                                        <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>"
-                                            data-toggle="modal" data-target="#statusChangeModal"
-                                            onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php endforeach; ?>
-            </div>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endforeach; ?>
         </div>
     </div>
 
