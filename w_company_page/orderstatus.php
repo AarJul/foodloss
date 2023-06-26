@@ -86,14 +86,18 @@ $conn->close();
             <li><a href="#">メッセージ</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-                <li id="user">
-                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
-                </li>
-            </ul>
+            <li id="user">
+                <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+            </li>
+        </ul>
     </nav>
 
     <div class="row content">
-        <div class="col-sm-2 sidenav"></div>
+        <div class="col-sm-2 sidenav">
+            <button onclick="location.href='./w_disposal_page/disposalStatus.html'" type="button" class="btn btn-primary">
+                戻る
+            </button>
+        </div>
         <div class="col-sm-8 text-center">
             <h1>Order Information</h1>
             <hr>
@@ -118,7 +122,6 @@ $conn->close();
                                 <td><?php echo $disposal_row['ITEM']; ?></td>
                                 <td><?php echo $disposal_row['QTY']; ?></td>
                                 <td><?php echo $disposal_row['DATE']; ?></td>
-                                
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
