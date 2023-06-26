@@ -66,9 +66,22 @@ if ($disposal_info->num_rows > 0) {
         $rows[] = $row;
     }
 }
-
 $stmt2->close();
+
+$stmt3 = $conn->prepare("SELECT store_name FROM store WHERE store_id = ?");
+$stmt3->bind_param("s", $store_id);
+$stmt3->execute();
+$store_info = $stmt3->get_result();
+
+
+if ($store_info->num_rows > 0) {
+    $row2 = $store_info->fetch_assoc();
+    $store_name = $row2['store_name'];
+}
+
+$stmt3->close();
 $conn->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,16 +128,14 @@ $conn->close();
             >
           </li>
           <li id="user">
-            <a href="login.php"
-              ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
+            <a href="../login.php"
+              ><span class="glyphicon glyphicon-log-in"></span>ログアウト</a
             >
           </li>
         </ul>
       </nav>
       <div class="text-center">
-        <h1 class="mx-auto">ストア画面表示</h1>
-        <h2><?php echo $email; ?></h2>
-        <h2><?php echo $store_id; ?></h2>
+        <h1 class="mx-auto"><?php echo $store_name?></h1>
         <p id="message" style="font-style: italic; color: green;">
           <?php if (isset($message) && $message != null) { echo $message;} ?>
         </p>
