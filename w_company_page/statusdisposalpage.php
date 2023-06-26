@@ -97,7 +97,17 @@ $conn->close();
     <div class="container" style="margin-top: 70px;">
         <div class="text-center">
             <h1 class="mx-auto">会社画面表示</h1>
-            <h2>test</h2>
+        </div>
+        <div class="row">
+        <div class="col-sm-2">
+        <div id="dashboard">
+            <h4>ダッシュボード</h4>
+            <div class="btn-group-vertical custom-btn-group">
+            <button onclick="location.href='orderstatus.php'" type="button" class="btn btn-lg w-100 dash-btn">
+                注文情報
+            </button>
+            </div>
+        </div>
         </div>
 
         <div class="col-sm-10 mx-auto">
