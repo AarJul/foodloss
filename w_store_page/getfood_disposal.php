@@ -122,11 +122,6 @@ $conn->close();
           <li><a href="./w_disposal_page/deliveryDisposal">廃棄情報</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="../w_Account_Register/Register.html"
-              ><span class="glyphicon glyphicon-user"></span> 新規登録</a
-            >
-          </li>
           <li id="user">
             <a href="../login.php"
               ><span class="glyphicon glyphicon-log-in"></span>ログアウト</a
@@ -135,7 +130,43 @@ $conn->close();
         </ul>
       </nav>
       <div class="text-center">
-        <h1 class="mx-auto"><?php echo $store_name?></h1>
+      <style>
+  .magic-heading {
+    font-family: 'Arial', sans-serif;
+    font-size: 48px;
+    color: #000000;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .magic-heading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+    
+  }
+
+  @keyframes waveEffect {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+</style>
+
+<h1 class="magic-heading mx-auto">
+  <span><?php echo $store_name ?></span>
+</h1>
+
         <p id="message" style="font-style: italic; color: green;">
           <?php if (isset($message) && $message != null) { echo $message;} ?>
         </p>
@@ -188,7 +219,7 @@ $conn->close();
                       <input type="date" class="form-control" id="dateInput" name="dateInput" required />
                   </div>
                   <div class="form-group">
-                      <label for="statusInput">ステータス</label>
+                      <label for="statusInput"></label>
                       <input type="text" class="form-control" id="statusInput" name="statusInput" required />
                   </div>
                   <button type="submit" class="btn btn-success">追加</button>
@@ -219,7 +250,7 @@ $conn->close();
                   日付 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(5)">
-                  ステータス <span class="glyphicon glyphicon-sort"></span>
+                  状況 <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th id="deleteColumn"></th>
               </tr>
