@@ -51,7 +51,7 @@ $conn->close();
     <title>Form Page</title>
 </head>
 
-<body>
+<body style="height: 1000px">
     <h1>廃棄登録</h1>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <p style="font-style: italic; color: green;">

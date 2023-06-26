@@ -92,7 +92,7 @@ $conn->close();
 </style>
 
 
-<body>
+<body style="height: 1000px">
     <h1><?php echo $message; ?></h1>
     <?php
     
