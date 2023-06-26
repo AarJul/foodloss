@@ -93,7 +93,39 @@ $conn->close();
 
 
 <body style="height: 1000px">
-    <h1><?php echo $message; ?></h1>
+<style>
+  .message {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #3498db;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    animation: showAnimation 0.3s forwards;
+  }
+
+  @keyframes showAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<?php if (!empty($message)): ?>
+  <h1 class="message"><?php echo $message; ?></h1>
+<?php endif; ?>
+
     <?php
     
     if ($isRegistrationOk) {
