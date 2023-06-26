@@ -132,7 +132,7 @@ login();
           <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
         </li>
         <li>
-          <a href="login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
+          <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
         </li>
       </ul>
     </div>
