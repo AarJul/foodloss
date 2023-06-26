@@ -215,5 +215,7 @@ $conn->close();
     <script src="../js/inventory.js"></script>
     <script src="../js/deleteItemFromDisposal.js"></script>
 </body>
-
+<footer class="container-fluid text-center">
+        <p>OpenSeaS &copy; 2023</p>
+    </footer>
 </html>
