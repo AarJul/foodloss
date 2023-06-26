@@ -68,9 +68,10 @@ $conn->close();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-inverse fixed-top">
+<body style="height: 1000px">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
             </div>
@@ -87,104 +88,92 @@ $conn->close();
                 <li><a href="./w_disposal_page/deliveryDisposal">廃棄情報</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span>
-                        新規登録</a>
-                </li>
                 <li id="user">
-                    <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
+                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 70px;">
         <div class="text-center">
             <h1 class="mx-auto">会社画面表示</h1>
-            <h2>test</h2>
         </div>
         <div class="row">
-            <div class="col-sm-2">
-                <div id="dashboard">
-                    <h3>ダッシュボード</h3>
-                    <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-lg w-100" id="dash-btn">アイテム登録</button>
-                        <button type="button" class="btn btn-lg w-100" id="dash-btn">機能</button>
-                        <button type="button" class="btn btn-lg w-100" id="dash-btn">発送問い合わせ</button>
-                    </div>
-                </div>
+        <div class="col-sm-2">
+        <div id="dashboard">
+            <h3>ダッシュボード</h3>
+            <div class="btn-group-vertical custom-btn-group">
+            <button onclick="location.href='orderstatus.php'" type="button" class="btn btn-lg w-100 dash-btn">
+                注文情報
+            </button>
             </div>
-            <div class="col-sm-10">
-                <div id="addItem">
+        </div>
+        </div>
 
-                </div>
-                <!-- Inventory management section -->
-                <?php foreach ($store_data as $store_id => $disposal_rows): ?>
-                    <h3>Store ID:
-                        <?php echo $store_id; ?>&nbsp;
-                        <?php echo $store_rows[$store_id]; ?>
-                    </h3>
-                    <table class="table-bordered table-hover" id="inventory">
-                        <thead>
+        <div class="col-sm-10 mx-auto">
+            <div id="addItem"></div>
+            <!-- Inventory management section -->
+            <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
+                <h3 class="text-center">Store ID:
+                    <?php echo $store_id; ?>&nbsp;
+                    <?php echo $store_rows[$store_id]; ?>
+                </h3>
+                <table class="table-bordered table-hover text-center" id="inventory">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">
+                                廃棄情報 <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(1)">
+                                アイテム <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(2)">
+                                個数 <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(3)">
+                                日付 <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th onclick="sortTable(4)">
+                                ステータス <span class="glyphicon glyphicon-sort"></span>
+                            </th>
+                            <th id="actionColumn"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($disposal_rows as $row) : ?>
                             <tr>
-                                <th onclick="sortTable(0)">
-                                    廃棄情報 <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(1)">
-                                    アイテム <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(2)">
-                                    個数 <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(3)">
-                                    日付 <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th onclick="sortTable(4)">
-                                    ステータス <span class="glyphicon glyphicon-sort"></span>
-                                </th>
-                                <th id="actionColumn"></th>
+                                <td>
+                                    <?php echo $row['DISPOSAL_ID']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['ITEM']; ?>
+                                </td>
+                                <td>
+                                    <?php if ($row['QTY'] == 0) : ?>
+                                        <span class="zero-qty">なし</span>
+                                    <?php else : ?>
+                                        <?php echo $row['QTY']; ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['DATE']; ?>
+                                </td>
+                                <td>
+                                    <?php if ($row['QTY'] == 0) : ?>
+                                        <span class="zero-qty">在庫切れ</span>
+                                    <?php else : ?>
+                                        <?php echo $row['STATUS']; ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
+                                    <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>" data-toggle="modal" data-target="#statusChangeModal" onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($disposal_rows as $row): ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $row['DISPOSAL_ID']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['ITEM']; ?>
-                                    </td>
-
-
-
-                                    <td>
-                                        <?php if ($row['QTY'] == 0): ?>
-                                            <span class="zero-qty">なし</span>
-                                        <?php else: ?>
-                                            <?php echo $row['QTY']; ?>
-                                        <?php endif; ?>
-                                    </td>
-
-
-                                    <td>
-                                        <?php echo $row['DATE']; ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($row['QTY'] == 0): ?>
-                                            <span class="zero-qty">在庫切れ</span>
-                                        <?php else: ?>
-                                            <?php echo $row['STATUS']; ?>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
-                                        <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>"
-                                            data-toggle="modal" data-target="#statusChangeModal"
-                                            onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php endforeach; ?>
-            </div>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endforeach; ?>
         </div>
     </div>
 

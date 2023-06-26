@@ -60,9 +60,9 @@ $conn = null;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <div class="container">
-        <nav class="navbar navbar-inverse fixed-top">
+<body style="height: 1000px">
+    <div class="container" style="margin-top: 70px;">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
             </div>
@@ -159,7 +159,23 @@ $conn = null;
             }
         }
         ?>
-
+            </table>
+        </div>
+    </div>
+    <footer class="custom-footer">
+        <div class="container fixed-bottom">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Phone: 123-356-7890</li>
+                        <li>Email: info@example.com</li>
+                    </ul>
+                </div>
             </table>
         </div>
     </div>
