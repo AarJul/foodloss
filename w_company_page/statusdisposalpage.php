@@ -92,7 +92,7 @@ $conn->close();
                         新規登録</a>
                 </li>
                 <li id="user">
-                    <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
+                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
         </nav>
