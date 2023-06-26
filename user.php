@@ -89,12 +89,7 @@ $conn = null;
                 </li>
             </ul>
         </nav>
-        <div class="right-section">
-            <a><button
-                    onclick="openConfirmationPopup()">Xác
-                    nhận đơn hàng</button></a>
-            <!-- Các phần còn lại của pop-up -->
-        </div>
+
 
         <!-- Modal Xác nhận đơn hàng -->
         <div id="confirmation-modal" class="modal">
@@ -124,6 +119,11 @@ $conn = null;
                             <!--　詳細ボタンの処理ここから　-->
                             <!-- Button -->
                             <button onclick="openPopup()">詳細</button>
+                            <div class="right-section">
+                                <a><button onclick="openConfirmationPopup()">Xác
+                                        nhận đơn hàng</button></a>
+                                <!-- Các phần còn lại của pop-up -->
+                            </div>
 
                             <!-- Modal -->
                             <div id="info-Modal" class="modal">
