@@ -103,7 +103,16 @@ $conn->close();
 
                 <!-- Inventory management section -->
                 <?php foreach ($user_data as $user_id => $disposal_rows) : ?>
-                    <h3>User ID: <?php echo $user_id; ?>&nbsp;<?php echo $user_rows[$user_id]; ?></h3>
+                    <?php
+                        // Get the user name from the $user_rows array
+                        $user_name = $user_rows[$user_id];
+                        // Generate the user information page URL with the user ID as a query parameter
+                        $user_info_url = "userinformation.php?id=" . $user_id;
+                    ?>
+                    <h3>
+                        User ID: <?php echo $user_id; ?>
+                        &nbsp;<a href="<?php echo $user_info_url; ?>"><?php echo $user_name; ?></a>
+                    </h3>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -121,7 +130,6 @@ $conn->close();
                                         <td><?php echo $disposal_row['ITEM']; ?></td>
                                         <td><?php echo $disposal_row['QTY']; ?></td>
                                         <td><?php echo $disposal_row['DATE']; ?></td>
-
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -132,12 +140,12 @@ $conn->close();
             <div class="col-sm-2 sidenav"></div>
         </div>
         <div class="row content">
-        <div class="col-sm-12 text-center">
-            <button onclick="location.href='statusdisposalpage.php'" type="button" class="btn btn-primary">
-                戻る
-            </button>
+            <div class="col-sm-12 text-center">
+                <button onclick="location.href='statusdisposalpage.php'" type="button" class="btn btn-primary">
+                    戻る
+                </button>
+            </div>
         </div>
-    </div>
     </div>
 
     <footer class="container-fluid text-center">
