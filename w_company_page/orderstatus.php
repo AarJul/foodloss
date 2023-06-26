@@ -85,6 +85,11 @@ $conn->close();
             </li>
             <li><a href="#">メッセージ</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+                <li id="user">
+                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+                </li>
+            </ul>
     </nav>
 
     <div class="row content">

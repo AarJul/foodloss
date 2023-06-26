@@ -87,10 +87,6 @@ $conn->close();
                 <li><a href="./w_disposal_page/deliveryDisposal">廃棄情報</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span>
-                        新規登録</a>
-                </li>
                 <li id="user">
                     <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
@@ -100,19 +96,9 @@ $conn->close();
             <h1 class="mx-auto">会社画面表示</h1>
             <h2>test</h2>
         </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <div id="dashboard">
-                    <h3>ダッシュボード</h3>
-                    <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-lg w-100" id="dash-btn">アイテム登録</button>
-                        <button type="button" class="btn btn-lg w-100" id="dash-btn">機能</button>
-                        <button type="button" class="btn btn-lg w-100" id="dash-btn">発送問い合わせ</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-10">
-                <div id="addItem">
+        
+        <div class="col-sm-10 mx-auto">                
+            <div id="addItem">
 
                 </div>
                 <!-- Inventory management section -->
