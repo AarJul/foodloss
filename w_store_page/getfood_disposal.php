@@ -104,7 +104,7 @@ $conn->close();
   <body>
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+        <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
