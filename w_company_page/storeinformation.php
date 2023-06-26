@@ -67,11 +67,11 @@ if (isset($_GET['id'])) {
         <body>
             <div class="store-info">
                 <h2>ストア情報</h2>
-                <p><strong>Store ID:</strong> <?php echo $store_info['STORE_ID']; ?></p>
-                <p><strong>Store Name:</strong> <?php echo $store_info['STORE_NAME']; ?></p>
-                <p><strong>Store Email:</strong> <?php echo $store_info['STORE_EMAIL']; ?></p>
-                <p><strong>Store Telephone:</strong> <?php echo $store_info['STORE_TEL']; ?></p>
-                <p><strong>Store Address:</strong> <?php echo $store_info['STORE_ADDRESS']; ?></p>
+                <p><strong>ストア ID:</strong> <?php echo $store_info['STORE_ID']; ?></p>
+                <p><strong>ストア名:</strong> <?php echo $store_info['STORE_NAME']; ?></p>
+                <p><strong>ストアメール:</strong> <?php echo $store_info['STORE_EMAIL']; ?></p>
+                <p><strong>ストア電話番号:</strong> <?php echo $store_info['STORE_TEL']; ?></p>
+                <p><strong>ストア住所:</strong> <?php echo $store_info['STORE_ADDRESS']; ?></p>
                 <button onclick="location.href='statusdisposalpage.php'" type="button" class="btn btn-primary">
                 戻る
             </button>

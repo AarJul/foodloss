@@ -67,11 +67,11 @@ if (isset($_GET['id'])) {
         <body>
             <div class="user-info">
                 <h2>ユーザー情報</h2>
-                <p><strong>User ID:</strong> <?php echo $user_info['USER_ID']; ?></p>
-                <p><strong>User Name:</strong> <?php echo $user_info['USER_NAME']; ?></p>
-                <p><strong>User Email:</strong> <?php echo $user_info['USER_EMAIL']; ?></p>
-                <p><strong>User Telephone:</strong> <?php echo $user_info['USER_TEL']; ?></p>
-                <p><strong>User Address:</strong> <?php echo $user_info['USER_ADDRESS']; ?></p>
+                <p><strong>ユーザー ID:</strong> <?php echo $user_info['USER_ID']; ?></p>
+                <p><strong>ユーザー名:</strong> <?php echo $user_info['USER_NAME']; ?></p>
+                <p><strong>ユーザーメール:</strong> <?php echo $user_info['USER_EMAIL']; ?></p>
+                <p><strong>ユーザー電話番号:</strong> <?php echo $user_info['USER_TEL']; ?></p>
+                <p><strong>ユーザー住所:</strong> <?php echo $user_info['USER_ADDRESS']; ?></p>
                 <button onclick="location.href='orderstatus.php'" type="button" class="btn btn-primary">
                     戻る
                 </button>
