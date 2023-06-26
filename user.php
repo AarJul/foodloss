@@ -89,15 +89,11 @@ $conn = null;
                 </li>
             </ul>
         </nav>
-<<<<<<< HEAD
         <div class="top-right-section">
             <a><button onclick="openConfirmationPopup()">Xác
                     nhận đơn hàng</button></a>
             <!-- Các phần còn lại của pop-up -->
         </div>
-=======
-
->>>>>>> abe658b272afb3ab3546716cacbbf26e5bde3c0c
 
 
     </div>
@@ -116,11 +112,6 @@ $conn = null;
                             <!--　詳細ボタンの処理ここから　-->
                             <!-- Button -->
                             <button onclick="openPopup()">詳細</button>
-                            <div class="right-section">
-                                <a><button onclick="openConfirmationPopup()">Xác
-                                        nhận đơn hàng</button></a>
-                                <!-- Các phần còn lại của pop-up -->
-                            </div>
 
 
 
@@ -153,7 +144,7 @@ $conn = null;
                             <td id="qty_<?php echo $store['DISPOSAL_ID']; ?>"><?php echo $store['QTY']; ?></td>
 
                             <td>
-                                <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
+                            <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
                                     onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>)">要求</button>
                             </td>
 
@@ -168,23 +159,6 @@ $conn = null;
             }
         }
         ?>
-            </table>
-        </div>
-    </div>
-    <footer class="custom-footer">
-        <div class="container fixed-bottom">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>About Us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="col-md-6">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled">
-                        <li>Phone: 123-356-7890</li>
-                        <li>Email: info@example.com</li>
-                    </ul>
-                </div>
             </table>
         </div>
     </div>
