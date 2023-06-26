@@ -60,9 +60,9 @@ $conn = null;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="height: 1000px">
     <div class="container">
-        <nav class="navbar navbar-inverse fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
             </div>

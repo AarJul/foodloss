@@ -68,7 +68,7 @@ function login()
                     header("Location: user.php");
                     exit();
                 } else {
-                    echo "Incorrect password!";
+                    // echo "Incorrect password!";
                 }
                 
             }else if($email == "unko@gmail.com"){
@@ -115,7 +115,7 @@ login();
     <title>Login Page</title>
   </head>
 
-<body>
+<body style="height: 1000px">
   <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-static-top">
 
