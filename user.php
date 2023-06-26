@@ -119,7 +119,7 @@ $conn = null;
                             <!--　詳細ボタンの処理ここから　-->
                             <!-- Button -->
                             <button onclick="openPopup()">詳細</button>
-                            <div class="right-section">
+                            <div class="top-right-section">
                                 <a><button onclick="openConfirmationPopup()">Xác
                                         nhận đơn hàng</button></a>
                                 <!-- Các phần còn lại của pop-up -->
