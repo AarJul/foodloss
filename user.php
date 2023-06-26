@@ -61,7 +61,7 @@ $conn = null;
 </head>
 
 <body style="height: 1000px">
-    <div class="container">
+    <div class="container" style="margin-top: 70px;">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
@@ -115,7 +115,7 @@ $conn = null;
         foreach ($storeResult as $store) {
             if ($store['STORE_ID'] != $currentStoreID) {
                 ?>
-                <div class="container">
+                <div class="container" style="margin-top: 70px;">
                     <table class="table-bordered table-hover" id="inventory">
                         <h3>
                             ストアー名:
