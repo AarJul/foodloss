@@ -89,11 +89,15 @@ $conn = null;
                 </li>
             </ul>
         </nav>
+<<<<<<< HEAD
         <div class="top-right-section">
             <a><button onclick="openConfirmationPopup()">Xác
                     nhận đơn hàng</button></a>
             <!-- Các phần còn lại của pop-up -->
         </div>
+=======
+
+>>>>>>> abe658b272afb3ab3546716cacbbf26e5bde3c0c
 
 
     </div>
@@ -112,6 +116,11 @@ $conn = null;
                             <!--　詳細ボタンの処理ここから　-->
                             <!-- Button -->
                             <button onclick="openPopup()">詳細</button>
+                            <div class="right-section">
+                                <a><button onclick="openConfirmationPopup()">Xác
+                                        nhận đơn hàng</button></a>
+                                <!-- Các phần còn lại của pop-up -->
+                            </div>
 
 
 
