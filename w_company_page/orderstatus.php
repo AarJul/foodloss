@@ -92,66 +92,7 @@ $conn->close();
             </li>
         </ul>
     </nav>
-
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <button onclick="location.href='./w_disposal_page/disposalStatus.html'" type="button" class="btn btn-primary">
-                戻る
-            </button>
-        </div>
-        <div class="col-sm-8 text-center">
-            <h1>Order Information</h1>
-            <hr>
-
-            <!-- Inventory management section -->
-            <?php foreach ($user_data as $user_id => $disposal_rows) : ?>
-                <h3>User ID: <?php echo $user_id; ?>&nbsp;<?php echo $user_rows[$user_id]; ?></h3>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th>注文ID</th>
-                            <th>商品名</th>
-                            <th>数量</th>
-                            <th>Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($disposal_rows as $disposal_row) : ?>
-                            <tr>
-                                <td><?php echo $disposal_row['ORDER_ID']; ?></td>
-                                <td><?php echo $disposal_row['ITEM']; ?></td>
-                                <td><?php echo $disposal_row['QTY']; ?></td>
-                                <td><?php echo $disposal_row['DATE']; ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endforeach; ?>
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">ホーム</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">ストアフロント</a></li>
-                        <li><a href="./w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-                        <li><a href="./w_disposal_page/disposalStatus.html">廃棄ステータス</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">メッセージ</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li id="user">
-                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    
 
     <div class="container" style="margin-top: 70px;">
         <div class="row content">
@@ -190,6 +131,13 @@ $conn->close();
             </div>
             <div class="col-sm-2 sidenav"></div>
         </div>
+        <div class="row content">
+        <div class="col-sm-12 text-center">
+            <button onclick="location.href='statusdisposalpage.php'" type="button" class="btn btn-primary">
+                戻る
+            </button>
+        </div>
+    </div>
     </div>
 
     <footer class="container-fluid text-center">
