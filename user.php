@@ -89,15 +89,6 @@ $conn = null;
                 </li>
             </ul>
         </nav>
-<<<<<<< HEAD
-        <div class="top-right-section">
-            <a><button onclick="openConfirmationPopup()">Xác
-                    nhận đơn hàng</button></a>
-            <!-- Các phần còn lại của pop-up -->
-        </div>
-=======
-
->>>>>>> abe658b272afb3ab3546716cacbbf26e5bde3c0c
 
 
     </div>
@@ -217,7 +208,7 @@ $conn = null;
     </div>
 
     <!-- Modal Info-->
-    <div id="info-Modal" class="modal">
+    <div id="info-Modal" class="center-popup">
         <div class="modal-content">
             <span class="close" onclick="closePopup()">&times;</span>
             <h2>
@@ -236,7 +227,7 @@ $conn = null;
     </div>
     <!--　詳細ボタンの処理ここまで　-->
     <!-- Modal Confirm-->
-    <div id="confirmation-modal" class="modal">
+    <div id="confirmation-modal" class="center-popup">
         <div class="modal-content">
             <span class="close" onclick="closeConfirmationPopup()">&times;</span>
             <h3>Xác nhận đơn hàng:</h3>
