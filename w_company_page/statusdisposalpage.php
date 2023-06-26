@@ -97,7 +97,6 @@ $conn->close();
     <div class="container" style="margin-top: 70px;">
         <div class="text-center">
             <h1 class="mx-auto">会社画面表示</h1>
-            <h1 class="mx-auto">会社画面表示</h1>
         </div>
         <div class="row">
         <div class="col-sm-2">
@@ -109,7 +108,6 @@ $conn->close();
             </button>
             </div>
         </div>
-            <h2>test</h2>
         </div>
 
         <div class="col-sm-10 mx-auto">
