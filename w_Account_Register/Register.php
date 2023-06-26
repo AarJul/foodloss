@@ -97,34 +97,58 @@ $conn->close();
   .message {
     font-family: 'Arial', sans-serif;
     font-size: 24px;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
-    background-color: #3498db;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    animation: showAnimation 0.3s forwards;
+    padding: 10px;
+    animation: zoomAnimation 0.3s forwards;
   }
 
-  @keyframes showAnimation {
+  @keyframes zoomAnimation {
     0% {
-      opacity: 0;
-      transform: translateY(-20px);
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
     }
     100% {
-      opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
+    }
+  }
+</style>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+  .message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .magic-effect {
+    animation: magicEffect 2s ease infinite;
+  }
+
+  @keyframes magicEffect {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 </style>
 
 <?php if (!empty($message)): ?>
-  <h1 class="message"><?php echo $message; ?></h1>
+  <h1 class="message magic-effect"><?php echo $message; ?></h1>
 <?php endif; ?>
+
 
     <?php
     
