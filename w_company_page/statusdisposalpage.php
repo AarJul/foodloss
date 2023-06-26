@@ -101,7 +101,7 @@ $conn->close();
         <div class="row">
         <div class="col-sm-2">
         <div id="dashboard">
-            <h3>ダッシュボード</h3>
+            <h4>ダッシュボード</h4>
             <div class="btn-group-vertical custom-btn-group">
             <button onclick="location.href='orderstatus.php'" type="button" class="btn btn-lg w-100 dash-btn">
                 注文情報
