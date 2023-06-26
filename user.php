@@ -25,7 +25,7 @@ $userStmt->execute();
 $userResult = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 // Truy vấn thông tin store và disposal
-$storeQuery = "SELECT s.STORE_ID, s.STORE_NAME,s.STORE_EMAIL, s.STORE_TEL,s.STORE_ADDRESS, d.ITEM, d.QTY, d.DATE
+$storeQuery = "SELECT s.STORE_ID, s.STORE_NAME,s.STORE_EMAIL, s.STORE_TEL,s.STORE_ADDRESS,d.DISPOSAL_ID, d.ITEM, d.QTY, d.DATE
                 FROM store s
                 LEFT JOIN disposal d ON s.STORE_ID = d.STORE_ID";
 $storeStmt = $conn->prepare($storeQuery);
@@ -89,23 +89,6 @@ $conn = null;
                 </li>
             </ul>
         </nav>
-        <div class="right-section">
-            <a><button
-                    onclick="openConfirmationPopup()">Xác
-                    nhận đơn hàng</button></a>
-            <!-- Các phần còn lại của pop-up -->
-        </div>
-
-        <!-- Modal Xác nhận đơn hàng -->
-        <div id="confirmation-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeConfirmationPopup()">&times;</span>
-                <h2>Xác nhận đơn hàng</h2>
-                <p id="requestedItem"></p>
-                <p id="requestedQuantity"></p>
-                <button id="confirmOrderBtn" onclick="confirmOrder()">Xác nhận</button>
-            </div>
-        </div>
 
 
     </div>
@@ -124,11 +107,6 @@ $conn = null;
                             <!--　詳細ボタンの処理ここから　-->
                             <!-- Button -->
                             <button onclick="openPopup()">詳細</button>
-                            <div class="top-right-section">
-                                <a><button onclick="openConfirmationPopup()">Xác
-                                        nhận đơn hàng</button></a>
-                                <!-- Các phần còn lại của pop-up -->
-                            </div>
 
                             <!--　詳細ボタンの処理ここまで　-->
 
@@ -157,11 +135,11 @@ $conn = null;
                             <td>
                                 <?php echo $store['DATE']; ?>
                             </td>
-                            <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
+                            <td id="qty_<?php echo $disposalId['DISPOSAL_ID']; ?>"><?php echo $store['QTY']; ?></td>
 
                             <td>
-                                <button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>"
-                                    onclick="openModal(<?php echo $store['STORE_ID']; ?>)">要求</button>
+                                <button class="request-button" data-disposalId="<?php echo $disposalId['DISPOSAL_ID']; ?>"
+                                    onclick="openModal(<?php echo $disposalId['DISPOSAL_ID']; ?>)">要求</button>
                             </td>
 
                         </tr>
@@ -175,16 +153,6 @@ $conn = null;
             }
         }
         ?>
-                <!-- Modal Yêu Cầu-->
-                <div id="request-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2>Yêu cầu số lượng</h2>
-                        <input type="text" id="quantityInput" placeholder="Nhập số lượng">
-                        <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
-                    </div>
-                </div>
-
             </table>
         </div>
     </div>
@@ -207,6 +175,15 @@ $conn = null;
     </footer>
     </div>
 
+    <!-- Modal Yêu Cầu-->
+    <div id="request-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Yêu cầu số lượng</h2>
+            <input type="text" id="quantityInput" placeholder="Nhập số lượng">
+            <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
+        </div>
+    </div>
     <!-- Modal Info-->
     <div id="info-Modal" class="center-popup">
         <div class="modal-content">

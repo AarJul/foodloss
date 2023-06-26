@@ -116,7 +116,7 @@ $conn->close();
             <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
                 <h3 class="text-center">Store ID:
                     <?php echo $store_id; ?>&nbsp;
-                    <a href="storeinformation.php?id=<?php echo $store_id; ?>"><?php echo $store_rows[$store_id]; ?></a>
+        <a href="storeinformation.php?id=<?php echo $store_id; ?>"><?php echo $store_rows[$store_id]; ?></a>
                 </h3>
                 <table class="table-bordered table-hover text-center" id="inventory">
                     <thead>
@@ -215,5 +215,7 @@ $conn->close();
     <script src="../js/inventory.js"></script>
     <script src="../js/deleteItemFromDisposal.js"></script>
 </body>
-
+<footer class="container-fluid text-center">
+        <p>OpenSeaS &copy; 2023</p>
+    </footer>
 </html>
