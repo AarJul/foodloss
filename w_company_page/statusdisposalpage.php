@@ -94,7 +94,7 @@ $conn->close();
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" style="margin-top: 70px;">
         <div class="text-center">
             <h1 class="mx-auto">会社画面表示</h1>
             <h2>test</h2>
