@@ -100,20 +100,14 @@ $conn->close();
         </div>
         <div class="row">
         <div class="col-sm-2">
-          <div id="dashboard">
+        <div id="dashboard">
             <h3>ダッシュボード</h3>
             <div class="btn-group-vertical custom-btn-group">
-              <button onclick="hideInventory()" type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
-                アイテム登録
-              </button>
-              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
-                廃棄物を選択
-              </button>
-              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
-                発送問い合わせ
-              </button>
+            <button onclick="location.href='orderstatus.php'" type="button" class="btn btn-lg w-100 dash-btn">
+                注文情報
+            </button>
             </div>
-          </div>
+        </div>
         </div>
         <div class="col-sm-10 mx-auto">
             <div id="addItem"></div>
