@@ -91,12 +91,30 @@ $conn->close();
                     <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
+            
         </nav>
+        
         <div class="text-center">
             <h1 class="mx-auto">会社画面表示</h1>
-            <h2>test</h2>
+            <h1 class="mx-auto">会社画面表示</h1>
         </div>
-
+        <div class="row">
+        <div class="col-sm-2">
+          <div id="dashboard">
+            <h3>ダッシュボード</h3>
+            <div class="btn-group-vertical custom-btn-group">
+              <button onclick="hideInventory()" type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
+                アイテム登録
+              </button>
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
+                廃棄物を選択
+              </button>
+              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
+                発送問い合わせ
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="col-sm-10 mx-auto">
             <div id="addItem"></div>
             <!-- Inventory management section -->
