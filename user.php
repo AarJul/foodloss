@@ -124,24 +124,10 @@ $conn = null;
                             <!--　詳細ボタンの処理ここから　-->
                             <!-- Button -->
                             <button onclick="openPopup()">詳細</button>
-
-                            <!-- Modal -->
-                            <div id="info-Modal" class="modal">
-                                <div class="modal-content">
-                                    <span class="close" onclick="closePopup()">&times;</span>
-                                    <h2>
-                                        <?php echo $store['STORE_NAME']; ?>
-                                    </h2>
-                                    <p>
-                                        <?php echo $store['STORE_EMAIL']; ?>
-                                    </p>
-                                    <p>
-                                        <?php echo $store['STORE_TEL']; ?>
-                                    </p>
-                                    <p>
-                                        <?php echo $store['STORE_ADDRESS']; ?>
-                                    </p>
-                                </div>
+                            <div class="top-right-section">
+                                <a><button onclick="openConfirmationPopup()">Xác
+                                        nhận đơn hàng</button></a>
+                                <!-- Các phần còn lại của pop-up -->
                             </div>
 
                             <!--　詳細ボタンの処理ここまで　-->
@@ -221,6 +207,35 @@ $conn = null;
     </footer>
     </div>
 
+    <!-- Modal Info-->
+    <div id="info-Modal" class="center-popup">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>
+                <?php echo $store['STORE_NAME']; ?>
+            </h2>
+            <p>
+                <?php echo $store['STORE_EMAIL']; ?>
+            </p>
+            <p>
+                <?php echo $store['STORE_TEL']; ?>
+            </p>
+            <p>
+                <?php echo $store['STORE_ADDRESS']; ?>
+            </p>
+        </div>
+    </div>
+    <!--　詳細ボタンの処理ここまで　-->
+    <!-- Modal Confirm-->
+    <div id="confirmation-modal" class="center-popup">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmationPopup()">&times;</span>
+            <h3>Xác nhận đơn hàng:</h3>
+            <p id="requestedItem"></p>
+            <p id="requestedQuantity"></p>
+            <button onclick="confirmOrder()">Xác nhận</button>
+        </div>
+    </div>
 
     <script src="js/bootstrap.js"></script>
     <script src="js/userScript.js"></script>
