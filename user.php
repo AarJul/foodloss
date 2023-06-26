@@ -25,7 +25,7 @@ $userStmt->execute();
 $userResult = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 // Truy vấn thông tin store và disposal
-$storeQuery = "SELECT s.STORE_ID, s.STORE_NAME,s.STORE_EMAIL, s.STORE_TEL,s.STORE_ADDRESS,d.DISPOSAL_ID, d.ITEM, d.QTY, d.DATE
+$storeQuery = "SELECT s.STORE_ID, s.STORE_NAME,s.STORE_EMAIL, s.STORE_TEL,s.STORE_ADDRESS, d.ITEM, d.QTY, d.DATE
                 FROM store s
                 LEFT JOIN disposal d ON s.STORE_ID = d.STORE_ID";
 $storeStmt = $conn->prepare($storeQuery);
@@ -67,16 +67,16 @@ $conn = null;
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
+                <li class="active"><a href="#">ホーム</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
-                        <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-                        <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
+                        <li><a href="#">ストアフロント</a></li>
+                        <li><a href="./w_disposal_page/registerDisposal.html">廃棄登録</a></li>
+                        <li><a href="./w_store_page/storeInfo.html">ストア情報</a></li>
                     </ul>
                 </li>
-                <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
+                <li><a href="./w_disposal_page/deliveryDisposal">廃棄情報</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -85,19 +85,27 @@ $conn = null;
                         </span></a>
                 </li>
                 <li id="user">
-                    <a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                    <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                 </li>
             </ul>
         </nav>
-<<<<<<< HEAD
-        <div class="top-right-section">
-            <a><button onclick="openConfirmationPopup()">Xác
+        <div class="right-section">
+            <a><button
+                    onclick="openConfirmationPopup()">Xác
                     nhận đơn hàng</button></a>
             <!-- Các phần còn lại của pop-up -->
         </div>
-=======
 
->>>>>>> abe658b272afb3ab3546716cacbbf26e5bde3c0c
+        <!-- Modal Xác nhận đơn hàng -->
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationPopup()">&times;</span>
+                <h2>Xác nhận đơn hàng</h2>
+                <p id="requestedItem"></p>
+                <p id="requestedQuantity"></p>
+                <button id="confirmOrderBtn" onclick="confirmOrder()">Xác nhận</button>
+            </div>
+        </div>
 
 
     </div>
@@ -107,7 +115,7 @@ $conn = null;
         foreach ($storeResult as $store) {
             if ($store['STORE_ID'] != $currentStoreID) {
                 ?>
-                <div class="container">
+                <div class="container" style="margin-top: 70px;">
                     <table class="table-bordered table-hover" id="inventory">
                         <h3>
                             ストアー名:
@@ -122,7 +130,7 @@ $conn = null;
                                 <!-- Các phần còn lại của pop-up -->
                             </div>
 
-
+                            <!--　詳細ボタンの処理ここまで　-->
 
                         </h3>
                         <thead>
@@ -143,18 +151,17 @@ $conn = null;
             if (!empty($store['ITEM'])) {
                 ?>
                         <tr>
-
-                            <td data-item="<?php echo $store['ITEM']; ?>">
+                            <td>
                                 <?php echo $store['ITEM']; ?>
                             </td>
                             <td>
                                 <?php echo $store['DATE']; ?>
                             </td>
-                            <td id="qty_<?php echo $store['DISPOSAL_ID']; ?>"><?php echo $store['QTY']; ?></td>
+                            <td id="qty_<?php echo $store['STORE_ID']; ?>"><?php echo $store['QTY']; ?></td>
 
                             <td>
-                                <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
-                                    onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>)">要求</button>
+                                <button class="request-button" data-storeId="<?php echo $store['STORE_ID']; ?>"
+                                    onclick="openModal(<?php echo $store['STORE_ID']; ?>)">要求</button>
                             </td>
 
                         </tr>
@@ -168,23 +175,16 @@ $conn = null;
             }
         }
         ?>
-            </table>
-        </div>
-    </div>
-    <footer class="custom-footer">
-        <div class="container fixed-bottom">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>About Us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <!-- Modal Yêu Cầu-->
+                <div id="request-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Yêu cầu số lượng</h2>
+                        <input type="text" id="quantityInput" placeholder="Nhập số lượng">
+                        <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled">
-                        <li>Phone: 123-356-7890</li>
-                        <li>Email: info@example.com</li>
-                    </ul>
-                </div>
+
             </table>
         </div>
     </div>
@@ -206,18 +206,9 @@ $conn = null;
         </div>
     </footer>
     </div>
-    <!-- Modal Yêu Cầu-->
-    <div id="request-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Yêu cầu số lượng</h2>
-            <input type="text" id="quantityInput" placeholder="Nhập số lượng" onchange="updateConfirmationPopup()">
-            <button id="submitRequestBtn" onclick="submitRequest()">Yêu cầu</button>
-        </div>
-    </div>
 
     <!-- Modal Info-->
-    <div id="info-Modal" class="modal">
+    <div id="info-Modal" class="center-popup">
         <div class="modal-content">
             <span class="close" onclick="closePopup()">&times;</span>
             <h2>
@@ -236,7 +227,7 @@ $conn = null;
     </div>
     <!--　詳細ボタンの処理ここまで　-->
     <!-- Modal Confirm-->
-    <div id="confirmation-modal" class="modal">
+    <div id="confirmation-modal" class="center-popup">
         <div class="modal-content">
             <span class="close" onclick="closeConfirmationPopup()">&times;</span>
             <h3>Xác nhận đơn hàng:</h3>
