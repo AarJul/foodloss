@@ -68,7 +68,7 @@ function login()
                     header("Location: user.php");
                     exit();
                 } else {
-                    echo "Incorrect password!";
+                    // echo "Incorrect password!";
                 }
                 
             }else if($email == "unko@gmail.com"){
