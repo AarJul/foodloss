@@ -89,7 +89,7 @@ $conn = null;
                 </li>
             </ul>
         </nav>
-        <div class="top-right-section">
+        <div class="center-section">
             <a><button
                     onclick="openConfirmationPopup()">Xác
                     nhận đơn hàng</button></a>
