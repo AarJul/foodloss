@@ -60,9 +60,9 @@ $conn = null;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <div class="container">
-        <nav class="navbar navbar-inverse fixed-top">
+<body style="height: 1000px">
+    <div class="container" style="margin-top: 70px;">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
             </div>
@@ -115,7 +115,7 @@ $conn = null;
         foreach ($storeResult as $store) {
             if ($store['STORE_ID'] != $currentStoreID) {
                 ?>
-                <div class="container">
+                <div class="container" style="margin-top: 70px;">
                     <table class="table-bordered table-hover" id="inventory">
                         <h3>
                             ストアー名:

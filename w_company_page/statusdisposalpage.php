@@ -68,9 +68,10 @@ $conn->close();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-inverse fixed-top">
+<body style="height: 1000px">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
             </div>
@@ -91,16 +92,28 @@ $conn->close();
                     <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 70px;">
         <div class="text-center">
             <h1 class="mx-auto">会社画面表示</h1>
-            <h2>test</h2>
+        </div>
+        <div class="row">
+        <div class="col-sm-2">
+        <div id="dashboard">
+            <h3>ダッシュボード</h3>
+            <div class="btn-group-vertical custom-btn-group">
+            <button onclick="location.href='orderstatus.php'" type="button" class="btn btn-lg w-100 dash-btn">
+                注文情報
+            </button>
+            </div>
+        </div>
         </div>
 
         <div class="col-sm-10 mx-auto">
             <div id="addItem"></div>
             <!-- Inventory management section -->
-            <?php foreach ($store_data as $store_id => $disposal_rows): ?>
+            <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
                 <h3 class="text-center">Store ID:
                     <?php echo $store_id; ?>&nbsp;
                     <?php echo $store_rows[$store_id]; ?>
@@ -127,7 +140,7 @@ $conn->close();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($disposal_rows as $row): ?>
+                        <?php foreach ($disposal_rows as $row) : ?>
                             <tr>
                                 <td>
                                     <?php echo $row['DISPOSAL_ID']; ?>
@@ -136,9 +149,9 @@ $conn->close();
                                     <?php echo $row['ITEM']; ?>
                                 </td>
                                 <td>
-                                    <?php if ($row['QTY'] == 0): ?>
+                                    <?php if ($row['QTY'] == 0) : ?>
                                         <span class="zero-qty">なし</span>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <?php echo $row['QTY']; ?>
                                     <?php endif; ?>
                                 </td>
@@ -146,17 +159,15 @@ $conn->close();
                                     <?php echo $row['DATE']; ?>
                                 </td>
                                 <td>
-                                    <?php if ($row['QTY'] == 0): ?>
+                                    <?php if ($row['QTY'] == 0) : ?>
                                         <span class="zero-qty">在庫切れ</span>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <?php echo $row['STATUS']; ?>
                                     <?php endif; ?>
                                 </td>
                                 <td>
                                     <button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button>
-                                    <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>"
-                                        data-toggle="modal" data-target="#statusChangeModal"
-                                        onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
+                                    <button class="statusChangeButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>" data-toggle="modal" data-target="#statusChangeModal" onclick="setDisposalId(<?= $row['DISPOSAL_ID']; ?>)">ステータス変更</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
