@@ -71,8 +71,27 @@ $conn->close();
 <body style="height: 1000px">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
+                        <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
+                        <li><a href="./w_disposal_page/disposalStatus.html">廃棄ステータス</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">メッセージ</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="user">
+                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+                </li>
+            </ul>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">ホーム</a></li>
