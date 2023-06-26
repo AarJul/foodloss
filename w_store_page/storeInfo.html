@@ -9,12 +9,13 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/storeInvnt.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
+
   <body style="height: 1000px">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -23,13 +24,15 @@
         </div>
         <ul class="nav navbar-nav">
           <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
-          <li class="dropdown">
+          <li class="dropdown active">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"
               >ストア用<span class="caret"></span
             ></a>
             <ul class="dropdown-menu">
               <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
-              <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
+              <li>
+                <a href="../w_disposal_page/registerDisposal.html">廃棄登録</a>
+              </li>
               <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
             </ul>
           </li>
@@ -37,53 +40,24 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="../w_Account_Register/Register.html"
+            <a href="Register.html"
               ><span class="glyphicon glyphicon-user"></span> 新規登録</a
             >
           </li>
-          <li>
-            <a href="../login.php"
+          <li id="user">
+            <a href="login.php"
               ><span class="glyphicon glyphicon-log-in"></span> ログイン</a
             >
           </li>
         </ul>
       </div>
     </nav>
-
-    <div class="header">
-
-    </div>
     <div class="container" style="margin-top: 70px;">
-      <div class="jumbotron text-center">
-        <h1>ようこそ</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          recusandae, neque incidunt dignissimos perferendis ipsam aperiam,
-          iusto ullam ratione earum sequi reprehenderit eius quam facere vel
-          iure corrupti ipsum cumque?
-        </p>
-      </div>
-      <h3>Right Aligned Navbar</h3>
-      <p>
-        The .navbar-right class is used to right-align navigation bar buttons.
-      </p>
-      <br>
-      <div class="row">
-        <div class="col-sm-4">
-            <img src="../img/catch.jpg" class="img-circle img-responsive" alt="example">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-        </div>
-        <div class="col-sm-4">
-            <img src="../img/catch.jpg" class="img-circle img-responsive" alt="example">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-        </div>
-        <div class="col-sm-4">
-            <img src="../img/catch.jpg" class="img-circle img-responsive" alt="example">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-        </div>
-      </div>
+        
     </div>
-    <footer class="custom-footer ">
+
+    <br />
+    <footer class="custom-footer">
       <div class="container fixed-bottom">
         <div class="row">
           <div class="col-md-6">
@@ -93,12 +67,32 @@
           <div class="col-md-6">
             <h5>Contact</h5>
             <ul class="list-unstyled">
-              <li>Phone: 123-456-7890</li>
+              <li>Phone: 123-356-7890</li>
               <li>Email: info@example.com</li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
+
+    <script src="../js/inventory.js"></script>
+    <script src="../js/deleteItemFromDisposal.js"></script>
+    <script>
+      function userCheck() {
+        let = document.getElementById("user");
+        if (user == loggedIn) {
+          element.innerHTML =
+            '<a href="#" onclick="logout();"><span class="glyphicon glyphicon-log-out"></span> ログアウト</a>';
+        }
+      }
+      function logout() {
+        // Perform logout operation
+        // You can make an AJAX request to a logout endpoint on the server-side
+        // Or clear any session/cookie/local storage data
+
+        // Redirect the user to the login page
+        window.location.href = "login.html";
+      }
+    </script>
   </body>
 </html>
