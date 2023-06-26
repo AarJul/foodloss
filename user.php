@@ -89,12 +89,7 @@ $conn = null;
                 </li>
             </ul>
         </nav>
-        <div class="center-section">
-            <a><button
-                    onclick="openConfirmationPopup()">Xác
-                    nhận đơn hàng</button></a>
-            <!-- Các phần còn lại của pop-up -->
-        </div>
+        
 
         <!-- Modal Xác nhận đơn hàng -->
         <div id="confirmation-modal" class="modal">
@@ -110,6 +105,12 @@ $conn = null;
 
     </div>
     <div class="center-section">
+    <div class="center-section">
+            <a><button
+                    onclick="openConfirmationPopup()">Xác
+                    nhận đơn hàng</button></a>
+            <!-- Các phần còn lại của pop-up -->
+        </div>
         <?php
         $currentStoreID = null;
         foreach ($storeResult as $store) {
