@@ -64,7 +64,7 @@ $conn = null;
     <div class="container">
         <nav class="navbar navbar-inverse fixed-top">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+                <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">ホーム</a></li>

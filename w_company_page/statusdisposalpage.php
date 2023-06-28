@@ -73,7 +73,7 @@ $conn->close();
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+                <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
@@ -116,7 +116,7 @@ $conn->close();
             <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
                 <h3 class="text-center">Store ID:
                     <?php echo $store_id; ?>&nbsp;
-                    <a href="storeinformation.php?id=<?php echo $store_id; ?>"><?php echo $store_rows[$store_id]; ?></a>
+        <a href="storeinformation.php?id=<?php echo $store_id; ?>"><?php echo $store_rows[$store_id]; ?></a>
                 </h3>
                 <table class="table-bordered table-hover text-center" id="inventory">
                     <thead>
@@ -215,5 +215,7 @@ $conn->close();
     <script src="../js/inventory.js"></script>
     <script src="../js/deleteItemFromDisposal.js"></script>
 </body>
-
+<footer class="container-fluid text-center">
+        <p>OpenSeaS &copy; 2023</p>
+    </footer>
 </html>

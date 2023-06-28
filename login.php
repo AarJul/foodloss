@@ -113,7 +113,7 @@ login();
   <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./w_aboutUs/about.html">OpenSeaS</a>
+        <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
@@ -132,7 +132,7 @@ login();
           <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
         </li>
         <li>
-          <a href="login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
+          <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
         </li>
       </ul>
     </div>

@@ -4,6 +4,7 @@
 #deliveryInfo {
     margin: 0 70px;
     padding: 10px;
+    text-align: center;
 }
 #deliInfoTable {
     margin: 0px 50px;
@@ -27,7 +28,7 @@
     padding: 10px;
     font-size:x-large;
 }
-
 #aboutDelivery {
-    padding: 5px 30px;
+    padding: 20px 30px;
+    margin: 10px 10px;
 }
