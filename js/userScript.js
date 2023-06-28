@@ -67,20 +67,20 @@ function closePopup() {
   modal.style.display = "none";
 }
 
-function openConfirmationPopup(storeId) {
+function openConfirmationPopup(disposalId) {
   var modal = document.getElementById("confirmation-modal");
   modal.style.display = "block";
   var submitRequestBtn = document.getElementById("submitRequestBtn");
-  submitRequestBtn.setAttribute("data-storeId", storeId);
+  submitRequestBtn.setAttribute("data-disposalId", disposalId);
   //lay so da ord
-  var qtyElement = document.getElementById("qty_" + storeId);
+  var qtyElement = document.getElementById("qty_" + disposalId);
   var currentQty = parseInt(qtyElement.textContent);
 
   var requestedItemElement = document.getElementById("requestedItem");
-  requestedItemElement.textContent = "Sản phẩm: " + currentQty;
+  requestedItemElement.textContent = "商品: " + currentQty;
 
-  // var requestedQuantityElement = document.getElementById("requestedQuantity");
-  // requestedQuantityElement.textContent = "Số lượng đã lấy: " + quantity;
+  var requestedQuantityElement = document.getElementById("requestedQuantity");
+  requestedQuantityElement.textContent = "注文個数: " + quantity;
 }
 
 

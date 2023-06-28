@@ -1,91 +1,205 @@
-.top-right-section {
-    position: absolute;
-    top: 100px; /* Adjust this value to align with the navbar height */
-    right: 20px;
+/* user.css */
+.container {
+    margin-top: 50px;
 }
 
-.confirm-button {
-    display: inline-block;
-    padding: 10px 20px;
+.top-right-section {
+    margin-top: 20px;
+}
+
+.center-section {
+    margin-top: 50px;
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.request-button {
+    padding: 5px 10px;
     background-color: #337ab7;
     color: #fff;
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
-/* Custom table */
-.custom-table {
+/* footer.css */
+.custom-footer {
+    background-color: #f8f8f8;
+    padding: 20px 0;
+}
+
+.custom-footer h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.custom-footer p {
+    font-size: 14px;
+}
+
+/* navbar.css */
+.navbar-inverse {
+    background-color: #333;
+    border-color: #333;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+    font-size: 20px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+    background-color: #222;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: #555;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: #555;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>.open>a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu {
+    background-color: #333;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>li>a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>li>a:hover,
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    background-color: #222;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>.active>a,
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>.active>a:hover,
+.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>.active>a:focus {
+    background-color: #555;
+}
+
+/* storeInvnt.css */
+#inventory h3 {
+    margin-top: 20px;
+}
+
+#inventory th {
+    cursor: pointer;
+}
+
+#inventory th span {
+    margin-left: 5px;
+}
+
+#inventoryBody td {
+    cursor: pointer;
+}
+
+#inventoryBody td[data-item]::before {
+    content: attr(data-item);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100%;
-    border: 1px solid black;
-}
-
-.name {
-    width: 30%;
-}
-
-.info {
-    width: 20%;
-}
-
-.quantity {
-    width: 15%;
-}
-
-.date {
-    width: 35%;
-}
-
-.status {
-    width: 35%;
-}
-
-.note {
-    width: 35%;
-}
-
-.odd {
-    background-color: white;
-    color: black;
-}
-
-.even {
-    background-color: rgb(219, 229, 255);
-    color: black;
-}
-
-#request-modal {
-  display: none; /* Mặc định ẩn modal */
-  position: fixed; /* Thiết lập vị trí cố định */
-  z-index: 1; /* Đặt index cao hơn để nằm trên các phần tử khác */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* Cho phép cuộn nội dung modal dài */
-  background-color: rgba(0, 0, 0, 0.4); /* Màu nền mờ */
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Đặt kích thước chiều rộng của modal */
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 
 .close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-/* Áp dụng các thuộc tính để hiển thị ở giữa màn hình */
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal input[type="text"] {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal button {
+    padding: 5px 10px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.order-btn {
+    padding: 8px 20px;
+    /* Điều chỉnh khoảng lề của nút */
+    font-size: 16px;
+    /* Điều chỉnh kích thước chữ của nút */
+}
+.fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once dirname(__FILE__) . '/function/db_connection.php';
-
+require_once dirname(__FILE__) . '/function/auto_login.php';
 // Connect to the database
 $conn = connection();
 $message = '';
