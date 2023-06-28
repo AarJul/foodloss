@@ -1,6 +1,3 @@
-var currentStoreName = ""; // Biến chưa tên cửa hàng tạm thời
-var currentItemName = ""; // Biến chứa tên sản phẩm tạm thời
-var currentQuantity = 0; // Biến chứa số lượng tạm thời
 
 function openModal(disposalId) {
   var modal = document.getElementById("request-modal");
@@ -84,7 +81,7 @@ function openConfirmationPopup(storeId) {
 
   // var requestedQuantityElement = document.getElementById("requestedQuantity");
   // requestedQuantityElement.textContent = "Số lượng đã lấy: " + quantity;
-} 
+}
 
 
 function closeConfirmationPopup() {
@@ -113,5 +110,4 @@ function confirmOrder() {
     xhr.send(data);
   }
 }
-
 
