@@ -3,12 +3,12 @@
     margin-top: 50px;
 }
 
-.top-right-section {
-    margin-top: 20px;
+.bottom-right-section {
+    margin-bottom: 20px;
 }
 
 .center-section {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .table-bordered {
@@ -36,7 +36,8 @@
 /* footer.css */
 .custom-footer {
     background-color: #f8f8f8;
-    padding: 20px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .custom-footer h5 {
@@ -57,6 +58,10 @@
 .navbar-inverse .navbar-brand {
     color: #fff;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .navbar-inverse .navbar-nav>li>a {
@@ -196,10 +201,36 @@
     font-size: 16px;
     /* Điều chỉnh kích thước chữ của nút */
 }
+
 .fixed-bottom {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-  }
-  
+}
+
+.small-button {
+    font-size: 12px;
+    padding: 3px 10px;
+}
+
+.popup-title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    display: inline-block;
+    width: 50px;
+    /* Độ rộng của hình logo */
+    height: 50px;
+    /* Độ cao của hình logo */
+    background-image: url(../img/logo.png);
+    /* Đường dẫn đến hình logo */
+    background-size: cover;
+    background-position: center;
+}

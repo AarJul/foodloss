@@ -113,7 +113,12 @@ login();
   <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+        <a class="navbar-brand" href="w_Landing_Page/landing.html">
+          <span class="logo"></span>
+        </a>
+      </div>
+      <div>
+        <a class="navbar-brand">OpenSeaS</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
@@ -155,8 +160,10 @@ login();
     </form>
 
     <br />
-    <footer class="custom-footer">
-      <div class="container fixed-bottom">
+    
+  </div>
+  <footer class="custom-footer">
+      <div class="container">
         <div class="row">
           <div class="col-md-6">
             <h5>About Us</h5>
@@ -172,7 +179,6 @@ login();
         </div>
       </div>
     </footer>
-  </div>
 </body>
 
 </html>

@@ -63,10 +63,14 @@ $conn = null;
 <body style="height: 1000px">
     <nav class="navbar navbar-inverse fixed-top">
         <div class="navbar-header">
-            <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+            <a class="navbar-brand" href="w_Landing_Page/landing.html">
+                <span class="logo"></span>
+            </a>
+        </div>
+        <div >
+            <a class="navbar-brand" >OpenSeaS</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Store<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -79,16 +83,21 @@ $conn = null;
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>
+                    <span class="glyphicon glyphicon-user">
                         <?php echo $user_name; ?>
-                    </span></a>
-            </li>
-            <li id="user">
-                <a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"></a></li>
+                    <li><a href="userProfile.php">Your Profile</a></li>
+                    <li><a href="setting.php">Setting</a></li>
+                    <li><a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
             </li>
         </ul>
     </nav>
-    <div class="top-right-section text-right">
+    <div class="bottom-right-section text-right">
         <a><button class="order-btn" onclick="openConfirmationPopup()">Order Confirmation</button></a>
         <!-- Rest of the code for the pop-up -->
     </div>
@@ -101,117 +110,122 @@ $conn = null;
         foreach ($storeResult as $store) {
             if ($store['STORE_ID'] != $currentStoreID) {
                 ?>
-                <div class="container">
-                    <table class="table-bordered table-hover" id="inventory">
-                        <h3>
-                            Store Name:
-                            <?php echo $store['STORE_NAME']; ?>
+                <table class="table-bordered table-hover" id="inventory">
+                    <h3>
+                        Store Name:&ensp;
+                        <?php echo $store['STORE_NAME']; ?>&ensp;
 
-                            <!-- Detail button functionality starts here -->
-                            <!-- Button -->
-                            <button onclick="openPopup()">詳細</button>
-                        </h3>
-                        <thead>
-                            <tr>
-                                <th onclick="sortTable(0)">Item Name <span class="glyphicon glyphicon-sort"></span></th>
-                                <th onclick="sortTable(1)">Expiration Date <span class="glyphicon glyphicon-sort"></span></th>
-                                <th onclick="sortTable(2)">Quantity <span class="glyphicon glyphicon-sort"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody id="inventoryBody">
-                            <!-- Insert code here -->
-                        </tbody>
-                        <?php
-                        $currentStoreID = $store['STORE_ID'];
+                        <!-- Detail button functionality starts here -->
+                        <!-- Button -->
+                        <button class="small-button" onclick="openPopup()">詳細</button>
+
+                    </h3>
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Item Name <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(1)">Expiration Date <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(2)">Quantity <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(2)"> Request <span class="glyphicon glyphicon-sort"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryBody">
+                        <!-- Insert code here -->
+                    </tbody>
+                    <?php
+                    $currentStoreID = $store['STORE_ID'];
             }
 
             if (!empty($store['ITEM'])) {
                 ?>
-                        <tr>
-                            <td data-item="<?php echo $store['ITEM']; ?>">
-                                <?php echo $store['ITEM']; ?>
-                            </td>
-                            <td>
-                                <?php echo $store['DATE']; ?>
-                            </td>
-                            <td id="qty_<?php echo $store['DISPOSAL_ID']; ?>"><?php echo $store['QTY']; ?></td>
+                    <tr>
+                        <td data-item="<?php echo $store['ITEM']; ?>">
+                            <?php echo $store['ITEM']; ?>
+                        </td>
+                        <td>
+                            <?php echo $store['DATE']; ?>
+                        </td>
+                        <td id="qty_<?php echo $store['DISPOSAL_ID']; ?>"><?php echo $store['QTY']; ?></td>
 
-                            <td>
-                                <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
-                                    onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>)">要求</button>
-                            </td>
+                        <td>
+                            <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
+                                onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>)">要求</button>
+                        </td>
 
-                        </tr>
-                        <?php
+                    </tr>
+                    <?php
             } else {
                 ?>
-                        <tr>
-                            <td colspan="4">No disposal available at the moment!</td>
-                        </tr>
-                        <?php
+                    <tr>
+                        <td colspan="4">No disposal available at the moment!</td>
+                    </tr>
+                    <?php
             }
         }
         ?>
-                <!-- Request Modal -->
-                <div id="request-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2>Request Quantity</h2>
-                        <input type="text" id="quantityInput" placeholder="Enter quantity">
-                        <button id="submitRequestBtn" onclick="submitRequest()">要求</button>
-                    </div>
+            <!-- Request Modal -->
+            <div id="request-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Request Quantity</h2>
+                    <input type="text" id="quantityInput" placeholder="Enter quantity">
+                    <button id="submitRequestBtn" onclick="submitRequest()">要求</button>
                 </div>
-                <!-- Order Confirmation Modal -->
-                <div id="confirmation-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeConfirmationPopup()">&times;</span>
-                        <h2>Order Confirmation</h2>
-                        <p id="requestedItem"></p>
-                        <p id="requestedQuantity"></p>
-                        <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
-                    </div>
+            </div>
+            <!-- Order Confirmation Modal -->
+            <div id="confirmation-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeConfirmationPopup()">&times;</span>
+                    <h2>Order Confirmation</h2>
+                    <p id="requestedItem"></p>
+                    <p id="requestedQuantity"></p>
+                    <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
                 </div>
+            </div>
 
-                <!-- Info Modal -->
-                <div id="info-Modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closePopup()">&times;</span>
-                        <h2>
-                            <?php echo $store['STORE_NAME']; ?>
-                        </h2>
-                        <p>
-                            <?php echo $store['STORE_EMAIL']; ?>
-                        </p>
-                        <p>
-                            <?php echo $store['STORE_TEL']; ?>
-                        </p>
-                        <p>
-                            <?php echo $store['STORE_ADDRESS']; ?>
-                        </p>
-                    </div>
+            <!-- Info Modal -->
+            <div id="info-Modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h2 class="popup-title">Store Information</h2>
+                    <h2>
+                        Store Name :
+                        <?php echo $store['STORE_NAME']; ?>
+                    </h2>
+                    <p>
+                        Store Email :
+                        <?php echo $store['STORE_EMAIL']; ?>
+                    </p>
+                    <p>
+                        Store Telephone :
+                        <?php echo $store['STORE_TEL']; ?>
+                    </p>
+                    <p>
+                        Store Address :
+                        <?php echo $store['STORE_ADDRESS']; ?>
+                    </p>
                 </div>
 
                 <!-- Detail button functionality ends here -->
-            </table>
-        </div>
+        </table>
     </div>
-    <footer class="custom-footer fixed-bottom">
-    <!-- <div class="container"> -->
-        <div class="row">
-            <div class="col-md-6">
-                <h5>About Us</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="col-md-6">
-                <h5>Contact</h5>
-                <ul class="list-unstyled">
-                    <li>Phone: 123-356-7890</li>
-                    <li>Email: info@example.com</li>
-                </ul>
+    </div>
+    <footer class="custom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Phone: 123-356-7890</li>
+                        <li>Email: info@example.com</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    <!-- </div> -->
-</footer>
+    </footer>
     <script src="js/bootstrap.js"></script>
     <script src="js/userScript.js"></script>
 </body>
