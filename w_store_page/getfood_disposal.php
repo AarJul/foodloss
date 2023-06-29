@@ -95,7 +95,7 @@ $conn->close();
     />
     <link rel="stylesheet" href="../css/footer.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
-    <link rel="stylesheet" href="../css/storeInvnt.css" />
+    <link rel="stylesheet" href="../css/food_disposal.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -325,7 +325,7 @@ $conn->close();
       </div>
     </footer>
 
-    <script src="../js/inventory.js"></script>
+    <script src="../js/food_disposal.js"></script>
     <script src ="../js/deleteItemFromDisposal.js"></script>
     <script>
       function userCheck() {
