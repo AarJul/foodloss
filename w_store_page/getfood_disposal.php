@@ -102,34 +102,35 @@ $conn->close();
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
+              <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
+              <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
+            </ul>
+          </li>
+          <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
+          </li>
+          <li id="user">
+            <a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+          </li>
+        </ul>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
-            <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-            <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
-          </ul>
-        </li>
-        <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
-        </li>
-        <li id="user">
-          <a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span>ログアウト</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
   <div class="container" style="margin-top: 70px;">
-    <div class="text-center">
+    <!-- <div class="text-center">
       <h1 class="mx-auto"><?php echo $store_name ?></h1>
       <p id="message" style="font-style: italic; color: green;">
         <?php if (isset($message) && $message != null) {
@@ -144,46 +145,8 @@ $conn->close();
           }
         }, 1000);
       </script>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <div id="dashboard">
-          <h3>ダッシュボード</h3>
-          <div class="btn-group-vertical custom-btn-group">
-            <button onclick="hideInventory()" type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
-              アイテム登録
-            </button>
-            <button type="button" class="btn btn-lg w-100 dash-btn" id="">
-              廃棄物を選択
-            </button>
-            <button type="button" class="btn btn-lg w-100 dash-btn" id="">
-              発送問い合わせ
-            </button>
-          </div>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">ホーム</a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >ストア用<span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">ストアフロント</a></li>
-              <li><a href="./w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-              <li><a href="./w_store_page/storeInfo.html">ストア情報</a></li>
-            </ul>
-          </li>
-          <li><a href="./w_disposal_page/deliveryDisposal">廃棄情報</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li id="user">
-            <a href="../login.php"
-              ><span class="glyphicon glyphicon-log-in"></span>ログアウト</a
-            >
-          </li>
-        </ul>
-      </nav>
-      <div class="text-center">
+    </div> -->
+      <!-- <div class="text-center">
       <style>
   .magic-heading {
     font-family: 'Arial', sans-serif;
@@ -215,9 +178,9 @@ $conn->close();
       left: 100%;
     }
   }
-</style>
+</style> -->
 
-<h1 class="magic-heading mx-auto">
+<!-- <h1 class="magic-heading mx-auto">
   <span><?php echo $store_name ?></span>
 </h1>
 
@@ -232,7 +195,7 @@ $conn->close();
                 }
             }, 1000);
         </script>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-sm-2">
           <div id="dashboard">
