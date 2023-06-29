@@ -68,7 +68,7 @@ $conn = null;
             </a>
         </div>
         <div >
-            <a class="navbar-brand" >OpenSeaS</a>
+            <a class="navbar-brand" >OutSeaS</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -175,7 +175,7 @@ $conn = null;
             <div id="confirmation-modal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeConfirmationPopup()">&times;</span>
-                    <h2>Order Confirmation</h2>
+                    <h2>開発中</h2>
                     <p id="requestedItem"></p>
                     <p id="requestedQuantity"></p>
                     <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>

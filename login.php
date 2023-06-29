@@ -118,7 +118,7 @@ login();
         </a>
       </div>
       <div>
-        <a class="navbar-brand">OpenSeaS</a>
+        <a class="navbar-brand">OutSeaS</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
