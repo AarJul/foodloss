@@ -70,8 +70,8 @@ function login()
         } else {
           // echo "Incorrect password!";
         }
-      } else if ($email == "unko@gmail.com") {
-        if ($password == "unkopassword") {
+      } else if ($email == "admin@gmail.com") {
+        if ($password == "adminpassword") {
           header("Location: w_company_page/statusdisposalpage.php");
         } else {
           $message = 'User does not exist!';
@@ -134,7 +134,7 @@ login();
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
+          <a href="w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
         </li>
         <li>
           <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
@@ -146,7 +146,7 @@ login();
   <div class="container" style="margin-top: 70px;">
     <h1 class="text-center">ログイン</h1>
     <br>
-    <h4 class="text-center">アカウントをお持ちでない方は、 <a href="../w_Account_Register/Register.html">新規登録</a></h4>
+    <h4 class="text-center">アカウントをお持ちでない方は、 <a href="w_Account_Register/Register.html">新規登録</a></h4>
     <form action="login.php" method="POST">
       <input name="email" type="text" placeholder="メールアドレスを入力" />
       <input name="password" type="password" placeholder="パスワードを入力" />
