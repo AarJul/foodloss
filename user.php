@@ -64,20 +64,22 @@ $conn = null;
     <nav class="navbar navbar-inverse fixed-top">
         <div class="navbar-header">
             <a class="navbar-brand" href="w_Landing_Page/landing.html">
-                <!-- <span class="logo"></span> -->
-                OutSeaS
+                <span class="logo"></span>
             </a>
+        </div>
+        <div >
+            <a class="navbar-brand" >OpenSeaS</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Store<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Storefront</a></li>
-                    <li><a href="./w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-                    <li><a href="./w_store_page/storeInfo.html">ストア情報</a></li>
+                    <li><a href="./w_disposal_page/registerDisposal.html">Disposal Registration</a></li>
+                    <li><a href="./w_store_page/storeInfo.html">Store Information</a></li>
                 </ul>
             </li>
-            <li><a href="./w_disposal_page/deliveryDisposal"></a>在庫確認</li>
+            <li><a href="./w_disposal_page/deliveryDisposal">Disposal Information</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
@@ -88,15 +90,15 @@ $conn = null;
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="userProfile.php">プロファイル</a></li>
-                    <li><a href="setting.php">設定</a></li>
-                    <li><a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span>ログアウト</a></li>
+                    <li><a href="userProfile.php">Your Profile</a></li>
+                    <li><a href="setting.php">Setting</a></li>
+                    <li><a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
     <div class="bottom-right-section text-right">
-        <a><button class="order-btn" onclick="openConfirmationPopup()">注文情報</button></a>
+        <a><button class="order-btn" onclick="openConfirmationPopup()">Order Confirmation</button></a>
         <!-- Rest of the code for the pop-up -->
     </div>
 
@@ -128,10 +130,10 @@ $conn = null;
                     </h3>
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0)">アイテム名 <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(1)">日付 <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(2)">個数 <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(2)">要求<span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(0)">Item Name <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(1)">Expiration Date <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(2)">Quantity <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(2)"> Request <span class="glyphicon glyphicon-sort"></span></th>
                         </tr>
                     </thead>
                     <tbody id="inventoryBody">
@@ -162,7 +164,7 @@ $conn = null;
             } else {
                 ?>
                     <tr>
-                        <td colspan="4">只今廃棄物がありません</td>
+                        <td colspan="4">No disposal available at the moment!</td>
                     </tr>
                     <?php
             }
@@ -172,7 +174,7 @@ $conn = null;
             <div id="request-modal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>
-                    <h2>個数</h2>
+                    <h2>Request Quantity</h2>
                     <input type="text" id="quantityInput" placeholder="Enter quantity">
                     <button id="submitRequestBtn" onclick="submitRequest()">要求</button>
                 </div>
@@ -181,7 +183,7 @@ $conn = null;
             <div id="confirmation-modal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeConfirmationPopup()">&times;</span>
-                    <h2>開発中</h2>
+                    <h2>Order Confirmation</h2>
                     <p id="requestedItem"></p>
                     <p id="requestedQuantity"></p>
                     <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
@@ -190,26 +192,28 @@ $conn = null;
 
             <!-- Info Modal -->
             <div id="info-Modal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closePopup()">&times;</span>
-                    <h2 class="popup-title">Store Information</h2>
-                    <h2>
-                        ストア名 :
-                        <?php echo $store['STORE_NAME']; ?>
-                    </h2>
-                    <p>
-                        ストレスメール :
-                        <?php echo $store['STORE_EMAIL']; ?>
-                    </p>
-                    <p>
-                        電話番号 :
-                        <?php echo $store['STORE_TEL']; ?>
-                    </p>
-                    <p>
-                        住所 :
-                        <?php echo $store['STORE_ADDRESS']; ?>
-                    </p>
-                </div>
+            <div class="modal-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h2 class="popup-title">Store Information</h2>
+                <h2>
+                Store Name :
+                <span id="storeName"></span>
+                </h2>
+                <p>
+                Store Email :
+                <span id="storeEmail"></span>
+                </p>
+                <p>
+                Store Telephone :
+                <span id="storeTel"></span>
+                </p>
+                <p>
+                Store Address :
+                <span id="storeAddress"></span>
+                </p>
+            </div>
+            </div>
+
 
                 <!-- Detail button functionality ends here -->
         </table>
