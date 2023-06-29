@@ -96,7 +96,7 @@ $conn->close();
     </nav>
     <div class="container" style="margin-top: 70px;">
         <div class="text-center">
-            <h1 class="mx-auto">会社画面表示</h1>
+            <h1 class="mx-auto">管理者画面表示</h1>
         </div>
         <div class="row">
         <div class="col-sm-2">

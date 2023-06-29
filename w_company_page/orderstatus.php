@@ -100,7 +100,7 @@ $conn->close();
         <div class="row content">
             <div class="col-sm-2 sidenav"></div>
             <div class="col-sm-8 text-center">
-                <h1>Order Information</h1>
+                <h1>注文情報一覧</h1>
                 <hr>
 
                 <!-- Inventory management section -->
