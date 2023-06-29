@@ -29,4 +29,6 @@ if ($stmt->execute()) {
     http_response_code(500);
     echo 'Lỗi SQL: ' . $stmt->errorInfo()[2];
 }
+$db -> commit();
+
 ?>
