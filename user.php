@@ -64,11 +64,9 @@ $conn = null;
     <nav class="navbar navbar-inverse fixed-top">
         <div class="navbar-header">
             <a class="navbar-brand" href="w_Landing_Page/landing.html">
-                <span class="logo"></span>
+                <!-- <span class="logo"></span> -->
+                <a class="navbar-brand" >OutSeaS</a>
             </a>
-        </div>
-        <div >
-            <a class="navbar-brand" >OutSeaS</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -122,9 +120,9 @@ $conn = null;
                     </h3>
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0)">Item Name <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(1)">Expiration Date <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(2)">Quantity <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(0)">アイテム名 <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(1)">日付 <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(2)">個数 <span class="glyphicon glyphicon-sort"></span></th>
                             <th onclick="sortTable(2)"> Request <span class="glyphicon glyphicon-sort"></span></th>
                         </tr>
                     </thead>
@@ -188,19 +186,19 @@ $conn = null;
                     <span class="close" onclick="closePopup()">&times;</span>
                     <h2 class="popup-title">Store Information</h2>
                     <h2>
-                        Store Name :
+                        ストア名 :
                         <?php echo $store['STORE_NAME']; ?>
                     </h2>
                     <p>
-                        Store Email :
+                        ストレスメール :
                         <?php echo $store['STORE_EMAIL']; ?>
                     </p>
                     <p>
-                        Store Telephone :
+                        電話番号 :
                         <?php echo $store['STORE_TEL']; ?>
                     </p>
                     <p>
-                        Store Address :
+                        住所 :
                         <?php echo $store['STORE_ADDRESS']; ?>
                     </p>
                 </div>
