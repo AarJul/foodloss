@@ -70,8 +70,8 @@ function login()
         } else {
           // echo "Incorrect password!";
         }
-      } else if ($email == "unko@gmail.com") {
-        if ($password == "unkopassword") {
+      } else if ($email == "admin@gmail.com") {
+        if ($password == "admin") {
           header("Location: w_company_page/statusdisposalpage.php");
         } else {
           $message = 'User does not exist!';
