@@ -124,7 +124,7 @@ $conn->close();
             <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
           </li>
           <li id="user">
-            <a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+            <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
           </li>
         </ul>
       </div>
