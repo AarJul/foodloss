@@ -114,11 +114,9 @@ login();
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="w_Landing_Page/landing.html">
-          <span class="logo"></span>
+          <!-- <span class="logo"></span> -->
+          OutSeaS
         </a>
-      </div>
-      <div>
-        <a class="navbar-brand">OpenSeaS</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>

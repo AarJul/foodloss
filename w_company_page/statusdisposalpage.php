@@ -56,7 +56,7 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <title>OpenSeaS管理システム</title>
+    <title>OutSeaS管理システム</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -73,7 +73,7 @@ $conn->close();
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+                <a class="navbar-brand" href="../w_aboutUs/about.html">OutSeaS</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
@@ -96,7 +96,7 @@ $conn->close();
     </nav>
     <div class="container" style="margin-top: 70px;">
         <div class="text-center">
-            <h1 class="mx-auto">会社画面表示</h1>
+            <h1 class="mx-auto">管理者画面表示</h1>
         </div>
         <div class="row">
         <div class="col-sm-2">
@@ -216,6 +216,6 @@ $conn->close();
     <script src="../js/deleteItemFromDisposal.js"></script>
 </body>
 <footer class="container-fluid text-center">
-        <p>OpenSeaS &copy; 2023</p>
+        <p>OutSeaS &copy; 2023</p>
     </footer>
 </html>

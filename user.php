@@ -117,7 +117,15 @@ $conn = null;
 
                         <!-- Detail button functionality starts here -->
                         <!-- Button -->
-                        <button class="small-button" onclick="openPopup()">詳細</button>
+                        <button class="small-button" 
+                        data-storeName="<?php echo $store['STORE_NAME']; ?>" 
+                        data-storeEmail="<?php echo $store['STORE_EMAIL']; ?>"
+                        data-storeTel="<?php echo $store['STORE_TEL']; ?>"
+                        data-storeAddress="<?php echo $store['STORE_ADDRESS']; ?>"
+                        
+                        onclick="openPopup()">詳細</button>
+
+                        
 
                     </h3>
                     <thead>
@@ -184,26 +192,28 @@ $conn = null;
 
             <!-- Info Modal -->
             <div id="info-Modal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closePopup()">&times;</span>
-                    <h2 class="popup-title">Store Information</h2>
-                    <h2>
-                        Store Name :
-                        <?php echo $store['STORE_NAME']; ?>
-                    </h2>
-                    <p>
-                        Store Email :
-                        <?php echo $store['STORE_EMAIL']; ?>
-                    </p>
-                    <p>
-                        Store Telephone :
-                        <?php echo $store['STORE_TEL']; ?>
-                    </p>
-                    <p>
-                        Store Address :
-                        <?php echo $store['STORE_ADDRESS']; ?>
-                    </p>
-                </div>
+            <div class="modal-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h2 class="popup-title">Store Information</h2>
+                <h2>
+                Store Name :
+                <span id="storeName"></span>
+                </h2>
+                <p>
+                Store Email :
+                <span id="storeEmail"></span>
+                </p>
+                <p>
+                Store Telephone :
+                <span id="storeTel"></span>
+                </p>
+                <p>
+                Store Address :
+                <span id="storeAddress"></span>
+                </p>
+            </div>
+            </div>
+
 
                 <!-- Detail button functionality ends here -->
         </table>

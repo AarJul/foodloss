@@ -86,7 +86,7 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OpenSeaS管理システム</title>
+    <title>OutSeaS管理システム</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -105,7 +105,7 @@ $conn->close();
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+          <a class="navbar-brand" href="../w_aboutUs/about.html">OutSeaS</a>
         </div>
         <ul class="nav navbar-nav">
           <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
@@ -255,7 +255,7 @@ $conn->close();
                   ストアID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(1)">
-                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
+                  商品ID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(2)">
                   アイテム <span class="glyphicon glyphicon-sort"></span>

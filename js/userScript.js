@@ -58,8 +58,20 @@ function submitRequest() {
 }
 
 function openPopup() {
-  var modal = document.getElementById("info-Modal");
-  modal.style.display = "block";
+  var storeName = event.target.getAttribute('data-storeName');
+  var storeEmail = event.target.getAttribute('data-storeEmail');
+  var storeTel = event.target.getAttribute('data-storeTel');
+  var storeAddress = event.target.getAttribute('data-storeAddress');
+
+  // Hiển thị cửa sổ popup
+  var modal = document.getElementById('info-Modal');
+  modal.style.display = 'block';
+
+  // Cung cấp dữ liệu cho các phần tử trong cửa sổ popup
+  document.getElementById('storeName').innerText = storeName;
+  document.getElementById('storeEmail').innerText = storeEmail;
+  document.getElementById('storeTel').innerText = storeTel;
+  document.getElementById('storeAddress').innerText = storeAddress;
 }
 
 function closePopup() {
