@@ -255,7 +255,7 @@ $conn->close();
                   ストアID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(1)">
-                  廃棄情報 <span class="glyphicon glyphicon-sort"></span>
+                  商品ID <span class="glyphicon glyphicon-sort"></span>
                 </th>
                 <th onclick="sortTable(2)">
                   アイテム <span class="glyphicon glyphicon-sort"></span>
