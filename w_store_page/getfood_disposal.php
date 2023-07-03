@@ -85,221 +85,158 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>OutSeaS管理システム</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-    <link rel="stylesheet" href="../css/food_disposal.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="../w_aboutUs/about.html">OutSeaS</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
-              <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-              <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
-            </ul>
-          </li>
-          <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
-          </li>
-          <li id="user">
-            <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
-          </li>
-        </ul>
+<head>
+  <title>OutSeaS管理システム</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/footer.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/food_disposal.css" />
+  <link rel="stylesheet" href="../css/getfood_disposal.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="../w_aboutUs/about.html">OutSeaS</a>
       </div>
-    </nav>
+      <ul class="nav navbar-nav">
+        <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
+            <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
+            <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
+          </ul>
+        </li>
+        <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li id="user">
+          <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
   <div class="container" style="margin-top: 70px;">
-    <!-- <div class="text-center">
+    <div class="text-center">
       <h1 class="mx-auto"><?php echo $store_name ?></h1>
       <p id="message" style="font-style: italic; color: green;">
         <?php if (isset($message) && $message != null) {
           echo $message;
         } ?>
       </p>
-      <script>
-        setTimeout(function() {
-          var messageElement = document.getElementById('message');
-          if (messageElement) {
-            messageElement.style.display = 'none';
-          }
-        }, 1000);
-      </script>
-    </div> -->
-      <!-- <div class="text-center">
-      <style>
-  .magic-heading {
-    font-family: 'Arial', sans-serif;
-    font-size: 48px;
-    color: #000000;
-    text-align: center;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  }
-
-  .magic-heading::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+    <script src="../js/getfood_disposal.js"></script>
+    </div>
     
-  }
-
-  @keyframes waveEffect {
-    0% {
-      left: -100%;
-    }
-    100% {
-      left: 100%;
-    }
-  }
-</style> -->
-
-<!-- <h1 class="magic-heading mx-auto">
-  <span><?php echo $store_name ?></span>
-</h1>
-
-        <p id="message" style="font-style: italic; color: green;">
-          <?php if (isset($message) && $message != null) { echo $message;} ?>
-        </p>
-        <script>
-            setTimeout(function() {
-                var messageElement = document.getElementById('message');
-                if (messageElement) {
-                    messageElement.style.display = 'none';
-                }
-            }, 1000);
-        </script>
-      </div> -->
-      <div class="row">
-        <div class="col-sm-2">
-          <div id="dashboard">
-            <h3>ダッシュボード</h3>
-            <div class="btn-group-vertical custom-btn-group">
-              <button onclick="hideInventory()" type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
-                アイテム登録
-              </button>
-              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
-                廃棄物を選択
-              </button>
-              <button type="button" class="btn btn-lg w-100 dash-btn" id="">
-                発送問い合わせ
-              </button>
-            </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <div id="dashboard">
+          <h3>ダッシュボード</h3>
+          <div class="btn-group-vertical custom-btn-group">
+            <button onclick="hideInventory()" type="button" class="btn btn-lg w-100 dash-btn" id="addBtn">
+              アイテム登録
+            </button>
+            <button type="button" class="btn btn-lg w-100 dash-btn" id="">
+              発送問い合わせ
+            </button>
           </div>
         </div>
-        <div class="col-sm-10">
-          <div id="addItem">
-            <div class="row">
-              <h3>アイテム追加フォーム</h3>
-            </div>
-            <div class="row">
+      </div>
+      
+      <div class="col-sm-10">
+        <div id="addItem">
+          <div class="row">
+            <h3>アイテム追加フォーム</h3>
+          </div>
+          <div class="row">
             <form id="itemForm" class="text-left" method="post" action="getfood_disposal.php">
               <div class="col-sm-5">
-                  <div class="form-group">
-                      <label for="itemInput">アイテム</label>
-                      <input type="text" class="form-control" id="itemInput" name="itemInput" required />
-                  </div>
-                  <div class="form-group">
-                      <label for="quantityInput">個数</label>
-                      <input type="number" class="form-control" id="quantityInput" name="quantityInput" required />
-                  </div>
+                <div class="form-group">
+                  <label for="itemInput">アイテム</label>
+                  <input type="text" class="form-control" id="itemInput" name="itemInput" required />
+                </div>
+                <div class="form-group">
+                  <label for="quantityInput">個数</label>
+                  <input type="number" class="form-control" id="quantityInput" name="quantityInput" required />
+                </div>
               </div>
               <div class="col-sm-5">
-                  <div class="form-group">
-                      <label for="dateInput">日付</label>
-                      <input type="date" class="form-control" id="dateInput" name="dateInput" required />
-                  </div>
-                  <div class="form-group">
-                      <label for="statusInput"></label>
-                      <input type="text" class="form-control" id="statusInput" name="statusInput" required />
-                  </div>
-                  <button type="submit" class="btn btn-success">追加</button>
-                  <a href="getfood_disposal.php" class="btn btn-success">戻る</a>
+                <div class="form-group">
+                  <label for="dateInput">日付</label>
+                  <input type="date" class="form-control" id="dateInput" name="dateInput" required />
+                </div>
+                <div class="form-group">
+                  <label for="statusInput"></label>
+                  <input type="text" class="form-control" id="statusInput" name="statusInput" required />
+                </div>
+                <button type="submit" class="btn btn-success">追加</button>
+                <a href="getfood_disposal.php" class="btn btn-success">戻る</a>
               </div>
             </form>
-            </div>
           </div>
-          <!-- Inventory management section -->
-          <h3 id="h3">Inventory Management</h3>
-          <br>
-          <table class="table-bordered table-hover" id="inventory">
-            <thead>
+        </div>
+        
+        <h3 id="h3">Inventory Management</h3>
+        <br>
+        
+        <table class="table-bordered table-hover" id="inventory">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0)">
+                ストアID <span class="glyphicon glyphicon-sort"></span>
+              </th>
+              <th onclick="sortTable(1)">
+                商品ID <span class="glyphicon glyphicon-sort"></span>
+              </th>
+              <th onclick="sortTable(2)">
+                アイテム <span class="glyphicon glyphicon-sort"></span>
+              </th>
+              <th onclick="sortTable(3)">
+                個数 <span class="glyphicon glyphicon-sort"></span>
+              </th>
+              <th onclick="sortTable(4)">
+                日付 <span class="glyphicon glyphicon-sort"></span>
+              </th>
+              <th onclick="sortTable(5)">
+                状況 <span class="glyphicon glyphicon-sort"></span>
+              </th>
+              <th id="deleteColumn"></th>
+            </tr>
+          </thead>
+          <tbody id="inventoryBody">
+            <!-- Table rows will be generated dynamically -->
+            <?php foreach ($rows as $row) : ?>
               <tr>
-                <th onclick="sortTable(0)">
-                  ストアID <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(1)">
-                  商品ID <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(2)">
-                  アイテム <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(3)">
-                  個数 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(4)">
-                  日付 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th onclick="sortTable(5)">
-                  状況 <span class="glyphicon glyphicon-sort"></span>
-                </th>
-                <th id="deleteColumn"></th>
-              </tr>
-            </thead>
-            <tbody id="inventoryBody">
-              <!-- Table rows will be generated dynamically -->
-              <?php foreach ($rows as $row) : ?>
-                <tr>
-                    <td><?php echo $row['STORE_ID']; ?></td>
-                    <td><?php echo $row['DISPOSAL_ID']; ?></td>
-                    <td><?php echo $row['ITEM']; ?></td>
-                    <td><?php echo $row['QTY']; ?></td>
-                    <td><?php echo $row['DATE']; ?></td>
-                    <td><?php echo $row['STATUS']; ?></td>
-                    <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
+                <td><?php echo $row['STORE_ID']; ?></td>
+                <td><?php echo $row['DISPOSAL_ID']; ?></td>
+                <td><?php echo $row['ITEM']; ?></td>
+                <td><?php echo $row['QTY']; ?></td>
+                <td><?php echo $row['DATE']; ?></td>
+                <td><?php echo $row['STATUS']; ?></td>
+                <td><button class="deleteButton" data-disposal-id="<?= $row['DISPOSAL_ID']; ?>">削除</button></td>
               <?php endforeach; ?>
             </tbody>
           </table>
           <script>
             function hideInventory() {
-                var inventoryManagementElement = document.getElementById("h3");
-                var inventoryTableElement = document.getElementById("inventory");
-                var addButton = document.getElementById("addBtn");
+              var inventoryManagementElement = document.getElementById("h3");
+              var inventoryTableElement = document.getElementById("inventory");
+              var addButton = document.getElementById("addBtn");
 
-                addButton.disabled = true;
-                if (inventoryManagementElement) {
-                    inventoryManagementElement.style.display = "none";
-                }
-                
-                if (inventoryTableElement) {
-                    inventoryTableElement.style.display = "none";
-                }
+              addButton.disabled = true;
+              if (inventoryManagementElement) {
+                inventoryManagementElement.style.display = "none";
+              }
+
+              if (inventoryTableElement) {
+                inventoryTableElement.style.display = "none";
+              }
             }
           </script>
         </div>
@@ -307,6 +244,7 @@ $conn->close();
     </div>
 
     <br />
+    
     <footer class="custom-footer">
       <div class="container fixed-bottom">
         <div class="row">
@@ -324,20 +262,8 @@ $conn->close();
         </div>
       </div>
     </footer>
-
+    
     <script src="../js/food_disposal.js"></script>
     <script src ="../js/deleteItemFromDisposal.js"></script>
-    <script>
-      function userCheck() {
-        let = document.getElementById("user");
-        if (user == loggedIn) {
-          element.innerHTML =
-            '<a href="#" onclick="logout();"><span class="glyphicon glyphicon-log-out"></span> ログアウト</a>';
-        }
-      }
-      function logout() {
-        window.location.href = "login.html";
-      }
-    </script>
   </body>
 </html>
