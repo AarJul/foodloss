@@ -20,14 +20,13 @@ if ($conn->connect_error) {
 
 // Lấy thông tin mới từ form
 $newStoreName = $_POST['newStoreName'];
-$newStoreEmail = $_POST['newStoreEmail'];
 $newStoreTel = $_POST['newStoreTel'];
 $newStoreAddress = $_POST['newStoreAddress'];
 
 // Câu lệnh SQL update dữ liệu
-$sql = "UPDATE STORE SET STORE_NAME = ?, STORE_EMAIL = ?, STORE_TEL = ?, STORE_ADDRESS = ? WHERE STORE_EMAIL = ?";
+$sql = "UPDATE STORE SET STORE_NAME = ?, STORE_TEL = ?, STORE_ADDRESS = ? WHERE STORE_EMAIL = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssss", $newStoreName, $newStoreEmail, $newStoreTel, $newStoreAddress, $email);
+$stmt->bind_param("ssss", $newStoreName, $newStoreTel, $newStoreAddress, $email);
 $stmt->execute();
 
 // Kiểm tra kết quả update

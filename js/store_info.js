@@ -29,13 +29,12 @@ var editMode = false;
 
       // Lấy thông tin mới từ các trường nhập
       var newStoreName = document.getElementById("newStoreName").value;
-      var newStoreEmail = document.getElementById("newStoreEmail").value;
       var newStoreTel = document.getElementById("newStoreTel").value;
       var newStoreAddress = document.getElementById("newStoreAddress").value;
 
       // Gửi thông tin mới đến trang xử lý (save_changes.php)
       var form = document.getElementById("editForm");
-      form.action = "store_infomation_update.php";
+      form.action = "store_information_update.php";
       form.method = "POST";
       form.submit();
     }
@@ -57,3 +56,20 @@ var editMode = false;
         history.back();
       }
     }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var updateMessage = document.getElementById('updateMessage');
+      var isSuccess = updateMessage.getAttribute('data-success');
+  
+      // Kiểm tra giá trị isSuccess và đặt màu sắc tương ứng
+      if (isSuccess === 'true') {
+        updateMessage.style.color = 'green'; // Màu xanh cho thành công
+      } else if (isSuccess === 'false') {
+        updateMessage.style.color = 'red'; // Màu đỏ cho thất bại
+      }
+  
+      // Đặt thời gian hiển thị và sau đó ẩn đoạn text
+      setTimeout(function() {
+        updateMessage.style.display = 'none';
+      }, 2000); // 3 giây
+    });

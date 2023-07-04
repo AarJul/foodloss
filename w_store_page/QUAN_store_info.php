@@ -40,7 +40,19 @@ $conn->close();
   </script>
 </head>
 <body>
-  <?php?>
+  <p id="updateMessage" data-success="<?php echo isset($_SESSION['update_success']) && $_SESSION['update_success'] ? 'true' : 'false'; ?>">
+      <?php
+      if (isset($_SESSION['update_success'])) {
+        if ($_SESSION['update_success']) {
+          echo "Cập nhật dữ liệu thành công";
+        } else {
+          echo "Cập nhật dữ liệu thất bại";
+        }
+
+        unset($_SESSION['update_success']); // Xóa session để không hiển thị lại thông báo sau khi refresh trang
+      }
+      ?>
+  </p>
   <h1>Store Information</h1>
 
   <!-- Các thông tin cửa hàng được in ra từ kết quả truy vấn -->
@@ -60,10 +72,6 @@ $conn->close();
     <div class="form-group">
       <label for="newStoreName">New Store Name:</label>
       <input type="text" id="newStoreName" name="newStoreName" placeholder="New Store Name">
-    </div>
-    <div class="form-group">
-      <label for="newStoreEmail">New Store Email:</label>
-      <input type="text" id="newStoreEmail" name="newStoreEmail" placeholder="New Store Email">
     </div>
     <div class="form-group">
       <label for="newStoreTel">New Store Tel:</label>
