@@ -116,6 +116,12 @@ $conn->close();
         <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">店舗設定<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="QUAN_store_info.php">情報変更</a></li>
+          </ul>
+        </li>
         <li id="user">
           <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
         </li>
@@ -182,9 +188,7 @@ $conn->close();
           </div>
         </div>
         
-        <h3 id="h3">Inventory Management</h3>
-        <br>
-        
+        <h3 id="h3">廃棄物一覧</h3>
         <table class="table-bordered table-hover" id="inventory">
           <thead>
             <tr>

@@ -1,0 +1,16 @@
+.form-group {
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  input[type="text"] {
+    width: 300px;
+  }
+  .button-container {
+    margin-top: 10px;
+  }
+  .button-container button {
+    margin-right: 10px;
+  }
