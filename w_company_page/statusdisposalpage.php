@@ -89,7 +89,7 @@ $conn->close();
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="user">
-                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+                    <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
         </div>
