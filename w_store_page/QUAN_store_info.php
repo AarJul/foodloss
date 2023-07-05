@@ -36,22 +36,30 @@ $conn->close();
   <meta charset="utf-8">
   <link rel="stylesheet" href="../css/store_info.css" />
   <script>
+    var updateSuccess = <?php echo isset($_SESSION['update_success']) && $_SESSION['update_success'] ? 'true' : 'false'; ?>;
+  </script>
+
+  <script>
     
   </script>
 </head>
 <body>
   <p id="updateMessage" data-success="<?php echo isset($_SESSION['update_success']) && $_SESSION['update_success'] ? 'true' : 'false'; ?>">
-      <?php
+  <?php
+  if (isset($_SESSION['update_error'])) {
+      echo $_SESSION['update_error'];
+      unset($_SESSION['update_error']); // Xóa session để không hiển thị lại thông báo sau khi refresh trang
+  } else {
       if (isset($_SESSION['update_success'])) {
-        if ($_SESSION['update_success']) {
-          echo "Cập nhật dữ liệu thành công";
-        } else {
-          echo "Cập nhật dữ liệu thất bại";
-        }
-
-        unset($_SESSION['update_success']); // Xóa session để không hiển thị lại thông báo sau khi refresh trang
+          if ($_SESSION['update_success']) {
+              echo "Cập nhật dữ liệu thành công";
+          } else {
+              echo "Cập nhật dữ liệu thất bại";
+          }
+          unset($_SESSION['update_success']); // Xóa session để không hiển thị lại thông báo sau khi refresh trang
       }
-      ?>
+  }
+  ?>
   </p>
   <h1>Store Information</h1>
 
@@ -74,6 +82,10 @@ $conn->close();
       <input type="text" id="newStoreName" name="newStoreName" placeholder="New Store Name">
     </div>
     <div class="form-group">
+      <label for="newStoreEmail">New Store Email:</label>
+      <input type="text" id="newStoreEmail" name="newStoreEmail" placeholder="New Store Email">
+    </div>
+    <div class="form-group">
       <label for="newStoreTel">New Store Tel:</label>
       <input type="text" id="newStoreTel" name="newStoreTel" placeholder="New Store Tel">
     </div>
@@ -87,7 +99,7 @@ $conn->close();
   <div class="button-container">
     <button id="editButton" onclick="showEditForm()">変更</button>
     <button id="saveButton" style="display: none;" onclick="saveChanges()">保存</button>
-    <button onclick="backButtonClicked()">戻る</button>
+    <button id ="backButton" onclick="backButtonClicked()">戻る</button>
   </div>
   <script src="../js/store_info.js"></script>
 </body>

@@ -1,5 +1,4 @@
 var editMode = false;
-
     function showEditForm() {
       // Hiển thị box nhập thông tin mới
       document.getElementById("editForm").style.display = "block";
@@ -29,6 +28,7 @@ var editMode = false;
 
       // Lấy thông tin mới từ các trường nhập
       var newStoreName = document.getElementById("newStoreName").value;
+      var newStoreEmail = document.getElementById("newStoreEmail").value;
       var newStoreTel = document.getElementById("newStoreTel").value;
       var newStoreAddress = document.getElementById("newStoreAddress").value;
 
@@ -43,6 +43,7 @@ var editMode = false;
       if (editMode) {
         // Ẩn box nhập thông tin mới
         document.getElementById("editForm").style.display = "none";
+        //Hiện storeInfo
         document.getElementById("storeInfo").style.display = "block";
         
         // Hiển thị nút "変更"
@@ -50,12 +51,16 @@ var editMode = false;
         
         // Ẩn nút "保存"
         document.getElementById("saveButton").style.display = "none";
-        
         editMode = false;
       } else {
-        history.back();
+        if (updateSuccess) {
+          window.location.href = "getfood_disposal.php";
+        } else {
+          history.back(); // Quay lại trang trước đó
+        }
       }
     }
+    
 
     window.addEventListener('DOMContentLoaded', function() {
       var updateMessage = document.getElementById('updateMessage');
@@ -73,3 +78,11 @@ var editMode = false;
         updateMessage.style.display = 'none';
       }, 2000); // 3 giây
     });
+
+    if (updateSuccess) {
+        document.getElementById("backButton").textContent = "ホームページへ";
+        document.getElementById("editButton").style.display = "none";
+    } else {
+      
+    }
+    

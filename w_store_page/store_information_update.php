@@ -17,30 +17,49 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
-
-// Lấy thông tin mới từ form
+$conn->autocommit(true);
 $newStoreName = $_POST['newStoreName'];
 $newStoreTel = $_POST['newStoreTel'];
 $newStoreAddress = $_POST['newStoreAddress'];
+$newStoreEmail = $_POST['newStoreEmail'];
 
-// Câu lệnh SQL update dữ liệu
-$sql = "UPDATE STORE SET STORE_NAME = ?, STORE_TEL = ?, STORE_ADDRESS = ? WHERE STORE_EMAIL = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $newStoreName, $newStoreTel, $newStoreAddress, $email);
-$stmt->execute();
+try {
+    $sql = "UPDATE STORE SET STORE_NAME = ?, STORE_EMAIL = ?, STORE_TEL = ?, STORE_ADDRESS = ? WHERE STORE_EMAIL = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss", $newStoreName, $newStoreEmail, $newStoreTel, $newStoreAddress, $email);
+    $stmt->execute();
 
-// Kiểm tra kết quả update
-if ($stmt->affected_rows > 0) {
-    $_SESSION['update_success'] = true;
-    header("Location: QUAN_store_info.php"); // Điều hướng về trang gốc
+    if ($stmt->affected_rows > 0) {
+        $_SESSION['update_success'] = true;
+        $_SESSION['store_email']= $newStoreEmail;
+    } else {
+        $_SESSION['update_success'] = false;
+    }
+
+    $stmt->close();
+    $conn->close();
+
+    header("Location: QUAN_store_info.php");
     exit();
-} else {
+} catch (mysqli_sql_exception $e) {
+    $conn->rollback();
     $_SESSION['update_success'] = false;
-    header("Location: QUAN_store_info.php"); // Điều hướng về trang gốc
+
+    $errorCode = $e->getCode();
+    $errorMessage = $e->getMessage();
+
+    if ($errorCode === 1062) {
+        if (strpos($errorMessage, "STORE_EMAIL") !== false) {
+            $_SESSION['update_error'] = "入力されたメールがすでに登録されています！";
+        } else if (strpos($errorMessage, "STORE_TEL") !== false) {
+            $_SESSION['update_error'] = "入力された電話番号がすでに登録されています！";
+        } else {
+            $_SESSION['update_error'] = "入力されたメールと電話番号がすでに登録されています！";
+        }
+    } else {
+        $_SESSION['update_error'] = "Oops! 変更が正常に行われませんでした！もう一度お試しくだい ";
+    }
+    header("Location: QUAN_store_info.php"); 
     exit();
 }
-
-
-$stmt->close();
-$conn->close();
 ?>
