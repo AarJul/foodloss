@@ -66,6 +66,26 @@ $conn->close();
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        function openUserInformation(userId) {
+            $.ajax({
+                url: "storeinformation.php",
+                type: "GET",
+                data: { id: userId },
+                success: function(response) {
+                    // Create a Bootstrap modal
+                    var modal = $('<div class="modal fade" tabindex="-1" role="dialog"></div>');
+                    var modalContent = $('<div class="modal-content"></div>');
+                    modalContent.html(response);
+                    modal.append(modalContent);
+                    modal.modal('show');
+                },
+                error: function() {
+                    alert("Failed to load user information.");
+                }
+            });
+        }
+    </script>
 </head>
 
 <body style="height: 1000px">
@@ -116,7 +136,8 @@ $conn->close();
             <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
                 <h3 class="text-center">Store ID:
                     <?php echo $store_id; ?>&nbsp;
-        <a href="storeinformation.php?id=<?php echo $store_id; ?>"><?php echo $store_rows[$store_id]; ?></a>
+                
+                    <a href="#" onclick="openUserInformation(<?php echo $store_id; ?>)"><?php echo $store_rows[$store_id]; ?></a>
                 </h3>
                 <table class="table-bordered table-hover text-center" id="inventory">
                     <thead>
