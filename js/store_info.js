@@ -85,4 +85,3 @@ var editMode = false;
     } else {
       
     }
-    
