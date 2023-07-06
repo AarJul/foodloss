@@ -32,7 +32,7 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Store Information</title>
+  <title>店舗情報</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../css/store_info.css" />
   <script>
@@ -61,16 +61,16 @@ $conn->close();
   }
   ?>
   </p>
-  <h1>Store Information</h1>
+  <h1>店舗情報</h1>
 
   <!-- Các thông tin cửa hàng được in ra từ kết quả truy vấn -->
   <div id="storeInfo">
     <?php while ($row = $result->fetch_assoc()): ?>
-      <h3>Store ID: <?php echo $row['STORE_ID']; ?></h3>
-      <p>Store Name: <?php echo $row['STORE_NAME']; ?></p>
-      <p>Store Email: <?php echo $row['STORE_EMAIL']; ?></p>
-      <p>Store Tel: <?php echo $row['STORE_TEL']; ?></p>
-      <p>Store Address: <?php echo $row['STORE_ADDRESS']; ?></p>
+      <h3>店舗コード: <?php echo $row['STORE_ID']; ?></h3>
+      <p>店舗名: <?php echo $row['STORE_NAME']; ?></p>
+      <p>メールアドレス: <?php echo $row['STORE_EMAIL']; ?></p>
+      <p>電話番号: <?php echo $row['STORE_TEL']; ?></p>
+      <p>住所: <?php echo $row['STORE_ADDRESS']; ?></p>
       <hr>
     <?php endwhile; ?>
   </div>
@@ -78,19 +78,21 @@ $conn->close();
   <!-- Box nhập thông tin mới -->
   <form id="editForm" style="display: none;">
     <div class="form-group">
-      <label for="newStoreName">New Store Name:</label>
+      <label for="newStoreName">店舗名:</label>
       <input type="text" id="newStoreName" name="newStoreName" placeholder="New Store Name">
     </div>
     <div class="form-group">
-      <label for="newStoreEmail">New Store Email:</label>
-      <input type="text" id="newStoreEmail" name="newStoreEmail" placeholder="New Store Email">
+      <label for="newStoreEmail">メール:</label>
+      <input type="text" id="newStoreEmail" name="newStoreEmail" placeholder="New Store Email" onkeyup="showEmailNote()">
+      <br>
+      <span style="font-size: small; color: red;">ログイン時のメールアドレスが変更されますので、ご注意ください！</span>
     </div>
     <div class="form-group">
-      <label for="newStoreTel">New Store Tel:</label>
+      <label for="newStoreTel">電話番号:</label>
       <input type="text" id="newStoreTel" name="newStoreTel" placeholder="New Store Tel">
     </div>
     <div class="form-group">    
-      <label for="newStoreAddress">New Store Address:</label>
+      <label for="newStoreAddress">住所:</label>
       <input type="text" id="newStoreAddress" name="newStoreAddress" placeholder="New Store Address">
     </div>
   </form>

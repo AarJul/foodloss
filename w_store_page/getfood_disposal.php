@@ -119,7 +119,7 @@ $conn->close();
       <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">店舗設定<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="QUAN_store_info.php">情報変更</a></li>
+            <li><a href="show&change_storeinfo.php">情報変更</a></li>
           </ul>
         </li>
         <li id="user">

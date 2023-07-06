@@ -39,7 +39,7 @@ try {
     $stmt->close();
     $conn->close();
 
-    header("Location: QUAN_store_info.php");
+    header("Location: show&change_storeinfo.php");
     exit();
 } catch (mysqli_sql_exception $e) {
     $conn->rollback();
@@ -59,7 +59,7 @@ try {
     } else {
         $_SESSION['update_error'] = "Oops! 変更が正常に行われませんでした！もう一度お試しくだい ";
     }
-    header("Location: QUAN_store_info.php"); 
+    header("Location: show&change_storeinfo.php"); 
     exit();
 }
 ?>
