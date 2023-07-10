@@ -66,6 +66,58 @@ $conn->close();
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Add this script in the head section or before the closing body tag -->
+    <script>
+        function openUserInformation(userId) {
+            $.ajax({
+                url: "userinformation.php",
+                type: "GET",
+                data: { id: userId },
+                success: function(response) {
+                    // Create a Bootstrap modal
+                    var modal = $('<div class="modal fade" tabindex="-1" role="dialog"></div>');
+                    var modalContent = $('<div class="modal-content"></div>');
+                    modalContent.html(response);
+                    modal.append(modalContent);
+                    modal.modal('show');
+                },
+                error: function() {
+                    alert("Failed to load user information.");
+                }
+            });
+        }
+    </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 20px;
+    }
+
+    .popup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .popup {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .popup p {
+        margin-bottom: 5px;
+    }
+</style>
+
 </head>
 
 <body style="height: 1000px">
@@ -89,12 +141,12 @@ $conn->close();
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="user">
-                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+                <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
         </div>
     </nav>
-    
+
 
     <div class="container" style="margin-top: 70px;">
         <div class="row content">
@@ -108,13 +160,11 @@ $conn->close();
                     <?php
                         // Get the user name from the $user_rows array
                         $user_name = $user_rows[$user_id];
-                        // Generate the user information page URL with the user ID as a query parameter
-                        $user_info_url = "userinformation.php?id=" . $user_id;
                     ?>
                     <h3>
-                        User ID: <?php echo $user_id; ?>
-                        &nbsp;<a href="<?php echo $user_info_url; ?>"><?php echo $user_name; ?></a>
+                        <a href="#" onclick="openUserInformation(<?php echo $user_id; ?>)"><?php echo $user_name; ?></a>
                     </h3>
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -138,21 +188,14 @@ $conn->close();
                         </table>
                     </div>
                 <?php endforeach; ?>
-            </div>
-            <div class="col-sm-2 sidenav"></div>
-        </div>
-        <div class="row content">
-            <div class="col-sm-12 text-center">
-                <button onclick="location.href='statusdisposalpage.php'" type="button" class="btn btn-primary">
-                    戻る
-                </button>
+                <div class="text-center">
+                    <a href="statusdisposalpage.php" class="btn btn-primary">戻る</a>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <footer class="container-fluid text-center">
-        <p>OutSeaS &copy; 2023</p>
-    </footer>
 </body>
 
 </html>

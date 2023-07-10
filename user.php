@@ -79,7 +79,7 @@ $conn = null;
                     <li><a href="./w_store_page/storeInfo.html">Store Information</a></li>
                 </ul>
             </li>
-            <li><a href="./w_disposal_page/deliveryDisposal">Disposal Information</a></li>
+            <li><a href="./w_disposal_page/deliveryDisposal.html">Disposal Information</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
