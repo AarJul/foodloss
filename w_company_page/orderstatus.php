@@ -89,32 +89,35 @@ $conn->close();
         }
     </script>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            margin: 20px;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 20px;
+    }
 
-        h2 {
-            color: #333;
-        }
+    .popup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-        p {
-            margin: 10px 0;
-        }
+    .popup {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto;
+    }
 
-        .user-info {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
-        }
+    .popup p {
+        margin-bottom: 5px;
+    }
+</style>
 
-        .user-info p {
-            margin-bottom: 5px;
-        }
-    </style>
 </head>
 
 <body style="height: 1000px">
@@ -138,7 +141,7 @@ $conn->close();
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="user">
-                    <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</```html
+                <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
         </div>
@@ -185,6 +188,9 @@ $conn->close();
                         </table>
                     </div>
                 <?php endforeach; ?>
+                <div class="text-center">
+                    <a href="statusdisposalpage.php" class="btn btn-primary">戻る</a>
+                </div>
 
             </div>
         </div>
