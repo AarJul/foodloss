@@ -123,7 +123,7 @@ $conn = null;
                         data-storeTel="<?php echo $store['STORE_TEL']; ?>"
                         data-storeAddress="<?php echo $store['STORE_ADDRESS']; ?>"
                         
-                        onclick="openPopup()">詳細</button>
+                        onclick="openPopup(event)">詳細</button>
 
                         
 

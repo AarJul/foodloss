@@ -57,7 +57,7 @@ function submitRequest() {
   }
 }
 
-function openPopup() {
+function openPopup(event) {
   var storeName = event.target.getAttribute('data-storeName');
   var storeEmail = event.target.getAttribute('data-storeEmail');
   var storeTel = event.target.getAttribute('data-storeTel');
