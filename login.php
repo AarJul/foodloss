@@ -71,7 +71,7 @@ function login()
           // echo "Incorrect password!";
         }
       } else if ($email == "admin@gmail.com") {
-        if ($password == "admin") {
+        if ($password == "adminpassword") {
           header("Location: w_company_page/statusdisposalpage.php");
         } else {
           $message = 'User does not exist!';
@@ -119,7 +119,7 @@ login();
         </a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
+        <li><a href="w_Landing_Page/landing.html">ホーム</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -141,7 +141,7 @@ login();
   <div class="container" style="margin-top: 70px;">
     <h1 class="text-center">ログイン</h1>
     <br>
-    <h4 class="text-center">アカウントをお持ちでない方は、 <a href="../w_Account_Register/Register.html">新規登録</a></h4>
+    <h4 class="text-center">アカウントをお持ちでない方は、 <a href="w_Account_Register/Register.html">新規登録</a></h4>
     <form action="login.php" method="POST">
       <input name="email" type="text" placeholder="メールアドレスを入力" />
       <input name="password" type="password" placeholder="パスワードを入力" />

@@ -67,8 +67,8 @@ $conn = null;
                 <span class="logo"></span>
             </a>
         </div>
-        <div >
-            <a class="navbar-brand" >OpenSeaS</a>
+        <div>
+            <a class="navbar-brand">OpenSeaS</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -79,7 +79,7 @@ $conn = null;
                     <li><a href="./w_store_page/storeInfo.html">Store Information</a></li>
                 </ul>
             </li>
-            <li><a href="./w_disposal_page/deliveryDisposal.html">Disposal Information</a></li>
+            <li><a href="./w_disposal_page/deliveryDisposal">Disposal Information</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
@@ -117,15 +117,12 @@ $conn = null;
 
                         <!-- Detail button functionality starts here -->
                         <!-- Button -->
-                        <button class="small-button" 
-                        data-storeName="<?php echo $store['STORE_NAME']; ?>" 
-                        data-storeEmail="<?php echo $store['STORE_EMAIL']; ?>"
-                        data-storeTel="<?php echo $store['STORE_TEL']; ?>"
-                        data-storeAddress="<?php echo $store['STORE_ADDRESS']; ?>"
-                        
-                        onclick="openPopup()">詳細</button>
+                        <button class="small-button" data-storeName="<?php echo $store['STORE_NAME']; ?>"
+                            data-storeEmail="<?php echo $store['STORE_EMAIL']; ?>"
+                            data-storeTel="<?php echo $store['STORE_TEL']; ?>"
+                            data-storeAddress="<?php echo $store['STORE_ADDRESS']; ?>" onclick="openPopup()">詳細</button>
 
-                        
+
 
                     </h3>
                     <thead>
@@ -146,7 +143,7 @@ $conn = null;
             if (!empty($store['ITEM'])) {
                 ?>
                     <tr>
-                        <td data-item="<?php echo $store['ITEM']; ?>">
+                        <td>
                             <?php echo $store['ITEM']; ?>
                         </td>
                         <td>
@@ -156,8 +153,10 @@ $conn = null;
 
                         <td>
                             <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
-                                onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>)">要求</button>
+                                data-item="<?php echo $store['ITEM']; ?>" data-store="<?php echo $store['STORE_NAME']; ?>" 
+                                onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>, '<?php echo $store['ITEM']; ?>','<?php echo $store['STORE_NAME']; ?>')">要求</button>
                         </td>
+
 
                     </tr>
                     <?php
@@ -184,6 +183,7 @@ $conn = null;
                 <div class="modal-content">
                     <span class="close" onclick="closeConfirmationPopup()">&times;</span>
                     <h2>Order Confirmation</h2>
+                    <p id="requestedStoreName"></p>
                     <p id="requestedItem"></p>
                     <p id="requestedQuantity"></p>
                     <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
@@ -192,30 +192,30 @@ $conn = null;
 
             <!-- Info Modal -->
             <div id="info-Modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closePopup()">&times;</span>
-                <h2 class="popup-title">Store Information</h2>
-                <h2>
-                Store Name :
-                <span id="storeName"></span>
-                </h2>
-                <p>
-                Store Email :
-                <span id="storeEmail"></span>
-                </p>
-                <p>
-                Store Telephone :
-                <span id="storeTel"></span>
-                </p>
-                <p>
-                Store Address :
-                <span id="storeAddress"></span>
-                </p>
-            </div>
+                <div class="modal-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h2 class="popup-title">Store Information</h2>
+                    <h2>
+                        Store Name :
+                        <span id="storeName"></span>
+                    </h2>
+                    <p>
+                        Store Email :
+                        <span id="storeEmail"></span>
+                    </p>
+                    <p>
+                        Store Telephone :
+                        <span id="storeTel"></span>
+                    </p>
+                    <p>
+                        Store Address :
+                        <span id="storeAddress"></span>
+                    </p>
+                </div>
             </div>
 
 
-                <!-- Detail button functionality ends here -->
+            <!-- Detail button functionality ends here -->
         </table>
     </div>
     </div>
