@@ -18,14 +18,6 @@ $selectStmt = $conn->prepare($selectQuery);
 $selectStmt->execute();
 $orders = $selectStmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Hiển thị thông tin từ bảng tạm trên trang web
-foreach ($orders as $order) {
-    echo "<tr>";
-    echo "<td>" . $order['STORE_NAME'] . "</td>";
-    echo "<td>" . $order['ITEM'] . "</td>";
-    echo "<td>" . $order['QTY'] . "</td>";
-    echo "</tr>";
-}
 if ($userResult) {
     $user_id = $userResult['USER_ID'];
     $user_name = $userResult['USER_NAME'];
@@ -94,13 +86,22 @@ $conn = null;
     </nav>
     <!-- Thêm phần tử HTML để hiển thị thông tin từ bảng tạm -->
     <div id="orderInfo">
-        <h3>注文情報:</h3>
+        <h3>Thông tin đơn hàng:</h3>
         <table>
             <tr>
-                <th>Store</th>
-                <th>Items</th>
-                <th>Quantity</th>
+                <th>Cửa hàng</th>
+                <th>Mặt hàng</th>
+                <th>Số lượng</th>
             </tr>
+            <?php
+            foreach ($orders as $order) {
+                echo "<tr>";
+                echo "<td>" . $order['STORE_NAME'] . "</td>";
+                echo "<td>" . $order['ITEM'] . "</td>";
+                echo "<td>" . $order['QTY'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
         </table>
     </div>
     <footer class="custom-footer">
