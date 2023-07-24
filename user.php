@@ -153,7 +153,7 @@ $conn = null;
 
                         <td>
                             <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
-                                data-item="<?php echo $store['ITEM']; ?>" data-store="<?php echo $store['STORE_NAME']; ?>" 
+                                data-item="<?php echo $store['ITEM']; ?>" data-store="<?php echo $store['STORE_NAME']; ?>"
                                 onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>, '<?php echo $store['ITEM']; ?>','<?php echo $store['STORE_NAME']; ?>')">要求</button>
                         </td>
 
@@ -183,12 +183,11 @@ $conn = null;
                 <div class="modal-content">
                     <span class="close" onclick="closeConfirmationPopup()">&times;</span>
                     <h2>Order Confirmation</h2>
-                    <p id="requestedStoreName"></p>
-                    <p id="requestedItem"></p>
-                    <p id="requestedQuantity"></p>
+                    <div id="requestedStores"></div>
                     <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
                 </div>
             </div>
+
 
             <!-- Info Modal -->
             <div id="info-Modal" class="modal">

@@ -1,7 +1,8 @@
 
 var requestedItems = [];
+var updatedItems = [];
 
-function openModal(disposalId,item,storeName) {
+function openModal(disposalId, item, storeName) {
   var modal = document.getElementById("request-modal");
   modal.style.display = "block";
 
@@ -30,8 +31,6 @@ function submitRequest() {
   }
 
 
-
-
   //////////
   requestedStoreName = event.target.getAttribute('data-storeName');
   document.getElementById('storeName').innerText = requestedStoreName;
@@ -41,7 +40,7 @@ function submitRequest() {
     var disposalId = document.getElementById("submitRequestBtn").getAttribute("data-disposalId");
     var item = document.getElementById("submitRequestBtn").getAttribute("data-item");
     var storeName = document.getElementById("submitRequestBtn").getAttribute("data-store");
-    
+
     // Thực hiện xử lý yêu cầu với storeId và quantity
     var qtyElement = document.getElementById("qty_" + disposalId);
     var currentQty = parseInt(qtyElement.textContent);
@@ -67,6 +66,13 @@ function submitRequest() {
 
     var remainingQty = currentQty - parseInt(quantity);
     qtyElement.textContent = remainingQty;
+    var update = {
+
+      store: storeName,
+      item: item,
+      updtQuantity: remainingQty
+    };
+    updatedItems.push(update);
     // Thay đổi nút thành "Đã yêu cầu"
     var requestButton = document.querySelector(".request-button[data-disposalId='" + disposalId + "']");
     requestButton.textContent = "要求済";
@@ -106,57 +112,132 @@ function openConfirmationPopup() {
   // Mở pop-up xác nhận
   var confirmationModal = document.getElementById("confirmation-modal");
   confirmationModal.style.display = "block";
-  ////////////
-  // Tạo một chuỗi để lưu trữ thông tin số lượng đã yêu cầu
-  var storeName = "";
-  var quantityString = "Số lượng đã yêu cầu :";
 
- 
-  // Lặp qua mảng requestedItems để tạo chuỗi thông tin
+  // Xóa nội dung hiện tại của phần tử chứa các cửa hàng yêu cầu
+  document.getElementById("requestedStores").innerHTML = "";
+
+  // Tạo đối tượng để lưu trữ thông tin yêu cầu theo từng cửa hàng
+  var storeRequests = {};
+
+  // Lặp qua mảng requestedItems để tạo danh sách yêu cầu theo từng cửa hàng
   for (var i = 0; i < requestedItems.length; i++) {
     var item = requestedItems[i].item;
     var quantity = requestedItems[i].quantity;
     var store = requestedItems[i].store;
-    quantityString += "<br>" + item + ": " + quantity;
-    storeName = store;
 
+    // Kiểm tra xem cửa hàng đã có trong danh sách yêu cầu chưa
+    if (!storeRequests[store]) {
+      storeRequests[store] = [];
+    }
 
+    // Thêm thông tin yêu cầu của item và số lượng vào danh sách yêu cầu của cửa hàng
+    storeRequests[store].push({
+      item: item,
+      quantity: quantity
+    });
   }
-  // Hiển thị chuỗi thông tin số lượng đã yêu cầu
-  document.getElementById("requestedStoreName").innerHTML = "Tên cửa hàng:" + storeName;
-  document.getElementById("requestedQuantity").innerHTML = quantityString;
-  ////////
 
+  // Hiển thị thông tin yêu cầu theo từng cửa hàng
+  var requestedStoresContainer = document.getElementById("requestedStores");
+  for (var store in storeRequests) {
+    if (storeRequests.hasOwnProperty(store)) {
+      // Tạo bảng để chứa thông tin cửa hàng
+      var table = document.createElement("table");
+
+      // Tạo dòng tiêu đề
+      var headerRow = document.createElement("tr");
+      var itemHeader = document.createElement("th");
+      itemHeader.textContent = "Item";
+      var quantityHeader = document.createElement("th");
+      quantityHeader.textContent = "Quantity";
+      headerRow.appendChild(itemHeader);
+      headerRow.appendChild(quantityHeader);
+      table.appendChild(headerRow);
+
+      // Lặp qua danh sách yêu cầu của cửa hàng
+      for (var j = 0; j < storeRequests[store].length; j++) {
+        var storeRequest = storeRequests[store][j];
+
+        // Tạo dòng chứa thông tin yêu cầu của mỗi item
+        var row = document.createElement("tr");
+        var itemCell = document.createElement("td");
+        itemCell.textContent = storeRequest.item;
+        var quantityCell = document.createElement("td");
+        quantityCell.textContent = storeRequest.quantity;
+        row.appendChild(itemCell);
+        row.appendChild(quantityCell);
+        table.appendChild(row);
+      }
+
+      // Tạo phần tử div để chứa bảng và tên cửa hàng
+      var storeDiv = document.createElement("div");
+      storeDiv.innerHTML = "<strong>Store Name: " + store + "</strong>";
+      storeDiv.appendChild(table);
+
+      // Đưa phần tử cửa hàng vào container
+      requestedStoresContainer.appendChild(storeDiv);
+
+      // Gán thuộc tính dữ liệu cho phần tử button Confirm
+      var confirmButton = document.getElementById("confirmOrderBtn");
+      confirmButton.setAttribute("data-store", store);
+      confirmButton.setAttribute("data-item", JSON.stringify(storeRequests[store]));
+    }
+  }
 }
-
 
 
 function closeConfirmationPopup() {
   var modal = document.getElementById("confirmation-modal");
   modal.style.display = "none";
 }
+// ////////////////////////////////////////////
 
 function confirmOrder() {
-  // Tiến hành xử lý yêu cầu xác nhận đơn hàng
-  var quantityInput = document.getElementById("quantityInput");
-  var quantity = quantityInput.value;
+  try {
+    // Lấy thông tin từ thuộc tính dữ liệu của button Confirm
+    var requestedStore = document.getElementById("confirmOrderBtn").getAttribute("data-store");
+    var requestedItemsJson = document.getElementById("confirmOrderBtn").getAttribute("data-item");
+    var requestedItems = JSON.parse(requestedItemsJson);
 
-  // Kiểm tra giá trị quantity và tiến hành xử lý yêu cầu
-  if (quantity !== null && quantity !== "") {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "add_order.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        // Xử lý phản hồi từ máy chủ (nếu cần)
-        closeModal("confirmation-modal");
-      }
-    };
-    // Gửi số lượng đã yêu cầu và thông tin khác (nếu cần) đến tệp PHP
-    var data = "quantity=" + encodeURIComponent(quantity);
-    xhr.send(data);
+    // Kiểm tra xem có yêu cầu nào cho cửa hàng đã chọn không
+    if (requestedItems.length > 0) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "./add_order.php", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          // Xử lý phản hồi từ máy chủ (nếu cần)
+          closeConfirmationPopup("confirmation-modal");
+          alert("Order confirmed successfully!");
+        }
+      };
+
+      // Tạo một mảng mới chứa các thông tin để lưu vào bảng orders
+      var orderData = [];
+
+      // Thêm các thông tin vào mảng orderData từ requestedItems
+      requestedItems.forEach(function (item) {
+        var orderItem = {
+          store_name: requestedStore,
+          item: item.item,
+          qty: item.quantity
+        };
+        orderData.push(orderItem);
+      });
+
+      // Gửi yêu cầu cho cửa hàng đã chọn đến tệp PHP
+      var data = JSON.stringify(orderData);
+      console.log(data);
+      xhr.send(data);
+    }
+  } catch (error) {
+    console.error('Error in confirmOrder:', error);
   }
 }
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////
 
 
