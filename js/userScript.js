@@ -1,5 +1,5 @@
 
-var requestedItems = [];
+var requestedItems = {};
 var updatedItems = [];
 
 function openModal(disposalId, item, storeName) {
@@ -21,7 +21,6 @@ function closeModal() {
 
 function submitRequest(disposalId, item, storeName) {
   var quantity = document.getElementById("quantityInput").value;
-  // Lưu trữ số lượng đã yêu cầu vào biến toàn cục
   ////////
 
   // Kiểm tra và xử lý số liệu nhập vào
@@ -29,8 +28,6 @@ function submitRequest(disposalId, item, storeName) {
     alert("Số lượng không hợp lệ!");
     return;
   }
-
-
   //////////
   requestedStoreName = event.target.getAttribute('data-storeName');
   document.getElementById('storeName').innerText = requestedStoreName;
@@ -54,26 +51,30 @@ function submitRequest(disposalId, item, storeName) {
       alert("Số lượng yêu cầu vượt quá số lượng hiện có!");
       return;
     }
+    // Nếu cửa hàng chưa tồn tại trong requestedItems, tạo một mảng mới để lưu trữ thông tin yêu cầu
+    if (!requestedItems[storeName]) {
+      requestedItems[storeName] = [];
+    }
     // Lưu thông tin vào mảng requestedItems
-    var request = {
+    requestedItems[storeName].push({
 
       store: storeName,
       item: item,
       quantity: quantity
-    };
-    requestedItems.push(request);
+    });
+    //requestedItems.push(request);
 
 
     var remainingQty = currentQty - parseInt(quantity);
     qtyElement.textContent = remainingQty;
     var update = {
-      disposalId: disposalId ,
+      disposalId: disposalId,
       store: storeName,
       item: item,
       updtQuantity: remainingQty
     };
     updatedItems.push(update);
-    
+
     // Thay đổi nút thành "Đã yêu cầu"
     var requestButton = document.querySelector(".request-button[data-disposalId='" + disposalId + "']");
     requestButton.textContent = "要求済";
@@ -116,33 +117,12 @@ function openConfirmationPopup() {
   confirmationModal.style.display = "block";
 
   // Xóa nội dung hiện tại của phần tử chứa các cửa hàng yêu cầu
-  document.getElementById("requestedStores").innerHTML = "";
-
-  // Tạo đối tượng để lưu trữ thông tin yêu cầu theo từng cửa hàng
-  var storeRequests = {};
-
-  // Lặp qua mảng requestedItems để tạo danh sách yêu cầu theo từng cửa hàng
-  for (var i = 0; i < requestedItems.length; i++) {
-    var item = requestedItems[i].item;
-    var quantity = requestedItems[i].quantity;
-    var store = requestedItems[i].store;
-
-    // Kiểm tra xem cửa hàng đã có trong danh sách yêu cầu chưa
-    if (!storeRequests[store]) {
-      storeRequests[store] = [];
-    }
-
-    // Thêm thông tin yêu cầu của item và số lượng vào danh sách yêu cầu của cửa hàng
-    storeRequests[store].push({
-      item: item,
-      quantity: quantity
-    });
-  }
+  var requestedStoresContainer = document.getElementById("requestedStores");
+  requestedStoresContainer.innerHTML = "";
 
   // Hiển thị thông tin yêu cầu theo từng cửa hàng
-  var requestedStoresContainer = document.getElementById("requestedStores");
-  for (var store in storeRequests) {
-    if (storeRequests.hasOwnProperty(store)) {
+  for (var store in requestedItems) {
+    if (requestedItems.hasOwnProperty(store)) {
       // Tạo bảng để chứa thông tin cửa hàng
       var table = document.createElement("table");
 
@@ -157,9 +137,7 @@ function openConfirmationPopup() {
       table.appendChild(headerRow);
 
       // Lặp qua danh sách yêu cầu của cửa hàng
-      for (var j = 0; j < storeRequests[store].length; j++) {
-        var storeRequest = storeRequests[store][j];
-
+      requestedItems[store].forEach(function (storeRequest) {
         // Tạo dòng chứa thông tin yêu cầu của mỗi item
         var row = document.createElement("tr");
         var itemCell = document.createElement("td");
@@ -169,7 +147,7 @@ function openConfirmationPopup() {
         row.appendChild(itemCell);
         row.appendChild(quantityCell);
         table.appendChild(row);
-      }
+      });
 
       // Tạo phần tử div để chứa bảng và tên cửa hàng
       var storeDiv = document.createElement("div");
@@ -178,14 +156,14 @@ function openConfirmationPopup() {
 
       // Đưa phần tử cửa hàng vào container
       requestedStoresContainer.appendChild(storeDiv);
-
-      // Gán thuộc tính dữ liệu cho phần tử button Confirm
-      var confirmButton = document.getElementById("confirmOrderBtn");
-      confirmButton.setAttribute("data-store", store);
-      confirmButton.setAttribute("data-item", JSON.stringify(storeRequests[store]));
     }
   }
+
+  // Gán thuộc tính dữ liệu cho phần tử button Confirm
+  var confirmButton = document.getElementById("confirmOrderBtn");
+  confirmButton.setAttribute("data-item", JSON.stringify(requestedItems));
 }
+
 
 
 function closeConfirmationPopup() {
@@ -196,12 +174,11 @@ function closeConfirmationPopup() {
 
 function confirmOrder() {
   try {
-    var disposalId = document.getElementById("confirmOrderBtn").getAttribute("data-disposalId");
-    var requestedStore = document.getElementById("confirmOrderBtn").getAttribute("data-store");
     var requestedItemsJson = document.getElementById("confirmOrderBtn").getAttribute("data-item");
     var requestedItems = JSON.parse(requestedItemsJson);
 
-    if (requestedItems.length > 0) {
+    // Kiểm tra nếu requestedItems là mảng 2 chiều và có ít nhất một yêu cầu
+    if (Object.keys(requestedItems).length > 0) {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "./add_order.php", true);
       xhr.setRequestHeader("Content-Type", "application/json");
@@ -212,19 +189,26 @@ function confirmOrder() {
         }
       };
 
+      // Duyệt qua các cửa hàng và lấy thông tin yêu cầu sản phẩm của từng cửa hàng
       var orderData = [];
-      requestedItems.forEach(function (item) {
-        var orderItem = {
-          store_name: requestedStore,
-          item: item.item,
-          qty: item.quantity
-        };
-        orderData.push(orderItem);
-      });
+      for (var store in requestedItems) {
+        if (requestedItems.hasOwnProperty(store)) {
+          var storeRequests = requestedItems[store];
+          storeRequests.forEach(function (itemRequest) {
+            var orderItem = {
+              store_name: store,
+              item: itemRequest.item,
+              qty: itemRequest.quantity
+            };
+            orderData.push(orderItem);
+          });
+        }
+      }
 
       var data = JSON.stringify(orderData);
       xhr.send(data);
     }
+
     if (updatedItems.length > 0) {
       var xhrUpdated = new XMLHttpRequest();
       xhrUpdated.open("POST", "./updateDisposal.php", true);
@@ -235,8 +219,6 @@ function confirmOrder() {
           handleConfirmation();
         }
       };
-
-      console.log(updatedItems);
       var updatedData = JSON.stringify(updatedItems);
       xhrUpdated.send(updatedData);
     }

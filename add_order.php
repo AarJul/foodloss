@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 session_start();
 require_once dirname(__FILE__) . '/function/db_connection.php';
 
@@ -38,5 +38,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Đóng kết nối và gửi phản hồi về cho máy khách (client)
     $conn = null;
 }
-?> -->
+?>
 
