@@ -34,6 +34,7 @@ if (!empty($name) && !empty($quantity) && !empty($date)) {
 
     // クエリを実行して結果をチェック
     if ($conn->query($sql) === TRUE) {
+      $conn -> commit();
         $message= "登録が正常に行われました！";
     } else {
         $message= "登録に失敗しました！\nもう一度試してください！";

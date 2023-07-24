@@ -67,8 +67,8 @@ $conn = null;
                 <span class="logo"></span>
             </a>
         </div>
-        <div >
-            <a class="navbar-brand" >OpenSeaS</a>
+        <div>
+            <a class="navbar-brand">OpenSeaS</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -91,6 +91,7 @@ $conn = null;
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
                     <li><a href="userProfile.php">Your Profile</a></li>
+                    <li><a href="orderHistory.php">Order History</a></li>
                     <li><a href="setting.php">Setting</a></li>
                     <li><a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
@@ -117,7 +118,12 @@ $conn = null;
 
                         <!-- Detail button functionality starts here -->
                         <!-- Button -->
-                        <button class="small-button" onclick="openPopup()">詳細</button>
+                        <button class="small-button" data-storeName="<?php echo $store['STORE_NAME']; ?>"
+                            data-storeEmail="<?php echo $store['STORE_EMAIL']; ?>"
+                            data-storeTel="<?php echo $store['STORE_TEL']; ?>"
+                            data-storeAddress="<?php echo $store['STORE_ADDRESS']; ?>" onclick="openPopup()">詳細</button>
+
+
 
                     </h3>
                     <thead>
@@ -138,7 +144,7 @@ $conn = null;
             if (!empty($store['ITEM'])) {
                 ?>
                     <tr>
-                        <td data-item="<?php echo $store['ITEM']; ?>">
+                        <td>
                             <?php echo $store['ITEM']; ?>
                         </td>
                         <td>
@@ -148,8 +154,10 @@ $conn = null;
 
                         <td>
                             <button class="request-button" data-disposalId="<?php echo $store['DISPOSAL_ID']; ?>"
-                                onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>)">要求</button>
+                                data-item="<?php echo $store['ITEM']; ?>" data-store="<?php echo $store['STORE_NAME']; ?>"
+                                onclick="openModal(<?php echo $store['DISPOSAL_ID']; ?>, '<?php echo $store['ITEM']; ?>','<?php echo $store['STORE_NAME']; ?>')">要求</button>
                         </td>
+
 
                     </tr>
                     <?php
@@ -176,11 +184,11 @@ $conn = null;
                 <div class="modal-content">
                     <span class="close" onclick="closeConfirmationPopup()">&times;</span>
                     <h2>Order Confirmation</h2>
-                    <p id="requestedItem"></p>
-                    <p id="requestedQuantity"></p>
+                    <div id="requestedStores"></div>
                     <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
                 </div>
             </div>
+
 
             <!-- Info Modal -->
             <div id="info-Modal" class="modal">
@@ -189,23 +197,25 @@ $conn = null;
                     <h2 class="popup-title">Store Information</h2>
                     <h2>
                         Store Name :
-                        <?php echo $store['STORE_NAME']; ?>
+                        <span id="storeName"></span>
                     </h2>
                     <p>
                         Store Email :
-                        <?php echo $store['STORE_EMAIL']; ?>
+                        <span id="storeEmail"></span>
                     </p>
                     <p>
                         Store Telephone :
-                        <?php echo $store['STORE_TEL']; ?>
+                        <span id="storeTel"></span>
                     </p>
                     <p>
                         Store Address :
-                        <?php echo $store['STORE_ADDRESS']; ?>
+                        <span id="storeAddress"></span>
                     </p>
                 </div>
+            </div>
 
-                <!-- Detail button functionality ends here -->
+
+            <!-- Detail button functionality ends here -->
         </table>
     </div>
     </div>
