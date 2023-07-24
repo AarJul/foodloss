@@ -56,7 +56,7 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <title>OpenSeaS管理システム</title>
+    <title>OutSeaS管理システム</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -66,6 +66,26 @@ $conn->close();
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        function openUserInformation(userId) {
+            $.ajax({
+                url: "storeinformation.php",
+                type: "GET",
+                data: { id: userId },
+                success: function(response) {
+                    // Create a Bootstrap modal
+                    var modal = $('<div class="modal fade" tabindex="-1" role="dialog"></div>');
+                    var modalContent = $('<div class="modal-content"></div>');
+                    modalContent.html(response);
+                    modal.append(modalContent);
+                    modal.modal('show');
+                },
+                error: function() {
+                    alert("Failed to load user information.");
+                }
+            });
+        }
+    </script>
 </head>
 
 <body style="height: 1000px">
@@ -73,7 +93,7 @@ $conn->close();
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
+                <a class="navbar-brand" href="../w_aboutUs/about.html">OutSeaS</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
@@ -89,14 +109,14 @@ $conn->close();
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="user">
-                    <a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
+                    <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container" style="margin-top: 70px;">
         <div class="text-center">
-            <h1 class="mx-auto">会社画面表示</h1>
+            <h1 class="mx-auto">管理者画面表示</h1>
         </div>
         <div class="row">
         <div class="col-sm-2">
@@ -116,7 +136,8 @@ $conn->close();
             <?php foreach ($store_data as $store_id => $disposal_rows) : ?>
                 <h3 class="text-center">Store ID:
                     <?php echo $store_id; ?>&nbsp;
-        <a href="storeinformation.php?id=<?php echo $store_id; ?>"><?php echo $store_rows[$store_id]; ?></a>
+                
+                    <a href="#" onclick="openUserInformation(<?php echo $store_id; ?>)"><?php echo $store_rows[$store_id]; ?></a>
                 </h3>
                 <table class="table-bordered table-hover text-center" id="inventory">
                     <thead>
@@ -216,6 +237,6 @@ $conn->close();
     <script src="../js/deleteItemFromDisposal.js"></script>
 </body>
 <footer class="container-fluid text-center">
-        <p>OpenSeaS &copy; 2023</p>
+        <p>OutSeaS &copy; 2023</p>
     </footer>
 </html>

@@ -71,7 +71,7 @@ function login()
           // echo "Incorrect password!";
         }
       } else if ($email == "admin@gmail.com") {
-        if ($password == "adminpassword") {
+        if ($password == "admin") {
           header("Location: w_company_page/statusdisposalpage.php");
         } else {
           $message = 'User does not exist!';
@@ -114,14 +114,12 @@ login();
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="w_Landing_Page/landing.html">
-          <span class="logo"></span>
+          <!-- <span class="logo"></span> -->
+          OutSeaS
         </a>
       </div>
-      <div>
-        <a class="navbar-brand">OpenSeaS</a>
-      </div>
       <ul class="nav navbar-nav">
-        <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
+        <li><a href="w_Landing_Page/landing.html">ホーム</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -135,9 +133,6 @@ login();
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
-        </li>
-        <li>
-          <a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> ログイン</a>
         </li>
       </ul>
     </div>
