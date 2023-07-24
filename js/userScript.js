@@ -19,7 +19,7 @@ function closeModal() {
 }
 
 
-function submitRequest() {
+function submitRequest(disposalId, item, storeName) {
   var quantity = document.getElementById("quantityInput").value;
   // Lưu trữ số lượng đã yêu cầu vào biến toàn cục
   ////////
@@ -67,12 +67,13 @@ function submitRequest() {
     var remainingQty = currentQty - parseInt(quantity);
     qtyElement.textContent = remainingQty;
     var update = {
-
+      disposalId: disposalId ,
       store: storeName,
       item: item,
       updtQuantity: remainingQty
     };
     updatedItems.push(update);
+    
     // Thay đổi nút thành "Đã yêu cầu"
     var requestButton = document.querySelector(".request-button[data-disposalId='" + disposalId + "']");
     requestButton.textContent = "要求済";
@@ -83,6 +84,7 @@ function submitRequest() {
     closeModal();
   }
 }
+//console.log(updatedItems);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function openPopup() {
   var storeName = event.target.getAttribute('data-storeName');
@@ -194,12 +196,11 @@ function closeConfirmationPopup() {
 
 function confirmOrder() {
   try {
-    // Lấy thông tin từ thuộc tính dữ liệu của button Confirm
+    var disposalId = document.getElementById("confirmOrderBtn").getAttribute("data-disposalId");
     var requestedStore = document.getElementById("confirmOrderBtn").getAttribute("data-store");
     var requestedItemsJson = document.getElementById("confirmOrderBtn").getAttribute("data-item");
     var requestedItems = JSON.parse(requestedItemsJson);
 
-    // Kiểm tra xem có yêu cầu nào cho cửa hàng đã chọn không
     if (requestedItems.length > 0) {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "./add_order.php", true);
@@ -207,15 +208,11 @@ function confirmOrder() {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
           // Xử lý phản hồi từ máy chủ (nếu cần)
-          closeConfirmationPopup("confirmation-modal");
-          alert("Order confirmed successfully!");
+          handleConfirmation();
         }
       };
 
-      // Tạo một mảng mới chứa các thông tin để lưu vào bảng orders
       var orderData = [];
-
-      // Thêm các thông tin vào mảng orderData từ requestedItems
       requestedItems.forEach(function (item) {
         var orderItem = {
           store_name: requestedStore,
@@ -225,18 +222,33 @@ function confirmOrder() {
         orderData.push(orderItem);
       });
 
-      // Gửi yêu cầu cho cửa hàng đã chọn đến tệp PHP
       var data = JSON.stringify(orderData);
-      console.log(data);
       xhr.send(data);
+    }
+    if (updatedItems.length > 0) {
+      var xhrUpdated = new XMLHttpRequest();
+      xhrUpdated.open("POST", "./updateDisposal.php", true);
+      xhrUpdated.setRequestHeader("Content-Type", "application/json");
+      xhrUpdated.onreadystatechange = function () {
+        if (xhrUpdated.readyState === XMLHttpRequest.DONE && xhrUpdated.status === 200) {
+          // Xử lý phản hồi từ máy chủ (nếu cần)
+          handleConfirmation();
+        }
+      };
+
+      console.log(updatedItems);
+      var updatedData = JSON.stringify(updatedItems);
+      xhrUpdated.send(updatedData);
+    }
+
+    function handleConfirmation() {
+      closeConfirmationPopup("confirmation-modal");
+      alert(" order successful!");
     }
   } catch (error) {
     console.error('Error in confirmOrder:', error);
   }
 }
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////
 
