@@ -53,10 +53,11 @@ $conn = null;
     <title>Inventory Management</title>
     <link rel="stylesheet" type="text/css" href="css/user.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/navbar.css" />
     <link rel="stylesheet" href="css/storeInvnt.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
@@ -83,23 +84,32 @@ $conn = null;
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>
-                    <span class="glyphicon glyphicon-user">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="caret"></span>
+                    <span>
+                        <img src="./img/shiba.png" alt="Avatar" class="user-avatar-navbar">
                         <?php echo $user_name; ?>
                     </span>
                 </a>
+
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
                     <li><a href="userProfile.php">Your Profile</a></li>
                     <li><a href="orderHistory.php">Order History</a></li>
                     <li><a href="setting.php">Setting</a></li>
-                    <li><a href="function/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                    <li>
+                        <a href="#" onclick="openLogoutModal()">
+                            <span class="glyphicon glyphicon-log-in"></span> Logout
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
     </nav>
     <div class="bottom-right-section text-right">
-        <a><button class="order-btn" onclick="openConfirmationPopup()">Order Confirmation</button></a>
+        <a>
+            <button class="order-btn" onclick="openConfirmationPopup()"><i class="fa fa-shopping-cart"></i>カート</button>
+        </a>
         <!-- Rest of the code for the pop-up -->
     </div>
 
@@ -128,10 +138,10 @@ $conn = null;
                     </h3>
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0)">Item Name <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(1)">Expiration Date <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(2)">Quantity <span class="glyphicon glyphicon-sort"></span></th>
-                            <th onclick="sortTable(2)"> Request <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(0)">商品名 <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(1)">賞味期限 <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(2)">数量 <span class="glyphicon glyphicon-sort"></span></th>
+                            <th onclick="sortTable(3)"> 要求 <span class="glyphicon glyphicon-sort"></span></th>
                         </tr>
                     </thead>
                     <tbody id="inventoryBody">
@@ -183,9 +193,9 @@ $conn = null;
             <div id="confirmation-modal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeConfirmationPopup()">&times;</span>
-                    <h2>Order Confirmation</h2>
+                    <h2>注文確認</h2>
                     <div id="requestedStores"></div>
-                    <button id="confirmOrderBtn" onclick="confirmOrder()">Confirm</button>
+                    <button id="confirmOrderBtn" onclick="confirmOrder()">確認</button>
                 </div>
             </div>
 
@@ -213,9 +223,21 @@ $conn = null;
                     </p>
                 </div>
             </div>
+            <!-- Logout -->
+            <div id="logoutModal" class="modal logout-modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeLogoutModal()">&times;</span>
+                    <h2>ログアウトを確認</h2>
+                    <p>アカウントからログアウトしてもよろしいですか？</p>
+                    <div class="button-container">
+                        <a class="confLog" onclick="confirmLogout()">同意する</a>
+                        <hr class="vertical-line">
+                        <a class="Cancel" onclick="closeLogoutModal()">キャンセル</a>
+                    </div>
+                </div>
 
 
-            <!-- Detail button functionality ends here -->
+                <!-- Detail button functionality ends here -->
         </table>
     </div>
     </div>
@@ -230,6 +252,7 @@ $conn = null;
                     <h5>Contact</h5>
                     <ul class="list-unstyled">
                         <li>Phone: 123-356-7890</li>
+                        
                         <li>Email: info@example.com</li>
                     </ul>
                 </div>

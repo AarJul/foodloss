@@ -1,252 +1,136 @@
-/* user.css */
-.container {
-    margin-top: 50px;
-}
-
+/* Add this CSS at the end of your CSS file */
+/* Styles for the bottom right section */
 .bottom-right-section {
-    margin-bottom: 20px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
 }
 
-.center-section {
-    margin-top: 40px;
-}
-
-.table-bordered {
-    border: 1px solid #ddd;
-}
-
-.table-bordered th,
-.table-bordered td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #f5f5f5;
-}
-
-.request-button {
-    padding: 5px 10px;
-    background-color: #337ab7;
-    color: #fff;
+.order-btn {
+    background-color: #b5635a;
+    color: white;
+    padding: 10px 30px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-}
-
-/* footer.css */
-.custom-footer {
-    background-color: #f8f8f8;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.custom-footer h5 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
-.custom-footer p {
+/* Styles for the inventory table and buttons */
+.center-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.small-button {
+    background-color: #3498db;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 14px;
 }
 
-/* navbar.css */
-.navbar-inverse {
-    background-color: #333;
-    border-color: #333;
-}
-
-.navbar-inverse .navbar-brand {
-    color: #fff;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #fff;
-}
-
-.navbar-inverse .navbar-nav>li>a:hover,
-.navbar-inverse .navbar-nav>li>a:focus {
-    background-color: #222;
-}
-
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:hover,
-.navbar-inverse .navbar-nav>.active>a:focus {
-    background-color: #555;
-}
-
-.navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
-    border-top-color: #777;
-    border-bottom-color: #777;
-}
-
-.navbar-inverse .navbar-nav>.dropdown>a .caret {
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-}
-
-.navbar-inverse .navbar-nav>.open>a,
-.navbar-inverse .navbar-nav>.open>a:hover,
-.navbar-inverse .navbar-nav>.open>a:focus {
-    background-color: #555;
-    color: #fff;
-}
-
-.navbar-inverse .navbar-nav>.open>a .caret {
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-}
-
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu {
-    background-color: #333;
-}
-
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>li>a {
-    color: #fff;
-}
-
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>li>a:hover,
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    background-color: #222;
-}
-
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>.active>a,
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>.active>a:hover,
-.navbar-inverse .navbar-nav>.dropdown>.dropdown-menu>.active>a:focus {
-    background-color: #555;
-}
-
-/* storeInvnt.css */
-#inventory h3 {
-    margin-top: 20px;
-}
-
-#inventory th {
+.request-button {
+    background-color: #27ae60;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-#inventory th span {
-    margin-left: 5px;
-}
-
-#inventoryBody td {
-    cursor: pointer;
-}
-
-#inventoryBody td[data-item]::before {
-    content: attr(data-item);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
+/* Styles for the pop-up modals */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
     cursor: pointer;
+    color: #888;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+h2.popup-title {
+    color: #e74c3c;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-.modal h2 {
-    margin-top: 0;
-}
-
-.modal input[type="text"] {
-    padding: 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.modal button {
-    padding: 5px 10px;
-    background-color: #337ab7;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.order-btn {
-    padding: 8px 20px;
-    /* Điều chỉnh khoảng lề của nút */
-    font-size: 16px;
-    /* Điều chỉnh kích thước chữ của nút */
-}
-
-.fixed-bottom {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-}
-
-.small-button {
-    font-size: 12px;
-    padding: 3px 10px;
-}
-
-.popup-title {
-    text-align: center;
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
 }
 
-.dropdown-menu li {
-    border-bottom: 1px solid #ccc;
+.confLog {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.logo {
-    display: inline-block;
-    width: 50px;
-    /* Độ rộng của hình logo */
-    height: 50px;
-    /* Độ cao của hình logo */
-    background-image: url(../img/logo.png);
-    /* Đường dẫn đến hình logo */
-    background-size: cover;
-    background-position: center;
+.Cancel {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+.fa-shopping-cart {
+    margin-right: 10px; /* Adjust the spacing as needed */
+    font-size: 20px; /* Adjust the icon size as needed */
+}
+/* Thẻ chứa hình đại diện và tên người dùng */
+.dropdown-toggle span {
+    display: inline-block; /* Hiển thị dưới dạng block */
+    line-height: 30px; /* Chiều cao của thanh navbar */
+    vertical-align: middle; /* Canh giữa theo chiều dọc */
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
+/* Hình đại diện */
+.user-avatar-navbar {
+    width: 30px; /* Kích thước hình đại diện */
+    height: 30px;
+    border-radius: 50%; /* Định dạng thành hình tròn */
+    margin-right: 5px; /* Khoảng cách giữa hình đại diện và tên người dùng */
 }
 
-th,
-td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}

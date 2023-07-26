@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updateDisposalStmt->bindParam(':disposalId', $disposalId);
         $updateDisposalStmt->execute();
     }
+    $conn->commit();
 
     // Đóng kết nối và gửi phản hồi về cho máy khách (client)
     $conn = null;

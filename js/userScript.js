@@ -1,8 +1,27 @@
+// 使っていない時コンメントにして
+// Check and restore the requested status after page reload
+// document.addEventListener("DOMContentLoaded", function() {
+//   var requestButtons = document.querySelectorAll(".request-button");
+//   requestButtons.forEach(function(requestButton) {
+//     var disposalId = requestButton.getAttribute("data-disposalId");
+//     var isRequested = localStorage.getItem('requested_' + disposalId);
 
+//     if (isRequested === 'true') {
+//       requestButton.textContent = "要求済";
+//       requestButton.disabled = true;
+//     }
+//   });
+// });
+
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+
+// Initialize variables to store request information and update requests
 var requestedItems = {};
 var updatedItems = [];
 
+// Functions to control opening and closing of modal popups
 function openModal(disposalId, item, storeName) {
+  // code for opening the modal
   var modal = document.getElementById("request-modal");
   modal.style.display = "block";
 
@@ -14,80 +33,14 @@ function openModal(disposalId, item, storeName) {
 }
 
 function closeModal() {
+  // code for closing the modal
   var modal = document.getElementById("request-modal");
   modal.style.display = "none";
 }
 
-
-function submitRequest(disposalId, item, storeName) {
-  var quantity = document.getElementById("quantityInput").value;
-  ////////
-
-  // Kiểm tra và xử lý số liệu nhập vào
-  if (isNaN(quantity) || quantity < 0) {
-    alert("Số lượng không hợp lệ!");
-    return;
-  }
-  //////////
-  requestedStoreName = event.target.getAttribute('data-storeName');
-  document.getElementById('storeName').innerText = requestedStoreName;
-
-  // Kiểm tra giá trị quantity và tiến hành xử lý yêu cầu
-  if (quantity !== null && quantity !== "") {
-    var disposalId = document.getElementById("submitRequestBtn").getAttribute("data-disposalId");
-    var item = document.getElementById("submitRequestBtn").getAttribute("data-item");
-    var storeName = document.getElementById("submitRequestBtn").getAttribute("data-store");
-
-    // Thực hiện xử lý yêu cầu với storeId và quantity
-    var qtyElement = document.getElementById("qty_" + disposalId);
-    var currentQty = parseInt(qtyElement.textContent);
-
-    if (isNaN(quantity) || parseInt(quantity) < 0) {
-      alert("Số lượng không hợp lệ!");
-      return;
-    }
-
-    if (currentQty < parseInt(quantity)) {
-      alert("Số lượng yêu cầu vượt quá số lượng hiện có!");
-      return;
-    }
-    // Nếu cửa hàng chưa tồn tại trong requestedItems, tạo một mảng mới để lưu trữ thông tin yêu cầu
-    if (!requestedItems[storeName]) {
-      requestedItems[storeName] = [];
-    }
-    // Lưu thông tin vào mảng requestedItems
-    requestedItems[storeName].push({
-
-      store: storeName,
-      item: item,
-      quantity: quantity
-    });
-    //requestedItems.push(request);
-
-
-    var remainingQty = currentQty - parseInt(quantity);
-    qtyElement.textContent = remainingQty;
-    var update = {
-      disposalId: disposalId,
-      store: storeName,
-      item: item,
-      updtQuantity: remainingQty
-    };
-    updatedItems.push(update);
-
-    // Thay đổi nút thành "Đã yêu cầu"
-    var requestButton = document.querySelector(".request-button[data-disposalId='" + disposalId + "']");
-    requestButton.textContent = "要求済";
-    requestButton.disabled = true;
-
-
-
-    closeModal();
-  }
-}
-//console.log(updatedItems);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 function openPopup() {
+  // code for opening the info popup
   var storeName = event.target.getAttribute('data-storeName');
   var storeEmail = event.target.getAttribute('data-storeEmail');
   var storeTel = event.target.getAttribute('data-storeTel');
@@ -105,20 +58,28 @@ function openPopup() {
 }
 
 function closePopup() {
+  // code for closing the info popup
   var modal = document.getElementById("info-Modal");
   modal.style.display = "none";
 }
-///////////////////////////////////////////////////////////////////////////////////////
 
-
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 function openConfirmationPopup() {
-  // Mở pop-up xác nhận
+  // code for opening the confirmation popup
   var confirmationModal = document.getElementById("confirmation-modal");
   confirmationModal.style.display = "block";
 
   // Xóa nội dung hiện tại của phần tử chứa các cửa hàng yêu cầu
   var requestedStoresContainer = document.getElementById("requestedStores");
   requestedStoresContainer.innerHTML = "";
+
+  // Kiểm tra xem đã có yêu cầu sản phẩm hay chưa
+  if (Object.keys(requestedItems).length === 0) {
+    var messageDiv = document.createElement("div");
+    messageDiv.textContent = "まだリクエストされた数量はありません";
+    requestedStoresContainer.appendChild(messageDiv);
+    return;
+  }
 
   // Hiển thị thông tin yêu cầu theo từng cửa hàng
   for (var store in requestedItems) {
@@ -164,13 +125,91 @@ function openConfirmationPopup() {
   confirmButton.setAttribute("data-item", JSON.stringify(requestedItems));
 }
 
-
-
 function closeConfirmationPopup() {
+  // code for closing the confirmation popup
   var modal = document.getElementById("confirmation-modal");
   modal.style.display = "none";
 }
-// ////////////////////////////////////////////
+
+function openInfoChangePopup() {
+  // Hiển thị modal
+  var modal = document.getElementById("infoChangeModal");
+  modal.style.display = "block";
+}
+
+function closeInfoChangePopup() {
+  // Đóng modal
+  var modal = document.getElementById("infoChangeModal");
+  modal.style.display = "none";
+}
+
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+
+// Function to handle user request for a product
+function submitRequest(disposalId, item, storeName) {
+  var quantity = document.getElementById("quantityInput").value;
+
+  if (isNaN(quantity) || quantity < 0) {
+    alert("Số lượng không hợp lệ!");
+    return;
+  }
+
+  requestedStoreName = event.target.getAttribute('data-storeName');
+  document.getElementById('storeName').innerText = requestedStoreName;
+
+  // Check the quantity value and proceed with the request
+  if (quantity !== null && quantity !== "") {
+    var disposalId = document.getElementById("submitRequestBtn").getAttribute("data-disposalId");
+    var item = document.getElementById("submitRequestBtn").getAttribute("data-item");
+    var storeName = document.getElementById("submitRequestBtn").getAttribute("data-store");
+
+    // Perform request processing with storeId and quantity
+    var qtyElement = document.getElementById("qty_" + disposalId);
+    var currentQty = parseInt(qtyElement.textContent);
+
+    if (isNaN(quantity) || parseInt(quantity) < 0) {
+      alert("数量が無効です！");
+      return;
+    }
+
+    if (currentQty < parseInt(quantity)) {
+      alert("要求された数量が在庫数を超えています！");
+      return;
+    }
+    // Nếu cửa hàng chưa tồn tại trong requestedItems, tạo một mảng mới để lưu trữ thông tin yêu cầu
+    if (!requestedItems[storeName]) {
+      requestedItems[storeName] = [];
+    }
+    // Lưu thông tin vào mảng requestedItems
+    requestedItems[storeName].push({
+
+      store: storeName,
+      item: item,
+      quantity: quantity
+    });
+
+    var remainingQty = currentQty - parseInt(quantity);
+    qtyElement.textContent = remainingQty;
+    var update = {
+      disposalId: disposalId,
+      store: storeName,
+      item: item,
+      updtQuantity: remainingQty
+    };
+    updatedItems.push(update);
+
+    // Thay đổi nút thành "Đã yêu cầu"
+    var requestButton = document.querySelector(".request-button[data-disposalId='" + disposalId + "']");
+    requestButton.textContent = "要求済";
+    requestButton.disabled = true;
+
+    localStorage.setItem('requested_' + disposalId, 'true');
+
+    closeModal();
+  }
+}
+
+// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 
 function confirmOrder() {
   try {
@@ -184,7 +223,6 @@ function confirmOrder() {
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-          // Xử lý phản hồi từ máy chủ (nếu cần)
           handleConfirmation();
         }
       };
@@ -232,6 +270,77 @@ function confirmOrder() {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////
 
+function updateUserInfo() {
+  try {
+    var newUserName = document.getElementById("newUserName").value;
+    var newUserEmail = document.getElementById("newUserEmail").value;
+    var newUserTel = document.getElementById("newUserTel").value;
+    var newUserAddress = document.getElementById("newUserAddress").value;
+
+    // Chuyển đổi dữ liệu thành chuỗi JSON và gửi yêu cầu
+    var infoUpdate = {
+      user_name: newUserName,
+      user_email: newUserEmail,
+      user_tel: newUserTel,
+      user_address: newUserAddress
+    };
+    if (newUserName !== "" || newUserEmail !== "" || newUserTel !== "" || newUserAddress !== "") {
+      var xhrUpdated = new XMLHttpRequest();
+      xhrUpdated.open("POST", "./update_user_info.php", true);
+      xhrUpdated.setRequestHeader("Content-Type", "application/json");
+      xhrUpdated.onreadystatechange = function () {
+        if (xhrUpdated.readyState === XMLHttpRequest.DONE && xhrUpdated.status === 200) {
+          // Xử lý phản hồi từ máy chủ (nếu cần)
+          closeInfoChangePopup();
+          alert(" 変更できました!");
+          window.location.href = 'userProfile.php';
+        }
+      };
+      var updatedData = JSON.stringify(infoUpdate);
+      xhrUpdated.send(updatedData);
+      console.log(infoUpdate);
+    }
+  } catch (error) {
+    console.error('Error :', error);
+  }
+}
+
+
+function openLogoutModal() {
+  document.getElementById("logoutModal").style.display = "block";
+}
+
+function closeLogoutModal() {
+  document.getElementById("logoutModal").style.display = "none";
+}
+
+function confirmLogout() {
+  // Thực hiện đăng xuất
+  window.location.href = "function/logout.php";
+}
+
+ // Xử lý khi người dùng tải lên hình đại diện mới
+ document.getElementById("uploadForm").onsubmit = function(event) {
+  event.preventDefault();
+  var formData = new FormData();
+  var fileInput = document.getElementById("avatarInput");
+  formData.append("avatar", fileInput.files[0]);
+
+  // Gửi yêu cầu Ajax để tải lên hình đại diện mới
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "./upload_avatar.php", true);
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          // Cập nhật hình đại diện trong trang userProfile với đường dẫn mới
+          var userAvatar = document.getElementById("userAvatar");
+          userAvatar.src = xhr.responseText;
+          // Chuyển hướng về trang user.php với tham số URL "avatar" để cập nhật hình đại diện trong trang user.php
+          window.location.href = "user.php?avatar=" + xhr.responseText;
+      } else {
+          // Xử lý lỗi tải lên hình đại diện mới (nếu có)
+      }
+  };
+  xhr.send(formData);
+};
 

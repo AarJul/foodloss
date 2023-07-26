@@ -89,9 +89,9 @@ $conn = null;
         <h3>Thông tin đơn hàng:</h3>
         <table>
             <tr>
-                <th>Cửa hàng</th>
-                <th>Mặt hàng</th>
-                <th>Số lượng</th>
+                <th>STORE NAME</th>
+                <th>商品名</th>
+                <th>数量</th>
             </tr>
             <?php
             foreach ($orders as $order) {
