@@ -85,50 +85,6 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-  <head>
-    <title>OpenSeaS管理システム</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-    <link rel="stylesheet" href="../css/food_disposal.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="../w_aboutUs/about.html">OpenSeaS</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ストア用<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="../w_Store_Inventory/StoreInvnt.html">ストアフロント</a></li>
-              <li><a href="../w_disposal_page/registerDisposal.html">廃棄登録</a></li>
-              <li><a href="../w_store_page/storeInfo.html">ストア情報</a></li>
-            </ul>
-          </li>
-          <li><a href="../w_disposal_page/deliveryDisposal.html">廃棄情報</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="../w_Account_Register/Register.html"><span class="glyphicon glyphicon-user"></span> 新規登録</a>
-          </li>
-          <li id="user">
-            <a href="../function/logout.php"><span class="glyphicon glyphicon-log-in"></span> ログアウト</a>
-          </li>
-        </ul>
-=======
 <head>
   <title>OutSeaS管理システム</title>
   <meta charset="utf-8" />
@@ -146,7 +102,6 @@ $conn->close();
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="../w_aboutUs/about.html">OutSeaS</a>
->>>>>>> 6b4dc2a8cbd7a1c6e4d654bcce83a892d3e7a22e
       </div>
       <ul class="nav navbar-nav">
         <li><a href="../w_Landing_Page/landing.html">ホーム</a></li>
