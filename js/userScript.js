@@ -58,11 +58,7 @@ function openPopup() {
 }
 
 function closePopup() {
-<<<<<<< HEAD
   // code for closing the info popup
-=======
-   // code for closing the info popup
->>>>>>> 5bf43db420f7514b67a3f6c3acb5f737566f40db
   var modal = document.getElementById("info-Modal");
   modal.style.display = "none";
 }
@@ -135,7 +131,6 @@ function closeConfirmationPopup() {
   modal.style.display = "none";
 }
 
-<<<<<<< HEAD
 function openInfoChangePopup() {
   // Hiển thị modal
   var modal = document.getElementById("infoChangeModal");
@@ -147,8 +142,6 @@ function closeInfoChangePopup() {
   var modal = document.getElementById("infoChangeModal");
   modal.style.display = "none";
 }
-=======
->>>>>>> 5bf43db420f7514b67a3f6c3acb5f737566f40db
 
 // ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 
@@ -277,7 +270,6 @@ function confirmOrder() {
   }
 }
 
-<<<<<<< HEAD
 
 function updateUserInfo() {
   try {
@@ -313,59 +305,6 @@ function updateUserInfo() {
     console.error('Error :', error);
   }
 }
-=======
-// // Biến lưu trạng thái hiện tại của việc sắp xếp cho mỗi cột
-// var sortStates = [0, 0, 0, 0]; // Khởi tạo tất cả các cột đều không sắp xếp
-
-// // Hàm sắp xếp dữ liệu theo cột được chọn
-// function sortTable(columnIndex) {
-//   var table, rows, switching, i, x, y, shouldSwitch;
-//   table = document.getElementById("inventory");
-//   switching = true;
-
-//   while (switching) {
-//     switching = false;
-//     rows = table.getElementsByTagName("tr");
-
-//     for (i = 1; i < (rows.length - 1); i++) {
-//       shouldSwitch = false;
-//       x = rows[i].getElementsByTagName("td")[columnIndex];
-//       y = rows[i + 1].getElementsByTagName("td")[columnIndex];
-
-//       // Kiểm tra cột được chọn để thực hiện việc sắp xếp tương ứng
-//       if (columnIndex === 0) { // Cột "商品名" (Tên sản phẩm)
-//         if (sortStates[columnIndex] === 0) {
-//           shouldSwitch = x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase();
-//         } else {
-//           shouldSwitch = x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase();
-//         }
-//       } else if (columnIndex === 1) { // Cột "賞味期限" (Ngày hết hạn)
-//         if (sortStates[columnIndex] === 0) {
-//           shouldSwitch = Date.parse(x.innerHTML) > Date.parse(y.innerHTML);
-//         } else {
-//           shouldSwitch = Date.parse(x.innerHTML) < Date.parse(y.innerHTML);
-//         }
-//       } else if (columnIndex === 2) { // Cột "数量" (Số lượng)
-//         if (sortStates[columnIndex] === 0) {
-//           shouldSwitch = parseInt(x.innerHTML) > parseInt(y.innerHTML);
-//         } else {
-//           shouldSwitch = parseInt(x.innerHTML) < parseInt(y.innerHTML);
-//         }
-//       }
-
-//       if (shouldSwitch) {
-//         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//         switching = true;
-//         break;
-//       }
-//     }
-
-//     // Cập nhật trạng thái của cột sau khi đã sắp xếp
-//     sortStates = sortStates.map((state, index) => (index === columnIndex ? (1 - state) : 0));
-//   }
-// }
-
->>>>>>> 5bf43db420f7514b67a3f6c3acb5f737566f40db
 
 
 function openLogoutModal() {
