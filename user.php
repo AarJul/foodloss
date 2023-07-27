@@ -174,7 +174,7 @@ $conn = null;
             } else {
                 ?>
                     <tr>
-                        <td colspan="4">No disposal available at the moment!</td>
+                        <td colspan="4">現在、廃棄物がないです!</td>
                     </tr>
                     <?php
             }

@@ -86,7 +86,7 @@ $conn = null;
     </nav>
     <!-- Thêm phần tử HTML để hiển thị thông tin từ bảng tạm -->
     <div id="orderInfo">
-        <h3>Thông tin đơn hàng:</h3>
+        <h3>注文詳細:</h3>
         <table>
             <tr>
                 <th>STORE NAME</th>
