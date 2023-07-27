@@ -8,7 +8,7 @@
 }
 
 .order-btn {
-    background-color: #b5635a;
+    background-color: #e74c3c;
     color: white;
     padding: 10px 30px;
     border: none;
@@ -62,59 +62,111 @@ h3 {
 }
 
 /* Styles for the pop-up modals */
-.modal-content {
+/* Modal container */
+.logout-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Modal content */
+  .request-modal-content{
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .modal-content {
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
+    position: relative;
+  }
+  .logmodal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #141313;
+    width: 50%;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
-    color: #888;
-}
-
-h2.popup-title {
-    color: #e74c3c;
-    font-size: 24px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Modal header */
+  .modal h2 {
+    color: #333;
     margin-bottom: 20px;
-}
-
-.button-container {
+  }
+  
+  /* Modal content text */
+  .modal p {
+    margin-bottom: 10px;
+  }
+  
+  /* Button container */
+  .button-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-}
-
-.confLog {
-    background-color: #e74c3c;
-    color: white;
-    padding: 10px 30px;
+  }
+  
+  /* Confirm and Cancel buttons */
+  .confLog,
+  .Cancel {
+    color: #ff0000;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
+    flex: 1;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .confLog:hover,
+  .Cancel:hover {
+    background-color: #ffcccc;
+  }
+  
+  /* Vertical line between buttons */
+  .vertical-line {
+    width: 1px;
+    height: 100%;
+    background-color: #888;
+    margin: 0 10px;
+  }
+  
 
-.Cancel {
-    background-color: #e74c3c;
-    color: white;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
 .fa-shopping-cart {
     margin-right: 10px; /* Adjust the spacing as needed */
     font-size: 20px; /* Adjust the icon size as needed */

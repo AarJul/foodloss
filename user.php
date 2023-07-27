@@ -182,7 +182,7 @@ $conn = null;
         ?>
             <!-- Request Modal -->
             <div id="request-modal" class="modal">
-                <div class="modal-content">
+                <div class="request-modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>
                     <h2>Request Quantity</h2>
                     <input type="text" id="quantityInput" placeholder="Enter quantity">
@@ -225,7 +225,7 @@ $conn = null;
             </div>
             <!-- Logout -->
             <div id="logoutModal" class="modal logout-modal">
-                <div class="modal-content">
+                <div class="logmodal-content">
                     <span class="close" onclick="closeLogoutModal()">&times;</span>
                     <h2>ログアウトを確認</h2>
                     <p>アカウントからログアウトしてもよろしいですか？</p>
