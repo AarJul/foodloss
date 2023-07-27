@@ -98,7 +98,7 @@ $conn = null;
 
         <form id="uploadForm" action="upload_avatar.php" method="post" enctype="multipart/form-data">
             <input type="file" name="avatar" id="avatarInput">
-            <button type="submit">Tải lên hình đại diện mới</button>
+            <button type="submit">新しい写真をアップロードする</button>
         </form>
 
         <div class="user-info">
@@ -130,16 +130,16 @@ $conn = null;
     <div id="infoChangeModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeInfoChangePopup()">&times;</span>
-            <h2>Thay đổi thông tin cá nhân</h2>
-            <label for="newUserName">Tên người dùng mới:</label>
+            <h2>個人情報を変更する</h2>
+            <label for="newUserName">新しいユーザー名:</label>
             <input type="text" id="newUserName" value="<?php echo $user_name; ?>">
-            <label for="newUserEmail">Email mới:</label>
+            <label for="newUserEmail">新しいメール:</label>
             <input type="text" id="newUserEmail" value="<?php echo $user_email; ?>">
-            <label for="newUserTel">Số điện thoại mới:</label>
+            <label for="newUserTel">新しい電話番号:</label>
             <input type="text" id="newUserTel" value="<?php echo $user_tel; ?>">
-            <label for="newUserAddress">Địa chỉ mới:</label>
+            <label for="newUserAddress">新しい住所:</label>
             <input type="text" id="newUserAddress" value="<?php echo $user_address; ?>">
-            <button onclick="updateUserInfo()">Xác nhận</button>
+            <button onclick="updateUserInfo()">変更</button>
         </div>
     </div>
     <!-- Logout Modal -->
