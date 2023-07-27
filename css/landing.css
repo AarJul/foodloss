@@ -4,9 +4,10 @@
 .header {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(5, 0, 136, 0.5), rgba(5, 0, 136, 0.5)), url(../img/landingBck.jpg);
+    /* background-image: linear-gradient(rgba(5, 0, 136, 0.5), rgba(5, 0, 136, 0.5)), url(../img/landingBck.jpg);
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
+    overflow-x: hidden;
 }
 #dropMenu {
     text-align: right;
@@ -21,4 +22,15 @@
 }
 #downMenuBtn {
     background-color: var(--base-color);
+}
+
+#title {
+    transform: translateX(400%);
+    transition: transform 0.4s ease;
+}
+#title:nth-of-type(even) {
+    transform: translateX(-400%);
+}
+#title.show {
+    transform: translateX(0);
 }
